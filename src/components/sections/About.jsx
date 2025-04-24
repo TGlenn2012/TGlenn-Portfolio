@@ -36,7 +36,7 @@ export const About = () => {
                     </h2>    
                     <div className="glass rounded-xl p-8 border-white/10 border hover:-translate-y-1 transition-all">
                         <p className="text-gray-300 mb-6">
-                            Multifaceted engineer with a passion for user experience (UX) design and mixed-methods research.
+                        Multifaceted engineer with a passion for user experience (UX) design and mixed-methods research. I possess a comprehensive background in conducting qualitative and quantitative research, project management, data analysis, product design and development and working with key cross-functional and multi-disciplinary stakeholders to execute strategic planning. 
                         </p>
                         
                         {/*BEGINNING OF OVERALL SKILLS SECTION*/}

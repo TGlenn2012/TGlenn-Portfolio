@@ -17,8 +17,18 @@ const words = [
     "Dog Dad",
 ];
 
+const cardIDs = [
+    "defaultScreen",
+    "Software-Card",
+    "Hardware-Card",
+    "Gaming-Card"
+]
+
 export const Home = () => {
     const [index, setIndex] = useState(0);
+    const [cardIndex, setCardIndex] = useState(0);
+    const [cardOpacity, setCardOpacity] = useState(1);
+    const [cardTransition, setCardTransition] = useState("opacity-100");
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -28,11 +38,13 @@ export const Home = () => {
         return () => clearInterval(interval);
     }, []);
     const currentWord = words[index];
+    const currentCard = cardIDs[cardIndex];
+    const nextCard = cardIDs[(cardIndex + 1) % cardIDs.length];
 
     return (
         <section 
             id="home" 
-            className="min-h-screen flex items-center justify-center relative"
+            className="min-h-screen w-screen flex items-center justify-center relative"
         >
             <RevealOnScroll>
                 <div className="flex flex-col md:flex-row items-center justify-between w-full">
@@ -51,10 +63,10 @@ export const Home = () => {
                         </motion.h2>
 
                         <p className="text-white-400 text-lg mb-8 max-w-2xl mx-auto">
-                            Multifaceted engineer with a passion for user experience (UX) design and mixed-methods research. 
+                            {/* Multifaceted engineer with a passion for user experience (UX) design and mixed-methods research. 
                             I possess a comprehensive background in conducting qualitative and quantitative research, project management, 
                             data analysis, product design and development, and working with key cross-functional and multi-disciplinary 
-                            stakeholders to execute strategic planning.
+                            stakeholders to execute strategic planning. */}
                         </p>
                         <div className="flex justify-center space-x-4">
                             <a 
@@ -76,8 +88,43 @@ export const Home = () => {
                     </div>
 
                     {/* Right Column: Image */}
-                    <div className="flex-1 flex items-center justify-center w-150 h-150">
+                    <div className="flex-1 flex flex-col items-center justify-center relative">
+                        {/* Render the current card */}
                         <LandingImageSVG className="w-full max-w-xl md:max-w-xl object-cover opacity-100" />
+
+                        {/* Navigation Buttons */}
+                        <div className="flex space-x-4 mt-4">
+                            <button
+                                className="bg-blue-500 text-white py-2 px-4 rounded shadow-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300"
+                                aria-label="Previous Card"
+                                onClick={() => {
+                                    const currentCard = document.getElementById(cardIDs[cardIndex]);
+                                    const nextIndex = (cardIndex - 1 + cardIDs.length) % cardIDs.length;
+                                    const nextCard = document.getElementById(cardIDs[nextIndex]);
+
+                                    currentCard.classList.add("opacity-0");
+                                    nextCard.classList.remove("opacity-0");
+                                    setCardIndex(nextIndex);
+                                }}
+                            >
+                                Previous
+                            </button>
+                            <button
+                                className="bg-blue-500 text-white py-2 px-8 rounded shadow-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300"
+                                aria-label="Next Card"
+                                onClick={() => {
+                                    const currentCard = document.getElementById(cardIDs[cardIndex]);
+                                    const nextIndex = (cardIndex + 1) % cardIDs.length;
+                                    const nextCard = document.getElementById(cardIDs[nextIndex]);
+
+                                    currentCard.classList.add("opacity-0");
+                                    nextCard.classList.remove("opacity-0");
+                                    setCardIndex(nextIndex);
+                                }}
+                            >
+                                Next
+                            </button>
+                        </div>
                     </div>
                 </div>
             </RevealOnScroll>
