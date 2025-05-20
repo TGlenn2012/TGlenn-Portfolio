@@ -318,7 +318,7 @@ export const Projects = () => {
                         {selectedProject.paper && (
                             <div className="mt-6 text-center">
                                 <a 
-                                    href={`${import.meta.env.BASE_URL}${selectedProject.paper}`} 
+                                    href={selectedProject.paper} 
                                     target="_blank" 
                                     rel="noopener noreferrer" 
                                     className="bg-blue-500 text-white py-3 px-6 rounded font-medium transition hover:bg-blue-600"

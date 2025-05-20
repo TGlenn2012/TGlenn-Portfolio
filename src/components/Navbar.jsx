@@ -54,7 +54,7 @@ export const Navbar = ({menuOpen, setMenuOpen}) => {
                             Contact {" "} 
                         </a>
                         <a                                                                            /* Resume section of the Nav Bar */
-                            href={`${import.meta.env.BASE_URL}assets/papers/terrell-resume.pdf`}
+                            href="assets/papers/terrell-resume.pdf"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="text-gray-300 hover:text-white transition-colors"

@@ -76,7 +76,7 @@ export const About = () => {
                         {/*END OF OVERALL SKILLS SECTION*/}
                         
                         {/*BEGINNING OF EDUCATION SECTION*/}
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+                        <div className="grid grid-cols-1 md:grid-cols-1 gap-6 mt-8">
                             <div className="p-6 rounded-xl border-white/10 border hover:-translate-y-1 transition-all">
                                 <h3 className="text-xl font-bold mb-4"> Education </h3>
                                 <ul className="list-disc list-inside text-gray-300 space-y-2"> {/*Styling for Education Section, specifically adds y space of 2 between each line*/}
@@ -104,28 +104,28 @@ export const About = () => {
                                     <div>
                                         <h4 className="font-bold"> Hardware Engineer II, Microsoft Corporation (2022 - present) </h4>
                                         <p className="text-sm"> 
-                                            - Collaborated with cross-functional teams to design and develop hardware components for Microsoft devices.
+                                            As a Hardware Engineer II at Microsoft, I lead infrastructure planning for nationwide data centers, focusing on power, cooling, and networking for AI workloads. My work includes cross-functional product development, KPI analysis, and pioneering projects such as vertical power delivery and next-gen rack management.
                                         </p>
                                     </div>
 
                                     <div>
                                         <h4 className="font-bold"> Product Design Consultant, Flare Tech: Laser & Design (2020 - present) </h4>
                                         <p className="text-sm"> 
-                                            - Made cool stuff for my friends =P
+                                            I design and develop custom products for small businesses and individuals using materials like acrylic, wood, metal, and glass. My expertise spans product development, laser cutting, and delivering tailored solutions with tools such as AutoDesk Inventor, Figma, and Adobe Creative Suite.
                                         </p>
                                     </div>
 
                                     <div>
                                         <h4 className="font-bold"> Graduate Research Assistant, Purdue University (2016 - 2022) </h4>
                                         <p className="text-sm"> 
-                                            - Tortured by a man named Dr. Karthik Ramani, but learned a lot about UX design and research.
+                                            At Purdue, I conducted research on AR and IoT technologies for youth, leading studies with over 150 participants and developing educational systems. I also coordinated outreach programs and served as Lead Instructor for hands-on STEM workshops.
                                         </p>
                                     </div>
 
                                     <div>
                                         <h4 className="font-bold"> Software Engineering Intern, Intel Corporation (Summer 2016) </h4>
                                         <p className="text-sm"> 
-                                            - Chilled with the homies and had my first intro to tech!
+                                            At Intel, I developed and tested computer configurations for major clients, analyzing CPU and GPU performance metrics to inform product design. I also used R for data analysis and reporting on next-generation workloads for key customers.
                                         </p>
                                     </div>
                                 </div>
