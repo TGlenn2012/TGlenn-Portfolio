@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState, useCallback, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 import ParticlesComponent from './components/Particles';
 import './App.css'
 import { LoadingScreen } from './components/LoadingScreen';
@@ -11,12 +11,24 @@ import { About } from './components/sections/About';
 import { Projects } from './components/sections/Projects';
 import { Contact } from './components/sections/Contact';
 import { MicrokARts } from './components/sections/ProjectDetails/MicrokARts';
-
+import "@fontsource/oswald"; // Defaults to weight 400
+import { useAnalytics } from './hooks/useAnalytics';
 
 
 function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  
+  // Initialize Google Analytics
+  const measurementId = import.meta.env.VITE_GA_MEASUREMENT_ID;
+  const { trackPageView } = useAnalytics(measurementId);
+  
+  // Track initial page view
+  useEffect(() => {
+    if (isLoaded && measurementId) {
+      trackPageView(window.location.pathname);
+    }
+  }, [isLoaded, measurementId, trackPageView]);
 
   return (
     <>

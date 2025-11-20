@@ -13,6 +13,7 @@
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
+    "@fontsource/oswald": "^5.2.5",
     "@svgdotjs/svg.js": "^3.2.4",
     "@tailwindcss/vite": "^4.0.10",
     "@tsparticles/all": "^3.8.1",

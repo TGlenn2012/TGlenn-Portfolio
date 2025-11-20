@@ -1,5 +1,6 @@
 import * as React from "react"
-export const LandingImageSVG = (props) => (
+
+export const LandingImageSVG = ({ activeCard, ...props }) => (
   <svg
     viewBox="0 0 1056 575.99999"
     id="svg352"
@@ -1273,7 +1274,7 @@ export const LandingImageSVG = (props) => (
         fontSize: "26.6667px",
         lineHeight: 1.25,
         fontFamily: "'Britannic Bold'",
-        InkscapeFontSpecification: "'Britannic Bold, Normal'",
+        // InkscapeFontSpecification: "'Britannic Bold, Normal'",
         textAlign: "center",
         letterSpacing: 0,
         wordSpacing: 0,
@@ -1298,7 +1299,7 @@ export const LandingImageSVG = (props) => (
       id="layer1"
       inkscape:label="Software-Card"
       style={{
-        display: "inline",
+        display: activeCard === "Software-Card" ? "inline" : "none",
       }}
     >
       <g id="Software-Card" transform="translate(532.2445,542.43402)">
@@ -1323,8 +1324,8 @@ export const LandingImageSVG = (props) => (
             fontStretch: "normal",
             fontSize: "21.3333px",
             lineHeight: 1.25,
-            fontFamily: "Oswald",
-            InkscapeFontSpecification: "'Oswald, Normal'",
+            fontFamily: "'Oswald', Arial, Helvetica, sans-serif", // Add fallback stack
+            // InkscapeFontSpecification: "'Oswald, Normal'",
             fontVariantLigatures: "normal",
             fontVariantCaps: "normal",
             fontVariantNumeric: "normal",
@@ -1361,13 +1362,14 @@ export const LandingImageSVG = (props) => (
           xmlSpace="preserve"
           style={{
             fontStyle: "normal",
+            fontFamily: "'Oswald', Arial, Helvetica, sans-serif", // Add fallback stack
             fontVariant: "normal",
             fontWeight: "normal",
             fontStretch: "normal",
             fontSize: "42.6667px",
             lineHeight: 1.25,
-            fontFamily: "Oswald",
-            InkscapeFontSpecification: "'Oswald, Normal'",
+            fontFamily: "'Oswald', Arial, Helvetica, sans-serif", // Add fallback stack
+            // InkscapeFontSpecification: "'Oswald, Normal'",
             fontVariantLigatures: "normal",
             fontVariantCaps: "normal",
             fontVariantNumeric: "normal",
@@ -1728,7 +1730,7 @@ export const LandingImageSVG = (props) => (
               strokeLinecap: "square",
               strokeLinejoin: "round",
             }}
-            id="rect57481"
+            id="rect57585"
             width={45}
             height={18.75}
             x={1069}
@@ -1828,7 +1830,7 @@ export const LandingImageSVG = (props) => (
       id="layer2"
       inkscape:label="Hardware-Card"
       style={{
-        display: "inline",
+        display: activeCard === "Hardware-Card" ? "inline" : "none",
       }}
     >
       <g id="Hardware-Card" transform="translate(0,542.43402)">
@@ -1853,8 +1855,8 @@ export const LandingImageSVG = (props) => (
             fontStretch: "normal",
             fontSize: "21.3333px",
             lineHeight: 1.25,
-            fontFamily: "Oswald",
-            InkscapeFontSpecification: "'Oswald, Normal'",
+            fontFamily: "'Oswald', Arial, Helvetica, sans-serif", // Add fallback stack
+            // InkscapeFontSpecification: "'Oswald, Normal'",
             fontVariantLigatures: "normal",
             fontVariantCaps: "normal",
             fontVariantNumeric: "normal",
@@ -1896,8 +1898,8 @@ export const LandingImageSVG = (props) => (
             fontStretch: "normal",
             fontSize: "42.6667px",
             lineHeight: 1.25,
-            fontFamily: "Oswald",
-            InkscapeFontSpecification: "'Oswald, Normal'",
+            fontFamily: "'Oswald', Arial, Helvetica, sans-serif", // Add fallback stack
+            // InkscapeFontSpecification: "'Oswald, Normal'",
             fontVariantLigatures: "normal",
             fontVariantCaps: "normal",
             fontVariantNumeric: "normal",
@@ -2255,7 +2257,7 @@ export const LandingImageSVG = (props) => (
       id="layer3"
       inkscape:label="Gaming-Card"
       style={{
-        display: "inline",
+        display: activeCard === "Gaming-Card" ? "inline" : "none",
       }}
     >
       <g id="Gaming-Card" transform="translate(0,910.23422)">
@@ -2280,8 +2282,8 @@ export const LandingImageSVG = (props) => (
             fontStretch: "normal",
             fontSize: "21.3333px",
             lineHeight: 1.25,
-            fontFamily: "Oswald",
-            InkscapeFontSpecification: "'Oswald, Normal'",
+            fontFamily: "'Oswald', Arial, Helvetica, sans-serif", // Add fallback stack
+            // InkscapeFontSpecification: "'Oswald, Normal'",
             fontVariantLigatures: "normal",
             fontVariantCaps: "normal",
             fontVariantNumeric: "normal",
@@ -2323,8 +2325,8 @@ export const LandingImageSVG = (props) => (
             fontStretch: "normal",
             fontSize: "42.6667px",
             lineHeight: 1.25,
-            fontFamily: "Oswald",
-            InkscapeFontSpecification: "'Oswald, Normal'",
+            fontFamily: "'Oswald', Arial, Helvetica, sans-serif", // Add fallback stack
+            // InkscapeFontSpecification: "'Oswald, Normal'",
             fontVariantLigatures: "normal",
             fontVariantCaps: "normal",
             fontVariantNumeric: "normal",
@@ -2568,7 +2570,7 @@ export const LandingImageSVG = (props) => (
       id="layer4"
       inkscape:label="Default-Card"
       style={{
-        display: "inline",
+        display: activeCard === "defaultScreen" ? "inline" : "none",
       }}
     >
       <g
@@ -2595,8 +2597,8 @@ export const LandingImageSVG = (props) => (
             fontStretch: "normal",
             fontSize: 32,
             lineHeight: 1.25,
-            fontFamily: "Oswald",
-            InkscapeFontSpecification: "'Oswald, Normal'",
+            fontFamily: "'Oswald', Arial, Helvetica, sans-serif", // Add fallback stack
+            // InkscapeFontSpecification: "'Oswald, Normal'",
             fontVariantLigatures: "normal",
             fontVariantCaps: "normal",
             fontVariantNumeric: "normal",

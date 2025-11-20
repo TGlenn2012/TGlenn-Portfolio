@@ -33,7 +33,7 @@ export const Projects = () => {
             title: "IoT Maker: Creating High-Level Electro-Mechanical Devices Through Live Programming for Youth",
             image: iotmakerHeader,
             text: "IoT Maker is a web app that uses live programming to simulate various electronic devices. Users (a) drag-and-drop blocks of code into the programming environment and (b) watch their code execute in real-time on the screen, while interacting with sensors via sliders, buttons, and color pickers. Once the user has a sufficient understanding of the functionality of their code, they can (c) upload the code to our customized iBoard, and (d) connect their phone, tablet, or computer to the iBoard, and control the electronics via WiFi.",
-            video: "https://www.youtube.com/embed/LSWQezcH70U?si=7DhJQalJlBRulNl1",
+            video: "https://www.youtube.com/embed/8j_6nkkeK_c?si=Ai_biSI57dN5DuWJ",
             paper: "assets/papers/iotmaker.pdf",
             skills: ["Augmented Reality", "IoT", "Curriculum Design", "Arduino", "Unity3D"],
         },
@@ -254,7 +254,15 @@ export const Projects = () => {
 
             {/* Modal */}
             {isModalOpen && selectedProject && (
-                <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+                <div
+                    className="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
+                    onClick={(e) => {
+                        // Only close if the overlay itself is clicked, not the modal content
+                        if (e.target === e.currentTarget) {
+                            closeModal();
+                        }
+                    }}
+                >
                     <div className="bg-blue-900/90 rounded-lg shadow-lg p-8 relative w-4/5 max-w-5xl h-4/5 overflow-y-auto">
                         {/* Close Button */}
                         <button 

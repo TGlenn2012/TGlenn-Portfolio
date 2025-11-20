@@ -90,37 +90,21 @@ export const Home = () => {
                     {/* Right Column: Image */}
                     <div className="flex-1 flex flex-col items-center justify-center relative">
                         {/* Render the current card */}
-                        <LandingImageSVG className="w-full max-w-xl md:max-w-xl object-cover opacity-100" />
+                        <LandingImageSVG activeCard={cardIDs[cardIndex]} className="w-full max-w-xl md:max-w-xl object-cover" />
 
                         {/* Navigation Buttons */}
                         <div className="flex space-x-4 mt-4">
                             <button
                                 className="bg-blue-500 text-white py-2 px-4 rounded shadow-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300"
                                 aria-label="Previous Card"
-                                onClick={() => {
-                                    const currentCard = document.getElementById(cardIDs[cardIndex]);
-                                    const nextIndex = (cardIndex - 1 + cardIDs.length) % cardIDs.length;
-                                    const nextCard = document.getElementById(cardIDs[nextIndex]);
-
-                                    currentCard.classList.add("opacity-0");
-                                    nextCard.classList.remove("opacity-0");
-                                    setCardIndex(nextIndex);
-                                }}
+                                onClick={() => setCardIndex((cardIndex - 1 + cardIDs.length) % cardIDs.length)}
                             >
                                 Previous
                             </button>
                             <button
                                 className="bg-blue-500 text-white py-2 px-8 rounded shadow-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300"
                                 aria-label="Next Card"
-                                onClick={() => {
-                                    const currentCard = document.getElementById(cardIDs[cardIndex]);
-                                    const nextIndex = (cardIndex + 1) % cardIDs.length;
-                                    const nextCard = document.getElementById(cardIDs[nextIndex]);
-
-                                    currentCard.classList.add("opacity-0");
-                                    nextCard.classList.remove("opacity-0");
-                                    setCardIndex(nextIndex);
-                                }}
+                                onClick={() => setCardIndex((cardIndex + 1) % cardIDs.length)}
                             >
                                 Next
                             </button>
