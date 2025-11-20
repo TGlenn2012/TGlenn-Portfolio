@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { RevealOnScroll } from "../RevealOnScroll";
 import microkartsHeader from "/assets/images/microkarts-header.png";
+import microkartsHeroImage from "/assets/images/microkarts-hero-image.png";
 import sharediotHeader from "/assets/images/sharediot-header.png";
+import sharediotHeroImage from "/assets/images/sharediot-hero-image.png";
 import iotmakerHeader from "/assets/images/iotmaker-header.png";
+import iotmakerHeroImage from "/assets/images/iotmaker-hero-image.png";
 import storymakarHeader from "/assets/images/storymakar-header.png";
-import sixDofHeader from "/assets/images/6dof-header.png"; 
-import constructionismHeader from "/assets/images/constructionism-header.jpg"; 
+import storymakarHeroImage from "/assets/images/storymakar-hero-image.png";
+import sixDofHeader from "/assets/images/6dof-header.png";
+import sixDofHeroImage from "/assets/images/6dof-hero-image.png";
+import constructionismHeader from "/assets/images/constructionism-header.jpg";
+import iotcourseHeroImage from "/assets/images/iotcourse-hero-image.png"; 
 
 export const Projects = () => {
     const [isModalOpen, setIsModalOpen] = useState(false); // State to manage modal visibility
@@ -96,18 +102,79 @@ export const Projects = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         {/* Project card #1 MICROKARTS */}
                         <div className="glass rounded-xl p-6 border-white/10 border hover:-translate-y-1 transition-all">
+                            <div className="mb-4">
+                                <img 
+                                    src={microkartsHeroImage} 
+                                    alt="MicrokARts" 
+                                    className="w-full h-48 object-cover rounded-lg mb-4"
+                                />
                             <h3 className="text-xl font-bold mb-4">MicrokARts</h3>
+                            </div>
                             <p className="text-gray-300 mb-4 text-justify">
                                 MicrokARts empowers children to design, build, and program their own IoT-enabled karts using a block-based programming environment. The system encourages creative play and collaboration in a shared AR-IoT environment. Through hands-on activities, youth gain foundational skills in physical computing and interactive technology. The project was evaluated with both graduate experts and youth participants.
                             </p>
-                            <div className="flex flex-wrap gap-2 mb-4">
-                                {["Augmented Reality", "IoT", "Blockly", "Javascript", "Adobe Illustrator", "Arduino", "Autodesk Eagle", "UI/UX Design", "Research", "Prototyping", "User Testing", "STEM Education"].map((tech, key) => (
+                            {/* Grouped Categories with Icons - Visual Test */}
+                            <div className="mb-4 space-y-3">
+                                <div>
+                                    <div className="flex items-center gap-2 mb-2">
+                                        <span className="text-lg">🌐</span>
+                                        <span className="text-sm font-semibold text-blue-400">AR/IoT</span>
+                                    </div>
+                                    <div className="flex flex-wrap gap-2">
+                                        {["Augmented Reality", "IoT", "Cloud Anchors"].map((tech, key) => (
+                                            <span 
+                                                key={key}
+                                                className="inline-block bg-blue-500/10 text-blue-500 px-3 rounded-full text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition">
+                                                {tech}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+                                <div>
+                                    <div className="flex items-center gap-2 mb-2">
+                                        <span className="text-lg">💻</span>
+                                        <span className="text-sm font-semibold text-blue-400">Development</span>
+                                    </div>
+                                    <div className="flex flex-wrap gap-2">
+                                        {["Blockly", "Javascript", "Unity3D", "Arduino"].map((tech, key) => (
+                                            <span 
+                                                key={key}
+                                                className="inline-block bg-blue-500/10 text-blue-500 px-3 rounded-full text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition">
+                                                {tech}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+                                <div>
+                                    <div className="flex items-center gap-2 mb-2">
+                                        <span className="text-lg">🎨</span>
+                                        <span className="text-sm font-semibold text-blue-400">Design</span>
+                                    </div>
+                                    <div className="flex flex-wrap gap-2">
+                                        {["UI/UX Design", "Adobe Illustrator"].map((tech, key) => (
+                                            <span 
+                                                key={key}
+                                                className="inline-block bg-blue-500/10 text-blue-500 px-3 rounded-full text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition">
+                                                {tech}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+                                <div>
+                                    <div className="flex items-center gap-2 mb-2">
+                                        <span className="text-lg">🔬</span>
+                                        <span className="text-sm font-semibold text-blue-400">Research</span>
+                                    </div>
+                                    <div className="flex flex-wrap gap-2">
+                                        {["Research", "User Testing", "STEM Education"].map((tech, key) => (
                                     <span 
                                         key={key}
-                                        className="inline-block bg-blue-500/10 text-blue-500 px-3 rounded-full text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition"> {/*Styling for Skill Pills*/}
+                                                className="inline-block bg-blue-500/10 text-blue-500 px-3 rounded-full text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition">
                                         {tech}
                                     </span>
                                 ))}
+                                    </div>
+                                </div>
                             </div>
                             <div className="mt-4">
                                 <button 
@@ -120,19 +187,64 @@ export const Projects = () => {
                         </div>
                         {/* Project card #2 SHARED IOT */}
                         <div className="glass rounded-xl p-6 border-white/10 border hover:-translate-y-1 transition-all">
+                            <div className="mb-4">
+                                <img 
+                                    src={sharediotHeroImage} 
+                                    alt="ShARed IoT" 
+                                    className="w-full h-48 object-cover rounded-lg mb-4"
+                                />
                             <h3 className="text-xl font-bold mb-4">ShARed IoT</h3>
+                            </div>
                             <p className="text-gray-300 mb-4 text-justify">
                                 ShARed IoT enables users to interact with custom-built IoT devices through mobile augmented reality, supporting shared experiences across multiple smartphones. The system uses cloud anchors and a wireless protocol for real-time device control and AR content sharing. It lowers barriers for novice makers to create dynamic, networked AR-IoT experiences. Studies with UX experts and users highlight its effectiveness for both beginners and experts.
                             </p>
-                            <div className="flex flex-wrap gap-2 mb-4">
-                                {["Augmented Reality", "IoT", "Cloud Anchors", "Electronics", "Programming", "UX Research", "Wireless Communication", "Mobile Development", "Prototyping", "User Study"].map((tech, key) => (
+                            {/* Grouped Categories with Icons */}
+                            <div className="mb-4 space-y-3">
+                                <div>
+                                    <div className="flex items-center gap-2 mb-2">
+                                        <span className="text-lg">🌐</span>
+                                        <span className="text-sm font-semibold text-blue-400">AR/IoT</span>
+                                    </div>
+                                    <div className="flex flex-wrap gap-2">
+                                        {["Augmented Reality", "IoT", "Cloud Anchors", "Electronics"].map((tech, key) => (
+                                            <span 
+                                                key={key}
+                                                className="inline-block bg-blue-500/10 text-blue-500 px-3 rounded-full text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition">
+                                                {tech}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+                                <div>
+                                    <div className="flex items-center gap-2 mb-2">
+                                        <span className="text-lg">💻</span>
+                                        <span className="text-sm font-semibold text-blue-400">Development</span>
+                                    </div>
+                                    <div className="flex flex-wrap gap-2">
+                                        {["Programming", "Wireless Communication", "Mobile Development"].map((tech, key) => (
+                                            <span 
+                                                key={key}
+                                                className="inline-block bg-blue-500/10 text-blue-500 px-3 rounded-full text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition">
+                                                {tech}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+                                <div>
+                                    <div className="flex items-center gap-2 mb-2">
+                                        <span className="text-lg">🔬</span>
+                                        <span className="text-sm font-semibold text-blue-400">Research</span>
+                                    </div>
+                                    <div className="flex flex-wrap gap-2">
+                                        {["UX Research", "Prototyping", "User Study"].map((tech, key) => (
                                     <span 
                                         key={key}
-                                        className="inline-block bg-blue-500/10 text-blue-500 px-3 rounded-full text-sm hover:bg-blue-500/20 
-                                                    hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition"> {/*Styling for Skill Pills*/}
+                                                className="inline-block bg-blue-500/10 text-blue-500 px-3 rounded-full text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition">
                                         {tech}
                                     </span>
                                 ))}
+                                    </div>
+                                </div>
                             </div>
                             <div className="mt-4">
                                 <button 
@@ -145,19 +257,79 @@ export const Projects = () => {
                         </div>
                         {/* Project card #3 IOT MAKER*/}
                         <div className="glass rounded-xl p-6 border-white/10 border hover:-translate-y-1 transition-all">
+                            <div className="mb-4">
+                                <img 
+                                    src={iotmakerHeroImage} 
+                                    alt="IoT Maker" 
+                                    className="w-full h-48 object-cover rounded-lg mb-4"
+                                />
                             <h3 className="text-xl font-bold mb-4">IoT Maker</h3>
+                            </div>
                             <p className="text-gray-300 mb-4 text-justify">
                                 IoT Maker is a web app for live programming and simulation of electronic devices using a drag-and-drop interface. Users can interact with sensors in real time and upload their code to custom hardware for hands-on control. The platform is designed to make advanced electro-mechanical device creation accessible to youth. Evaluation studies show it reduces barriers for novice programmers.
                             </p>
-                            <div className="flex flex-wrap gap-2 mb-4">
-                                {["Live Programming", "Web Development", "IoT", "Blockly", "Javascript", "Arduino", "UI/UX Design", "STEM Education", "Simulation", "Electronics", "User Research"].map((tech, key) => (
+                            {/* Grouped Categories with Icons */}
+                            <div className="mb-4 space-y-3">
+                                <div>
+                                    <div className="flex items-center gap-2 mb-2">
+                                        <span className="text-lg">💻</span>
+                                        <span className="text-sm font-semibold text-blue-400">Development</span>
+                                    </div>
+                                    <div className="flex flex-wrap gap-2">
+                                        {["Live Programming", "Web Development", "Blockly", "Javascript", "Arduino"].map((tech, key) => (
+                                            <span 
+                                                key={key}
+                                                className="inline-block bg-blue-500/10 text-blue-500 px-3 rounded-full text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition">
+                                                {tech}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+                                <div>
+                                    <div className="flex items-center gap-2 mb-2">
+                                        <span className="text-lg">🌐</span>
+                                        <span className="text-sm font-semibold text-blue-400">IoT</span>
+                                    </div>
+                                    <div className="flex flex-wrap gap-2">
+                                        {["IoT", "Simulation", "Electronics"].map((tech, key) => (
+                                            <span 
+                                                key={key}
+                                                className="inline-block bg-blue-500/10 text-blue-500 px-3 rounded-full text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition">
+                                                {tech}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+                                <div>
+                                    <div className="flex items-center gap-2 mb-2">
+                                        <span className="text-lg">🎨</span>
+                                        <span className="text-sm font-semibold text-blue-400">Design</span>
+                                    </div>
+                                    <div className="flex flex-wrap gap-2">
+                                        {["UI/UX Design"].map((tech, key) => (
+                                            <span 
+                                                key={key}
+                                                className="inline-block bg-blue-500/10 text-blue-500 px-3 rounded-full text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition">
+                                                {tech}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+                                <div>
+                                    <div className="flex items-center gap-2 mb-2">
+                                        <span className="text-lg">🔬</span>
+                                        <span className="text-sm font-semibold text-blue-400">Research</span>
+                                    </div>
+                                    <div className="flex flex-wrap gap-2">
+                                        {["STEM Education", "User Research"].map((tech, key) => (
                                     <span 
                                         key={key}
-                                        className="inline-block bg-blue-500/10 text-blue-500 px-3 rounded-full text-sm hover:bg-blue-500/20 
-                                                    hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition"> {/*Styling for Skill Pills*/}
+                                                className="inline-block bg-blue-500/10 text-blue-500 px-3 rounded-full text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition">
                                         {tech}
                                     </span>
                                 ))}
+                                    </div>
+                                </div>
                             </div>
                             {/* HYPERLINK TO VIEW PROJECT AND HOVER ANIMATION */}
                             <div className="mt-4">
@@ -171,19 +343,79 @@ export const Projects = () => {
                         </div>
                         {/* Project card #4 STORYMAKAR*/}
                         <div className="glass rounded-xl p-6 border-white/10 border hover:-translate-y-1 transition-all">
+                            <div className="mb-4">
+                                <img 
+                                    src={storymakarHeroImage} 
+                                    alt="StoryMakAR" 
+                                    className="w-full h-48 object-cover rounded-lg mb-4"
+                                />
                             <h3 className="text-xl font-bold mb-4">StoryMakAR</h3>
+                            </div>
                             <p className="text-gray-300 mb-4 text-justify">
                                 StoryMakAR combines physical prototyping and storytelling through AR, allowing youth to build devices and create interactive stories. The toolkit uses block programming and event-based logic to bring virtual and physical worlds together. Workshops with high school students revealed strong engagement and creativity. The system is designed to lower barriers for maker-based storytelling in educational settings.
                             </p>
-                            <div className="flex flex-wrap gap-2 mb-4">
-                                {["Augmented Reality", "Storytelling", "Prototyping", "Blockly", "Unity3D", "C#", "SLAM", "UI/UX Design", "Workshop Facilitation", "Youth Engagement", "Physical Computing"].map((tech, key) => (
+                            {/* Grouped Categories with Icons */}
+                            <div className="mb-4 space-y-3">
+                                <div>
+                                    <div className="flex items-center gap-2 mb-2">
+                                        <span className="text-lg">🌐</span>
+                                        <span className="text-sm font-semibold text-blue-400">AR/IoT</span>
+                                    </div>
+                                    <div className="flex flex-wrap gap-2">
+                                        {["Augmented Reality", "SLAM", "Physical Computing"].map((tech, key) => (
+                                            <span 
+                                                key={key}
+                                                className="inline-block bg-blue-500/10 text-blue-500 px-3 rounded-full text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition">
+                                                {tech}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+                                <div>
+                                    <div className="flex items-center gap-2 mb-2">
+                                        <span className="text-lg">💻</span>
+                                        <span className="text-sm font-semibold text-blue-400">Development</span>
+                                    </div>
+                                    <div className="flex flex-wrap gap-2">
+                                        {["Blockly", "Unity3D", "C#"].map((tech, key) => (
+                                            <span 
+                                                key={key}
+                                                className="inline-block bg-blue-500/10 text-blue-500 px-3 rounded-full text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition">
+                                                {tech}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+                                <div>
+                                    <div className="flex items-center gap-2 mb-2">
+                                        <span className="text-lg">🎨</span>
+                                        <span className="text-sm font-semibold text-blue-400">Design</span>
+                                    </div>
+                                    <div className="flex flex-wrap gap-2">
+                                        {["Prototyping", "UI/UX Design", "Storytelling"].map((tech, key) => (
+                                            <span 
+                                                key={key}
+                                                className="inline-block bg-blue-500/10 text-blue-500 px-3 rounded-full text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition">
+                                                {tech}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+                                <div>
+                                    <div className="flex items-center gap-2 mb-2">
+                                        <span className="text-lg">🔬</span>
+                                        <span className="text-sm font-semibold text-blue-400">Research</span>
+                                    </div>
+                                    <div className="flex flex-wrap gap-2">
+                                        {["Workshop Facilitation", "Youth Engagement"].map((tech, key) => (
                                     <span 
                                         key={key}
-                                        className="inline-block bg-blue-500/10 text-blue-500 px-3 rounded-full text-sm hover:bg-blue-500/20 
-                                                    hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition"> {/*Styling for Skill Pills*/}
+                                                className="inline-block bg-blue-500/10 text-blue-500 px-3 rounded-full text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition">
                                         {tech}
                                     </span>
                                 ))}
+                                    </div>
+                                </div>
                             </div>
                             {/* HYPERLINK TO VIEW PROJECT AND HOVER ANIMATION */}
                             <div className="mt-4">
@@ -197,19 +429,64 @@ export const Projects = () => {
                         </div>
                         {/* Project card #5 */}
                         <div className="glass rounded-xl p-6 border-white/10 border hover:-translate-y-1 transition-all">
-                            <h3 className="text-xl font-bold mb-4">6-DoF Robotic Arm</h3>
+                            <div className="mb-4">
+                                <img 
+                                    src={sixDofHeroImage} 
+                                    alt="6-DoF Robotic Arm" 
+                                    className="w-full h-48 object-cover rounded-lg mb-4"
+                                />
+                                <h3 className="text-xl font-bold mb-4">6-DoF Robotic Arm</h3>
+                            </div>
                             <p className="text-gray-300 mb-4 text-justify">
                                 This project features a 6-DoF robotic arm mounted on a mobile chassis, controlled via ESP32 and programmed in Arduino. A phone streams live video to a host computer, while a Unity3D interface enables remote operation using UDP. The project integrates computer vision, robotics, and wireless communication. It demonstrates advanced skills in both hardware and software integration.
                             </p>
-                            <div className="flex flex-wrap gap-2 mb-4">
-                                {["Robotics", "Computer Vision", "ESP32", "Arduino", "Unity3D", "Wireless Communication", "Python", "Human-Robot Interaction", "UDP Networking", "Embedded Systems", "Mobile Streaming"].map((tech, key) => (
-                                    <span 
-                                        key={key}
-                                        className="inline-block bg-blue-500/10 text-blue-500 px-3 rounded-full text-sm hover:bg-blue-500/20 
-                                                    hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition"> {/*Styling for Skill Pills*/}
-                                        {tech}
-                                    </span>
-                                ))}
+                            {/* Grouped Categories with Icons */}
+                            <div className="mb-4 space-y-3">
+                                <div>
+                                    <div className="flex items-center gap-2 mb-2">
+                                        <span className="text-lg">🤖</span>
+                                        <span className="text-sm font-semibold text-blue-400">Hardware</span>
+                                    </div>
+                                    <div className="flex flex-wrap gap-2">
+                                        {["Robotics", "ESP32", "Arduino", "Embedded Systems"].map((tech, key) => (
+                                            <span 
+                                                key={key}
+                                                className="inline-block bg-blue-500/10 text-blue-500 px-3 rounded-full text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition">
+                                                {tech}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+                                <div>
+                                    <div className="flex items-center gap-2 mb-2">
+                                        <span className="text-lg">💻</span>
+                                        <span className="text-sm font-semibold text-blue-400">Development</span>
+                                    </div>
+                                    <div className="flex flex-wrap gap-2">
+                                        {["Unity3D", "Python", "UDP Networking", "Wireless Communication", "Mobile Streaming"].map((tech, key) => (
+                                            <span 
+                                                key={key}
+                                                className="inline-block bg-blue-500/10 text-blue-500 px-3 rounded-full text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition">
+                                                {tech}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+                                <div>
+                                    <div className="flex items-center gap-2 mb-2">
+                                        <span className="text-lg">👁️</span>
+                                        <span className="text-sm font-semibold text-blue-400">Computer Vision</span>
+                                    </div>
+                                    <div className="flex flex-wrap gap-2">
+                                        {["Computer Vision", "Human-Robot Interaction"].map((tech, key) => (
+                                            <span 
+                                                key={key}
+                                                className="inline-block bg-blue-500/10 text-blue-500 px-3 rounded-full text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition">
+                                                {tech}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
                             </div>
                             {/* HYPERLINK TO VIEW PROJECT AND HOVER ANIMATION */}
                             <div className="mt-4">
@@ -223,20 +500,65 @@ export const Projects = () => {
                         </div>
                         {/* Project card #6 */}
                         <div className="glass rounded-xl p-6 border-white/10 border hover:-translate-y-1 transition-all">
-                            <h3 className="text-xl font-bold mb-4">IoT Course Design for High Schoolers</h3>
-                            <h4 className="text-gray-400 mb-2">Research Paper (2025)</h4>
+                            <div className="mb-4">
+                                <img 
+                                    src={iotcourseHeroImage} 
+                                    alt="IoT Course Design" 
+                                    className="w-full h-48 object-cover rounded-lg mb-4"
+                                />
+                                <h3 className="text-xl font-bold mb-4">IoT Course Design for High Schoolers</h3>
+                                <h4 className="text-gray-400 mb-2">Research Paper (2025)</h4>
+                            </div>
                             <p className="text-gray-300 mb-4 text-justify">
                                 This project developed and implemented an IoT curriculum for high school enrichment programs using backward design and constructionist principles. Students learned electronics, programming, connectivity, and design through hands-on modules. The curriculum enabled students with little prior experience to successfully prototype IoT applications. Results show significant skill development and engagement.
                             </p>
-                            <div className="flex flex-wrap gap-2 mb-4">
-                                {["Curriculum Design", "IoT", "Constructionism", "Backward Design", "TinkerCAD", "Vocational Education", "Arduino", "STEM Education", "Instructional Design", "Workshop Facilitation", "Learning Assessment"].map((tech, key) => (
-                                    <span 
-                                        key={key}
-                                        className="inline-block bg-blue-500/10 text-blue-500 px-3 rounded-full text-sm hover:bg-blue-500/20 
-                                                    hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition"> {/*Styling for Skill Pills*/}
-                                        {tech}
-                                    </span>
-                                ))}
+                            {/* Grouped Categories with Icons */}
+                            <div className="mb-4 space-y-3">
+                                <div>
+                                    <div className="flex items-center gap-2 mb-2">
+                                        <span className="text-lg">🔬</span>
+                                        <span className="text-sm font-semibold text-blue-400">Research & Design</span>
+                                    </div>
+                                    <div className="flex flex-wrap gap-2">
+                                        {["Curriculum Design", "Constructionism", "Backward Design", "Instructional Design", "Learning Assessment"].map((tech, key) => (
+                                            <span 
+                                                key={key}
+                                                className="inline-block bg-blue-500/10 text-blue-500 px-3 rounded-full text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition">
+                                                {tech}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+                                <div>
+                                    <div className="flex items-center gap-2 mb-2">
+                                        <span className="text-lg">🌐</span>
+                                        <span className="text-sm font-semibold text-blue-400">IoT & Hardware</span>
+                                    </div>
+                                    <div className="flex flex-wrap gap-2">
+                                        {["IoT", "Arduino", "TinkerCAD"].map((tech, key) => (
+                                            <span 
+                                                key={key}
+                                                className="inline-block bg-blue-500/10 text-blue-500 px-3 rounded-full text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition">
+                                                {tech}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+                                <div>
+                                    <div className="flex items-center gap-2 mb-2">
+                                        <span className="text-lg">👥</span>
+                                        <span className="text-sm font-semibold text-blue-400">Education</span>
+                                    </div>
+                                    <div className="flex flex-wrap gap-2">
+                                        {["STEM Education", "Vocational Education", "Workshop Facilitation"].map((tech, key) => (
+                                            <span 
+                                                key={key}
+                                                className="inline-block bg-blue-500/10 text-blue-500 px-3 rounded-full text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition">
+                                                {tech}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
                             </div>
                             {/* HYPERLINK TO VIEW PROJECT AND HOVER ANIMATION */}
                             <div className="mt-4">
