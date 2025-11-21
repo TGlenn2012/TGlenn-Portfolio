@@ -119,11 +119,11 @@ export const About = () => {
                                     <div className="text-sm text-gray-400">STEAM Workshop Participants</div>
                                 </div>
                                 <div className="glass rounded-xl p-6 border-white/10 border text-center hover:-translate-y-1 transition-all">
-                                    <div className="text-4xl mb-2">🎓</div>
+                                    <div className="text-4xl mb-2">💰</div>
                                     <div className="text-2xl font-bold bg-gradient-to-r from-orange-500 to-sky-600 bg-clip-text text-transparent mb-2">
-                                        Ph.D.
+                                        $3-5M
                                     </div>
-                                    <div className="text-sm text-gray-400">in HCI</div>
+                                    <div className="text-sm text-gray-400">Impacted in NRE Costs</div>
                                 </div>
                             </div>
                         </div>

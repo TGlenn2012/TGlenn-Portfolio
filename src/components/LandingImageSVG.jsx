@@ -46,7 +46,7 @@ export const LandingImageSVG = ({ activeCard, ...props }) => (
         d="m 471.80065,437.57047 a 10.94,10.94 0 0 1 -1.28,3.88 c -2.48,-1.2 -5.51,-3 -5.19,-4.19 0.32,-1.19 3.11,-1.46 5.56,-1.54 a 2,2 0 0 1 0.91,1.85 z"
         id="path384"
         style={{
-          fill: "#201f4f",
+          fill: "#1e3a8a",
           fillOpacity: 1,
           stroke: "none",
         }}
@@ -59,7 +59,7 @@ export const LandingImageSVG = ({ activeCard, ...props }) => (
         transform="matrix(-0.15729633,-0.98755145,-0.98755145,0.15729633,0,0)"
         id="circle386"
         style={{
-          fill: "#201f4f",
+          fill: "#1e3a8a",
           fillOpacity: 1,
           stroke: "none",
         }}
@@ -121,7 +121,7 @@ export const LandingImageSVG = ({ activeCard, ...props }) => (
       d="m 510.96743,52.21352 h 479.53338 a 41.904762,41.904762 0 0 1 41.90479,41.90476 V 436.95769 A 43.962103,43.962103 0 0 1 988.44345,480.9198 H 513.02479 A 43.962103,43.962103 0 0 1 469.06262,436.95769 V 94.11828 a 41.904762,41.904762 0 0 1 41.90481,-41.90476 z"
       id="window"
       style={{
-        fill: "#330080",
+        fill: "url(#blue-gradient-window)",
         strokeWidth: 2.16562,
       }}
     />
@@ -182,6 +182,48 @@ export const LandingImageSVG = ({ activeCard, ...props }) => (
       inkscape:document-units="in"
     />
     <defs id="defs185">
+      <linearGradient
+        id="blue-gradient-window"
+        x1={510.96743}
+        y1={52.21352}
+        x2={990.50122}
+        y2={480.9198}
+        gradientUnits="userSpaceOnUse"
+      >
+        <stop
+          offset={0}
+          stopColor="#3b82f6"
+          id="stop-window-1" />
+        <stop
+          offset={0.5}
+          stopColor="#2563eb"
+          id="stop-window-2" />
+        <stop
+          offset={1}
+          stopColor="#1e40af"
+          id="stop-window-3" />
+      </linearGradient>
+      <linearGradient
+        id="card-background-gradient"
+        x1={0}
+        y1={0}
+        x2={1}
+        y2={1}
+        gradientUnits="objectBoundingBox"
+      >
+        <stop
+          offset={0}
+          stopColor="#1e3a8a"
+          id="stop-card-1" />
+        <stop
+          offset={0.5}
+          stopColor="#3b82f6"
+          id="stop-card-2" />
+        <stop
+          offset={1}
+          stopColor="#0284c7"
+          id="stop-card-3" />
+      </linearGradient>
       <marker
         style={{
           overflow: "visible",
@@ -391,10 +433,10 @@ export const LandingImageSVG = ({ activeCard, ...props }) => (
         y2={239.33}
         gradientUnits="userSpaceOnUse"
       >
-        <stop offset={0} stopColor="#464b8b" id="stop30" />
-        <stop offset={0.28} stopColor="#393c76" id="stop32" />
-        <stop offset={0.74} stopColor="#27275a" id="stop34" />
-        <stop offset={1} stopColor="#201f4f" id="stop36" />
+        <stop offset={0} stopColor="#3b82f6" id="stop30" />
+        <stop offset={0.28} stopColor="#2563eb" id="stop32" />
+        <stop offset={0.74} stopColor="#1e40af" id="stop34" />
+        <stop offset={1} stopColor="#1e3a8a" id="stop36" />
       </linearGradient>
       <linearGradient
         id="\u0411\u0435\u0437\u044B\u043C\u044F\u043D\u043D\u044B\u0439_\u0433\u0440\u0430\u0434\u0438\u0435\u043D\u0442_48"
@@ -404,8 +446,8 @@ export const LandingImageSVG = ({ activeCard, ...props }) => (
         y2={349.20001}
         gradientUnits="userSpaceOnUse"
       >
-        <stop offset={0} stopColor="#a04400" id="stop39" />
-        <stop offset={1} stopColor="#753200" id="stop41" />
+        <stop offset={0} stopColor="#f97316" id="stop39" />
+        <stop offset={1} stopColor="#ea580c" id="stop41" />
       </linearGradient>
       <linearGradient
         id="\u0411\u0435\u0437\u044B\u043C\u044F\u043D\u043D\u044B\u0439_\u0433\u0440\u0430\u0434\u0438\u0435\u043D\u0442_271"
@@ -1322,40 +1364,33 @@ export const LandingImageSVG = ({ activeCard, ...props }) => (
             fontVariant: "normal",
             fontWeight: "normal",
             fontStretch: "normal",
-            fontSize: "21.3333px",
-            lineHeight: 1.25,
-            fontFamily: "'Oswald', Arial, Helvetica, sans-serif", // Add fallback stack
-            // InkscapeFontSpecification: "'Oswald, Normal'",
+            fontSize: "24px",
+            lineHeight: 1.4,
+            fill: "#000000",
+            fontFamily: "'Oswald', Arial, Helvetica, sans-serif",
             fontVariantLigatures: "normal",
             fontVariantCaps: "normal",
             fontVariantNumeric: "normal",
             fontVariantEastAsian: "normal",
             textAlign: "center",
-            letterSpacing: 0,
-            wordSpacing: 0,
+            letterSpacing: 0.5,
+            wordSpacing: 1,
             textAnchor: "middle",
             whiteSpace: "pre",
-            inlineSize: 505.346,
+            inlineSize: 410,
           }}
           x={641.34583}
-          y={204.35385}
+          y={210.35385}
           id="text149971"
-          transform="translate(-423.52015,-427.11132)"
+          transform="translate(-423.52015,-400)"
         >
           <tspan x={641.34583} y={204.35385} id="tspan47546">
-            {"I also enjoy designing and creating software solutions as"}
+            {"I enjoy designing and creating software solutions as"}
             <tspan y={204.35385} id="tspan47548" />
           </tspan>
           <tspan x={641.34583} y={231.02048} id="tspan47550">
-            {"demonstrated in my projects and this website! Programming"}
+            {"as demonstrated in my projects and this website!"}
             <tspan y={231.02048} id="tspan47552" />
-          </tspan>
-          <tspan x={641.34583} y={257.68711} id="tspan47554">
-            {"Languages I like: C++, C#, Javascript, Python. Other Relevant"}
-            <tspan y={257.68711} id="tspan47556" />
-          </tspan>
-          <tspan x={641.34583} y={284.35373} id="tspan47558">
-            {"Software: Figma, Illustrator, Fusion 360, Unity"}
           </tspan>
         </text>
         <text
@@ -1366,7 +1401,11 @@ export const LandingImageSVG = ({ activeCard, ...props }) => (
             fontVariant: "normal",
             fontWeight: "normal",
             fontStretch: "normal",
-            fontSize: "42.6667px",
+            fontSize: "48px",
+            fontWeight: "bold",
+            letterSpacing: 1,
+            wordSpacing: 2,
+            fill: "#000000",
             lineHeight: 1.25,
             fontFamily: "'Oswald', Arial, Helvetica, sans-serif", // Add fallback stack
             // InkscapeFontSpecification: "'Oswald, Normal'",
@@ -1853,8 +1892,11 @@ export const LandingImageSVG = ({ activeCard, ...props }) => (
             fontVariant: "normal",
             fontWeight: "normal",
             fontStretch: "normal",
-            fontSize: "21.3333px",
-            lineHeight: 1.25,
+            fontSize: "24px",
+            lineHeight: 1.4,
+            letterSpacing: 0.5,
+            wordSpacing: 1,
+            fill: "#000000",
             fontFamily: "'Oswald', Arial, Helvetica, sans-serif", // Add fallback stack
             // InkscapeFontSpecification: "'Oswald, Normal'",
             fontVariantLigatures: "normal",
@@ -1866,12 +1908,12 @@ export const LandingImageSVG = ({ activeCard, ...props }) => (
             wordSpacing: 0,
             textAnchor: "middle",
             whiteSpace: "pre",
-            inlineSize: 494.258,
+            inlineSize: 420,
           }}
           x={641.34583}
           y={204.35385}
           id="text131203"
-          transform="translate(108.72435,-427.11132)"
+          transform="translate(108.72435,-407.11132)"
         >
           <tspan x={641.34583} y={204.35385} id="tspan47564">
             {"I enjoy designing and prototyping hardware with several"}
@@ -1896,7 +1938,11 @@ export const LandingImageSVG = ({ activeCard, ...props }) => (
             fontVariant: "normal",
             fontWeight: "normal",
             fontStretch: "normal",
-            fontSize: "42.6667px",
+            fontSize: "48px",
+            fontWeight: "bold",
+            letterSpacing: 1,
+            wordSpacing: 2,
+            fill: "#000000",
             lineHeight: 1.25,
             fontFamily: "'Oswald', Arial, Helvetica, sans-serif", // Add fallback stack
             // InkscapeFontSpecification: "'Oswald, Normal'",
@@ -2004,7 +2050,7 @@ export const LandingImageSVG = ({ activeCard, ...props }) => (
             </g>
             <polygon
               style={{
-                fill: "#ffffff",
+                fill: "#000000",
               }}
               points="248.068,162.666 212.432,162.666 212.432,193.083 199.833,193.083 199.833,223.5 260.667,223.5 260.667,193.083 248.068,193.083 "
               id="polygon3944"
@@ -2240,7 +2286,7 @@ export const LandingImageSVG = ({ activeCard, ...props }) => (
           />
           <path
             style={{
-              fill: "#ffffff",
+              fill: "#000000",
               fillOpacity: 1,
               stroke: "none",
               strokeWidth: 0.0918406,
@@ -2280,8 +2326,11 @@ export const LandingImageSVG = ({ activeCard, ...props }) => (
             fontVariant: "normal",
             fontWeight: "normal",
             fontStretch: "normal",
-            fontSize: "21.3333px",
-            lineHeight: 1.25,
+            fontSize: "24px",
+            lineHeight: 1.6,
+            letterSpacing: 0.5,
+            wordSpacing: 1,
+            fill: "#000000",
             fontFamily: "'Oswald', Arial, Helvetica, sans-serif", // Add fallback stack
             // InkscapeFontSpecification: "'Oswald, Normal'",
             fontVariantLigatures: "normal",
@@ -2293,27 +2342,27 @@ export const LandingImageSVG = ({ activeCard, ...props }) => (
             wordSpacing: 0,
             textAnchor: "middle",
             whiteSpace: "pre",
-            inlineSize: 494.258,
+            inlineSize: 400,
           }}
           x={641.34583}
           y={204.35385}
           id="text145546"
-          transform="translate(108.72435,-794.91152)"
+          transform="translate(108.72435,-764.91152)"
         >
           <tspan x={641.34583} y={204.35385} id="tspan47582">
-            {"I'm a very casual gamer, but I thoroughly enjoy relaxing by"}
+            {"I'm a very casual gamer, but I thoroughly enjoy relaxing"}
             <tspan y={204.35385} id="tspan47584" />
           </tspan>
           <tspan x={641.34583} y={231.02048} id="tspan47586">
-            {"picking up some of my favorite games and game franchises,"}
+            {"by picking up some of my favorite games including"}
             <tspan y={231.02048} id="tspan47588" />
           </tspan>
           <tspan x={641.34583} y={257.68711} id="tspan47590">
-            {"including Pokemon, Halo, Kingdom Hearts, The Legend of"}
+            {"Pokemon, Halo, Kingdom Hearts, The Legend of Zelda,"}
             <tspan y={257.68711} id="tspan47592" />
           </tspan>
           <tspan x={641.34583} y={284.35373} id="tspan47594">
-            {"Zelda, Sonic the Hedgehog, Super Smash Bros. and more!"}
+            {"Sonic the Hedgehog, Super Smash Bros. and more!"}
           </tspan>
         </text>
         <text
@@ -2323,7 +2372,11 @@ export const LandingImageSVG = ({ activeCard, ...props }) => (
             fontVariant: "normal",
             fontWeight: "normal",
             fontStretch: "normal",
-            fontSize: "42.6667px",
+            fontSize: "48px",
+            fontWeight: "bold",
+            letterSpacing: 1,
+            wordSpacing: 2,
+            fill: "#000000",
             lineHeight: 1.25,
             fontFamily: "'Oswald', Arial, Helvetica, sans-serif", // Add fallback stack
             // InkscapeFontSpecification: "'Oswald, Normal'",
@@ -2457,55 +2510,6 @@ export const LandingImageSVG = ({ activeCard, ...props }) => (
               transform="rotate(90)"
             />
           </g>
-          <path
-            id="rect98688"
-            style={{
-              opacity: 1,
-              fill: "#cccccc",
-              fillOpacity: 1,
-              stroke: "none",
-              strokeWidth: 0.770759,
-              strokeLinecap: "square",
-              strokeLinejoin: "round",
-            }}
-            d="m 698.73828,674.12305 c -9.59756,0 -17.32422,8.03133 -17.32422,18.00976 v 18.69922 H 662.7168 c -9.97844,0 -18.01172,7.72666 -18.01172,17.32422 0,9.59756 8.03328,17.32422 18.01172,17.32422 h 18.69726 v 18.69922 c 0,9.97843 7.72666,18.01172 17.32422,18.01172 9.59756,0 17.32422,-8.03329 17.32422,-18.01172 v -18.69922 h 18.69922 c 9.97843,0 18.01172,-7.72666 18.01172,-17.32422 0,-9.59756 -8.03329,-17.32422 -18.01172,-17.32422 H 716.0625 v -18.69922 c 0,-9.97843 -7.72666,-18.00976 -17.32422,-18.00976 z"
-          />
-          <g id="g99021" transform="translate(5.6125858,-14)">
-            <rect
-              style={{
-                opacity: 1,
-                fill: "#cccccc",
-                fillOpacity: 1,
-                stroke: "none",
-                strokeWidth: 0.755906,
-                strokeLinecap: "square",
-                strokeLinejoin: "round",
-              }}
-              id="rect98935"
-              width={40.5}
-              height={13.5}
-              x={776.25}
-              y={765.25}
-              ry={6.75}
-            />
-            <rect
-              style={{
-                opacity: 1,
-                fill: "#cccccc",
-                fillOpacity: 1,
-                stroke: "none",
-                strokeWidth: 0.755906,
-                strokeLinecap: "square",
-                strokeLinejoin: "round",
-              }}
-              id="rect99017"
-              width={40.5}
-              height={13.5}
-              x={825.25}
-              y={765.25}
-              ry={6.75}
-            />
-          </g>
           <circle
             style={{
               fill: "#00112b",
@@ -2562,16 +2566,269 @@ export const LandingImageSVG = ({ activeCard, ...props }) => (
             cy={824.125}
             r={27.450287}
           />
-        </g>
       </g>
     </g>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer-ai-ml"
+     inkscape:label="AI-ML-Card"
+     style={{
+       display: activeCard === "AI-ML-Card" ? "inline" : "none",
+     }}
+  >
     <g
-      inkscape:groupmode="layer"
-      id="layer4"
-      inkscape:label="Default-Card"
-      style={{
-        display: activeCard === "defaultScreen" ? "inline" : "none",
-      }}
+      id="AI-ML-Card"
+      transform="translate(532.2445,542.43402)">
+      <path
+        className="cls-30"
+        d="M 0.17343988,-427.77477 H 436.80588 a 39.392643,39.392643 0 0 1 39.39262,39.39265 v 283.0683 a 26.312293,26.312293 0 0 1 -26.3123,26.312291 H -12.90697 a 26.312293,26.312293 0 0 1 -26.3123,-26.312291 v -283.0683 a 39.392643,39.392643 0 0 1 39.39270988,-39.39265 z"
+        id="path-ai-ml-card"
+        style={{
+          fill: "#ffffff",
+          stroke: "#000000",
+          strokeWidth: 0.266,
+          strokeMiterlimit: 4,
+          strokeDasharray: "none",
+        }}
+      />
+      <text
+        xmlSpace="preserve"
+        style={{
+          fontStyle: "normal",
+          fontVariant: "normal",
+          fontWeight: "normal",
+          fontStretch: "normal",
+          fontSize: "22px",
+          lineHeight: 1.4,
+          fontFamily: "'Oswald', Arial, Helvetica, sans-serif",
+          fontVariantLigatures: "normal",
+          fontVariantCaps: "normal",
+          fontVariantNumeric: "normal",
+          fontVariantEastAsian: "normal",
+          textAlign: "center",
+          letterSpacing: 0.5,
+          wordSpacing: 1,
+          textAnchor: "middle",
+          whiteSpace: "pre",
+          inlineSize: 400,
+          fill: "#000000",
+        }}
+        x={641.34583}
+        y={204.35385}
+        id="text-ai-ml-body"
+        transform="translate(-423.52015,-427.11132)"
+      >
+        <tspan x={641.34583} y={204.35385} id="tspan-ai-ml-1">
+          {"I use vibe coding tools like Cursor, Figma Make, and"}
+          <tspan y={204.35385} id="tspan-ai-ml-1a"> </tspan>
+        </tspan>
+        <tspan x={641.34583} y={231.02048} id="tspan-ai-ml-2">
+          {"Google AI Studio to build programs at the intersection"}
+          <tspan y={231.02048} id="tspan-ai-ml-2a"> </tspan>
+        </tspan>
+        <tspan x={641.34583} y={257.68711} id="tspan-ai-ml-3">
+          {"of Hardware, Software, and Human Factors. With my"}
+          <tspan y={257.68711} id="tspan-ai-ml-3a"> </tspan>
+        </tspan>
+        <tspan x={641.34583} y={284.35373} id="tspan-ai-ml-4">
+          {"hardware background and software foundation, these AI"}
+          <tspan y={284.35373} id="tspan-ai-ml-4a"> </tspan>
+        </tspan>
+        <tspan x={641.34583} y={311.02035} id="tspan-ai-ml-5">
+          {"tools enable me to create impactful solutions."}
+        </tspan>
+      </text>
+      <text
+        xmlSpace="preserve"
+        style={{
+          fontStyle: "normal",
+          fontVariant: "normal",
+          fontWeight: "bold",
+          fontStretch: "normal",
+          fontSize: "52px",
+          lineHeight: 1.3,
+          fontFamily: "'Oswald', Arial, Helvetica, sans-serif",
+          fontVariantLigatures: "normal",
+          fontVariantCaps: "normal",
+          fontVariantNumeric: "normal",
+          fontVariantEastAsian: "normal",
+          textAlign: "center",
+          letterSpacing: 1,
+          wordSpacing: 2,
+          textAnchor: "middle",
+          whiteSpace: "pre",
+          inlineSize: 450,
+          fill: "#000000",
+        }}
+        x={641.34583}
+        y={204.35385}
+        id="text-ai-ml-title"
+        transform="translate(-423.52015,-574.78633)"
+      >
+        <tspan x={641.34583} y={204.35385} id="tspan-ai-ml-title">
+          <tspan
+            style={{
+              fontWeight: "bold",
+            }}
+            id="tspan-ai-ml-title-bold"
+          >
+            {"AI & MACHINE LEARNING"}
+          </tspan>
+        </tspan>
+      </text>
+      <g
+        id="g-ai-ml-icons"
+        transform="matrix(0.45,0,0,0.45,85,-410)"
+      >
+        <circle
+          style={{
+            fill: "#3b82f6",
+            fillOpacity: 1,
+            stroke: "#1e3a8a",
+            strokeWidth: 2,
+          }}
+          id="node-1"
+          cx={200}
+          cy={200}
+          r={25}
+        />
+        <circle
+          style={{
+            fill: "#3b82f6",
+            fillOpacity: 1,
+            stroke: "#1e3a8a",
+            strokeWidth: 2,
+          }}
+          id="node-2"
+          cx={300}
+          cy={150}
+          r={25}
+        />
+        <circle
+          style={{
+            fill: "#3b82f6",
+            fillOpacity: 1,
+            stroke: "#1e3a8a",
+            strokeWidth: 2,
+          }}
+          id="node-3"
+          cx={300}
+          cy={250}
+          r={25}
+        />
+        <circle
+          style={{
+            fill: "#f97316",
+            fillOpacity: 1,
+            stroke: "#ea580c",
+            strokeWidth: 2,
+          }}
+          id="node-4"
+          cx={400}
+          cy={200}
+          r={25}
+        />
+        <line
+          style={{
+            stroke: "#3b82f6",
+            strokeWidth: 2,
+            opacity: 0.5,
+          }}
+          x1={200}
+          y1={200}
+          x2={300}
+          y2={150}
+          id="conn-1"
+        />
+        <line
+          style={{
+            stroke: "#3b82f6",
+            strokeWidth: 2,
+            opacity: 0.5,
+          }}
+          x1={200}
+          y1={200}
+          x2={300}
+          y2={250}
+          id="conn-2"
+        />
+        <line
+          style={{
+            stroke: "#f97316",
+            strokeWidth: 2,
+            opacity: 0.5,
+          }}
+          x1={300}
+          y1={150}
+          x2={400}
+          y2={200}
+          id="conn-3"
+        />
+        <line
+          style={{
+            stroke: "#f97316",
+            strokeWidth: 2,
+            opacity: 0.5,
+          }}
+          x1={300}
+          y1={250}
+          x2={400}
+          y2={200}
+          id="conn-4"
+        />
+        <rect
+          style={{
+            fill: "#0284c7",
+            fillOpacity: 1,
+            stroke: "#1e3a8a",
+            strokeWidth: 1.5,
+          }}
+          id="tool-1"
+          x={150}
+          y={300}
+          width={60}
+          height={40}
+          rx={5}
+        />
+        <rect
+          style={{
+            fill: "#f97316",
+            fillOpacity: 1,
+            stroke: "#ea580c",
+            strokeWidth: 1.5,
+          }}
+          id="tool-2"
+          x={250}
+          y={300}
+          width={60}
+          height={40}
+          rx={5}
+        />
+        <rect
+          style={{
+            fill: "#3b82f6",
+            fillOpacity: 1,
+            stroke: "#1e3a8a",
+            strokeWidth: 1.5,
+          }}
+          id="tool-3"
+          x={350}
+          y={300}
+          width={60}
+          height={40}
+          rx={5}
+        />
+      </g>
+    </g>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer4"
+     inkscape:label="Default-Card"
+     style={{
+       display: activeCard === "defaultScreen" ? "inline" : "none",
+     }}
     >
       <g
         id="defaultScreen"
@@ -2584,8 +2841,9 @@ export const LandingImageSVG = ({ activeCard, ...props }) => (
           d="m 532.41794,114.65925 h 436.63244 a 39.392643,39.392643 0 0 1 39.39262,39.39265 v 283.0683 a 26.312293,26.312293 0 0 1 -26.3123,26.31229 H 519.33753 A 26.312293,26.312293 0 0 1 493.02523,437.1202 V 154.0519 a 39.392643,39.392643 0 0 1 39.39271,-39.39265 z"
           id="path66456"
           style={{
-            fill: "#ffffff",
-            strokeWidth: 2.16562,
+          fill: "#ffffff",
+          stroke: "#000000",
+          strokeWidth: 0.266,
           }}
         />
         <text
@@ -2625,15 +2883,6 @@ export const LandingImageSVG = ({ activeCard, ...props }) => (
           </tspan>
         </text>
       </g>
-    </g>
-    <g
-      inkscape:groupmode="layer"
-      id="layer5"
-      inkscape:label="Buttons"
-      style={{
-        display: "inline",
-      }}
-    >
     </g>
   </svg>
 )

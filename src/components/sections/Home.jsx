@@ -13,6 +13,7 @@ const words = [
     "Project Manager",
     "Public Speaker",
     "Mentor",
+    "Vibe Coder",
     "Maker",
     "Dog Dad",
 ];
@@ -21,7 +22,8 @@ const cardIDs = [
     "defaultScreen",
     "Software-Card",
     "Hardware-Card",
-    "Gaming-Card"
+    "Gaming-Card",
+    "AI-ML-Card"
 ]
 
 export const Home = () => {
@@ -44,10 +46,11 @@ export const Home = () => {
     return (
         <section 
             id="home" 
-            className="min-h-screen w-screen flex items-center justify-center relative"
+            className="min-h-screen flex items-center justify-center py-20"
         >
             <RevealOnScroll>
-                <div className="flex flex-col md:flex-row items-center justify-between w-full">
+                <div className="max-w-6xl mx-auto px-4 w-full">
+                    <div className="flex flex-col md:flex-row items-center justify-between w-full">
                     {/* Left Column: Text Content */}
                     <div className="text-center z-10 px-4 flex-1 flex-col items-center justify-center relative">
                         <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-orange-500 to-sky-600 bg-clip-text text-transparent leading-right">
@@ -109,6 +112,7 @@ export const Home = () => {
                                 Next
                             </button>
                         </div>
+                    </div>
                     </div>
                 </div>
             </RevealOnScroll>
