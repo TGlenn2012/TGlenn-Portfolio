@@ -2,7 +2,6 @@ import React from "react";
 import { Container, Row, Col, Nav, Tab } from "react-bootstrap";
 import { RevealOnScroll } from "../RevealOnScroll";
 import { ProjectCard } from "../ProjectCard";
-import logo from "/assets/images/color-sharp2.png";
 import projImg1 from "/assets/images/project-img1.png";
 import projImg2 from "/assets/images/project-img2.png";
 import projImg3 from "/assets/images/project-img3.png";
@@ -65,9 +64,9 @@ export const Projects = () => {
                                     </Tab.Pane>
                                     <Tab.Pane eventKey="sharediot">
                                         <Row>
-                                            {projects.map((project, index) => {
+                                            {projects.map((project) => {
                                                 return (
-                                                    <p>
+                                                    <p key={project.title}>
                                                         {project.title}
                                                     </p>
                                                 )
@@ -76,9 +75,9 @@ export const Projects = () => {
                                     </Tab.Pane>
                                     <Tab.Pane eventKey="iotmaker">
                                         <Row>
-                                            {projects.map((project, index) => {
+                                            {projects.map((project) => {
                                                 return (
-                                                    <p>
+                                                    <p key={project.title}>
                                                         {project.title}
                                                     </p>
                                                 )

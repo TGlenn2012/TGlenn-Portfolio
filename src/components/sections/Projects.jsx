@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { RevealOnScroll } from "../RevealOnScroll";
 import microkartsHeader from "/assets/images/microkarts-header.png";
 import microkartsHeroImage from "/assets/images/microkarts-hero-image.png";
@@ -332,13 +333,20 @@ export const Projects = () => {
                                 </div>
                             </div>
                             {/* HYPERLINK TO VIEW PROJECT AND HOVER ANIMATION */}
-                            <div className="mt-4">
+                            <div className="mt-4 flex justify-between items-center">
                                 <button 
                                     onClick={() => openModal("iotmaker")} 
                                     className="text-blue-500 hover:underline"
                                 >
                                     View Project →
                                 </button>
+                                <Link
+                                    to="/iotmaker"
+                                    className="bg-blue-500 text-white py-2 px-4 rounded font-medium transition relative overflow-hidden
+                                    hover:-translate-y-0.5 hover:shadow-[0_0_15px_rgba(59,130,246,0.4)]"
+                                >
+                                    View Case Study →
+                                </Link>
                             </div>                        
                         </div>
                         {/* Project card #4 STORYMAKAR*/}
@@ -418,13 +426,19 @@ export const Projects = () => {
                                 </div>
                             </div>
                             {/* HYPERLINK TO VIEW PROJECT AND HOVER ANIMATION */}
-                            <div className="mt-4">
+                            <div className="mt-4 flex flex-col gap-2">
                                 <button 
                                     onClick={() => openModal("storymakar")} 
-                                    className="text-blue-500 hover:underline"
+                                    className="text-blue-500 hover:underline text-left"
                                 >
                                     View Project →
                                 </button>
+                                <Link 
+                                    to="/storymakar"
+                                    className="border border-blue-500/50 text-blue-500 py-2 px-4 rounded font-medium transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_15px_rgba(59,130,246,0.2)] hover:bg-blue-500/10 text-center"
+                                >
+                                    View Case Study
+                                </Link>
                             </div>                        
                         </div>
                         {/* Project card #5 */}

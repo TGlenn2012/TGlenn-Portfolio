@@ -25,7 +25,7 @@ export const Contact = () => {
                 form, 
                 import.meta.env.VITE_publicKey
             )
-            .then((result) => {
+            .then(() => {
                 alert("Message sent successfully!");
                 form.reset();
                 setFormData({ name: "", email: "", message: "" }); // Reset form data

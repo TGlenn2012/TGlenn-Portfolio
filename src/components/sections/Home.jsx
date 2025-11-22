@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { RevealOnScroll } from "../RevealOnScroll";
+// eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
-import { Svg, SVG } from "@svgdotjs/svg.js";
 import { LandingImageSVG } from "../LandingImageSVG";
 
 const words = [
@@ -29,8 +29,6 @@ const cardIDs = [
 export const Home = () => {
     const [index, setIndex] = useState(0);
     const [cardIndex, setCardIndex] = useState(0);
-    const [cardOpacity, setCardOpacity] = useState(1);
-    const [cardTransition, setCardTransition] = useState("opacity-100");
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -40,8 +38,6 @@ export const Home = () => {
         return () => clearInterval(interval);
     }, []);
     const currentWord = words[index];
-    const currentCard = cardIDs[cardIndex];
-    const nextCard = cardIDs[(cardIndex + 1) % cardIDs.length];
 
     return (
         <section 
