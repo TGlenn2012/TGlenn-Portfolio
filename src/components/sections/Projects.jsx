@@ -257,7 +257,7 @@ export const Projects = () => {
                             </div>
                         </div>
                         {/* Project card #3 IOT MAKER*/}
-                        <div className="glass rounded-xl p-6 border-white/10 border hover:-translate-y-1 transition-all">
+                        <div className="glass rounded-xl p-6 border-white/10 border hover:-translate-y-1 transition-all flex flex-col">
                             <div className="mb-4">
                                 <img 
                                     src={iotmakerHeroImage} 
@@ -277,7 +277,22 @@ export const Projects = () => {
                                         <span className="text-sm font-semibold text-blue-400">Development</span>
                                     </div>
                                     <div className="flex flex-wrap gap-2">
-                                        {["Live Programming", "Web Development", "Blockly", "Javascript", "Arduino"].map((tech, key) => (
+                                        {["Live Programming", "Blockly/Blocklyduino", "JavaScript/Web Development", "ESP32/Arduino"].map((tech, key) => (
+                                            <span 
+                                                key={key}
+                                                className="inline-block bg-blue-500/10 text-blue-500 px-3 rounded-full text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition">
+                                                {tech}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+                                <div>
+                                    <div className="flex items-center gap-2 mb-2">
+                                        <span className="text-lg">🔧</span>
+                                        <span className="text-sm font-semibold text-blue-400">Hardware/Embedded Systems</span>
+                                    </div>
+                                    <div className="flex flex-wrap gap-2">
+                                        {["PCB Design", "Embedded Systems", "Electronics Design", "WiFi/UDP Communication"].map((tech, key) => (
                                             <span 
                                                 key={key}
                                                 className="inline-block bg-blue-500/10 text-blue-500 px-3 rounded-full text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition">
@@ -289,25 +304,10 @@ export const Projects = () => {
                                 <div>
                                     <div className="flex items-center gap-2 mb-2">
                                         <span className="text-lg">🌐</span>
-                                        <span className="text-sm font-semibold text-blue-400">IoT</span>
+                                        <span className="text-sm font-semibold text-blue-400">IoT & Simulation</span>
                                     </div>
                                     <div className="flex flex-wrap gap-2">
-                                        {["IoT", "Simulation", "Electronics"].map((tech, key) => (
-                                            <span 
-                                                key={key}
-                                                className="inline-block bg-blue-500/10 text-blue-500 px-3 rounded-full text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition">
-                                                {tech}
-                                            </span>
-                                        ))}
-                                    </div>
-                                </div>
-                                <div>
-                                    <div className="flex items-center gap-2 mb-2">
-                                        <span className="text-lg">🎨</span>
-                                        <span className="text-sm font-semibold text-blue-400">Design</span>
-                                    </div>
-                                    <div className="flex flex-wrap gap-2">
-                                        {["UI/UX Design"].map((tech, key) => (
+                                        {["IoT Development", "Real-time Simulation", "Hardware Simulation", "Wireless Device Control"].map((tech, key) => (
                                             <span 
                                                 key={key}
                                                 className="inline-block bg-blue-500/10 text-blue-500 px-3 rounded-full text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition">
@@ -319,10 +319,10 @@ export const Projects = () => {
                                 <div>
                                     <div className="flex items-center gap-2 mb-2">
                                         <span className="text-lg">🔬</span>
-                                        <span className="text-sm font-semibold text-blue-400">Research</span>
+                                        <span className="text-sm font-semibold text-blue-400">Research & Education</span>
                                     </div>
                                     <div className="flex flex-wrap gap-2">
-                                        {["STEM Education", "User Research"].map((tech, key) => (
+                                        {["User Studies & Evaluation", "STEM Education Research", "Mixed-Methods Research", "Curriculum Design"].map((tech, key) => (
                                     <span 
                                         key={key}
                                                 className="inline-block bg-blue-500/10 text-blue-500 px-3 rounded-full text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition">
@@ -332,25 +332,19 @@ export const Projects = () => {
                                     </div>
                                 </div>
                             </div>
-                            {/* HYPERLINK TO VIEW PROJECT AND HOVER ANIMATION */}
-                            <div className="mt-4 flex justify-between items-center">
-                                <button 
-                                    onClick={() => openModal("iotmaker")} 
-                                    className="text-blue-500 hover:underline"
-                                >
-                                    View Project →
-                                </button>
+                            {/* HYPERLINK TO VIEW CASE STUDY */}
+                            <div className="mt-auto">
                                 <Link
                                     to="/iotmaker"
-                                    className="bg-blue-500 text-white py-2 px-4 rounded font-medium transition relative overflow-hidden
+                                    className="block w-full bg-blue-500 text-white py-2 px-4 rounded font-medium transition relative overflow-hidden text-center
                                     hover:-translate-y-0.5 hover:shadow-[0_0_15px_rgba(59,130,246,0.4)]"
                                 >
-                                    View Case Study →
+                                    View Case Study
                                 </Link>
                             </div>                        
                         </div>
                         {/* Project card #4 STORYMAKAR*/}
-                        <div className="glass rounded-xl p-6 border-white/10 border hover:-translate-y-1 transition-all">
+                        <div className="glass rounded-xl p-6 border-white/10 border hover:-translate-y-1 transition-all flex flex-col">
                             <div className="mb-4">
                                 <img 
                                     src={storymakarHeroImage} 
@@ -370,7 +364,7 @@ export const Projects = () => {
                                         <span className="text-sm font-semibold text-blue-400">AR/IoT</span>
                                     </div>
                                     <div className="flex flex-wrap gap-2">
-                                        {["Augmented Reality", "SLAM", "Physical Computing"].map((tech, key) => (
+                                        {["Augmented Reality", "SLAM", "Physical Computing", "IoT/Wireless Communication"].map((tech, key) => (
                                             <span 
                                                 key={key}
                                                 className="inline-block bg-blue-500/10 text-blue-500 px-3 rounded-full text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition">
@@ -385,7 +379,7 @@ export const Projects = () => {
                                         <span className="text-sm font-semibold text-blue-400">Development</span>
                                     </div>
                                     <div className="flex flex-wrap gap-2">
-                                        {["Blockly", "Unity3D", "C#"].map((tech, key) => (
+                                        {["Blockly/BlocklyDuino", "Arduino Programming", "Unity3D", "ESP32/Embedded Systems"].map((tech, key) => (
                                             <span 
                                                 key={key}
                                                 className="inline-block bg-blue-500/10 text-blue-500 px-3 rounded-full text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition">
@@ -396,11 +390,11 @@ export const Projects = () => {
                                 </div>
                                 <div>
                                     <div className="flex items-center gap-2 mb-2">
-                                        <span className="text-lg">🎨</span>
-                                        <span className="text-sm font-semibold text-blue-400">Design</span>
+                                        <span className="text-lg">🔧</span>
+                                        <span className="text-sm font-semibold text-blue-400">Hardware</span>
                                     </div>
                                     <div className="flex flex-wrap gap-2">
-                                        {["Prototyping", "UI/UX Design", "Storytelling"].map((tech, key) => (
+                                        {["PCB Design", "Electronics Design", "3D Printing & Laser Cutting", "Hardware Prototyping"].map((tech, key) => (
                                             <span 
                                                 key={key}
                                                 className="inline-block bg-blue-500/10 text-blue-500 px-3 rounded-full text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition">
@@ -415,7 +409,7 @@ export const Projects = () => {
                                         <span className="text-sm font-semibold text-blue-400">Research</span>
                                     </div>
                                     <div className="flex flex-wrap gap-2">
-                                        {["Workshop Facilitation", "Youth Engagement"].map((tech, key) => (
+                                        {["User Studies & Evaluation", "Mixed-Methods Research", "Workshop Facilitation", "Human-Computer Interaction"].map((tech, key) => (
                                     <span 
                                         key={key}
                                                 className="inline-block bg-blue-500/10 text-blue-500 px-3 rounded-full text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition">
@@ -425,17 +419,12 @@ export const Projects = () => {
                                     </div>
                                 </div>
                             </div>
-                            {/* HYPERLINK TO VIEW PROJECT AND HOVER ANIMATION */}
-                            <div className="mt-4 flex flex-col gap-2">
-                                <button 
-                                    onClick={() => openModal("storymakar")} 
-                                    className="text-blue-500 hover:underline text-left"
-                                >
-                                    View Project →
-                                </button>
+                            {/* HYPERLINK TO VIEW CASE STUDY */}
+                            <div className="mt-auto">
                                 <Link 
                                     to="/storymakar"
-                                    className="border border-blue-500/50 text-blue-500 py-2 px-4 rounded font-medium transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_15px_rgba(59,130,246,0.2)] hover:bg-blue-500/10 text-center"
+                                    className="block w-full bg-blue-500 text-white py-2 px-4 rounded font-medium transition relative overflow-hidden text-center
+                                    hover:-translate-y-0.5 hover:shadow-[0_0_15px_rgba(59,130,246,0.4)]"
                                 >
                                     View Case Study
                                 </Link>
