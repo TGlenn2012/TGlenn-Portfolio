@@ -5,7 +5,7 @@ export const MobileMenu = ({menuOpen, setMenuOpen}) => {
     const isCaseStudyPage = location.pathname !== "/";
 
     return (
-        <div className={`fixed top-0 left-0 w-full bg-[rgba(10, 10, 10, 0.8)] z-40 flex flex-col items-center justify-center
+        <div className={`fixed top-0 left-0 w-full bg-[rgba(10, 10, 10, 0.95)] backdrop-blur-lg z-40 flex flex-col items-center justify-center
                         transition-all duration-300 ease-in-out
 
                             ${
@@ -15,13 +15,6 @@ export const MobileMenu = ({menuOpen, setMenuOpen}) => {
                             }
                        `}
         >
-            <button 
-                onClick={() => setMenuOpen(false)} 
-                className="absolute top-4 right-4 md:top-6 md:right-6 text-white text-3xl focus:outline-none cursor-pointer touch-target min-h-[44px] min-w-[44px] flex items-center justify-center hover:bg-white/10 rounded-lg transition-colors focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-black"
-                aria-label="Close Menu"
-            >
-                &times;
-            </button>
 
             {isCaseStudyPage ? (
                 <>

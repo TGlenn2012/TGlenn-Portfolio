@@ -10,7 +10,7 @@ export const Navbar = ({menuOpen, setMenuOpen}) => {
     }, [menuOpen]);
 
     return (
-        <nav className="fixed top-0 w-full z-40 bg-[rgba(10, 10, 10, 0.8)] backdrop-blur-lg border-b border-white/10 shadow-lg">
+        <nav className="fixed top-0 w-full z-50 bg-[rgba(10, 10, 10, 0.8)] backdrop-blur-lg border-b border-white/10 shadow-lg">
             <div className="max-w-5xl mx-auto px-4">
                 <div className="flex items-center justify-between h-35">
                     {isCaseStudyPage ? (
@@ -24,12 +24,16 @@ export const Navbar = ({menuOpen, setMenuOpen}) => {
                     )}
 
                     <button 
-                        className="w-11 h-11 relative cursor-pointer z-40 md:hidden flex items-center justify-center text-white text-2xl hover:bg-white/10 rounded-lg transition-colors touch-target min-h-[44px] min-w-[44px] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-black" 
+                        className="w-11 h-11 relative cursor-pointer md:hidden flex items-center justify-center text-white text-2xl hover:bg-white/10 rounded-lg transition-colors touch-target min-h-[44px] min-w-[44px] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-black" 
                         onClick={() => setMenuOpen((prev) => !prev)}
-                        aria-label="Toggle menu"
+                        aria-label={menuOpen ? "Close menu" : "Open menu"}
                         aria-expanded={menuOpen}
                     >
-                        &#9776;
+                        {menuOpen ? (
+                            <span className="text-3xl">&times;</span>
+                        ) : (
+                            <span>&#9776;</span>
+                        )}
                     </button>
                     
                     <div className="hidden md:flex items-center space-x-6 lg:space-x-8">
