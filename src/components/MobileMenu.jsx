@@ -17,8 +17,8 @@ export const MobileMenu = ({menuOpen, setMenuOpen}) => {
         >
             <button 
                 onClick={() => setMenuOpen(false)} 
-                className="absolute top-6 right-6 text-white text-3xl focus:outline-none cursor-pointer"
-                aria-label= "Close Menu"
+                className="absolute top-4 right-4 md:top-6 md:right-6 text-white text-3xl focus:outline-none cursor-pointer touch-target min-h-[44px] min-w-[44px] flex items-center justify-center hover:bg-white/10 rounded-lg transition-colors focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-black"
+                aria-label="Close Menu"
             >
                 &times;
             </button>
@@ -28,7 +28,7 @@ export const MobileMenu = ({menuOpen, setMenuOpen}) => {
                     <Link
                         to="/"
                         onClick={() => setMenuOpen(false)}
-                        className={`text-2xl font-semibold text-white my-4 transform transition-transform duration-300
+                        className={`text-xl md:text-2xl font-semibold text-white my-3 md:my-4 px-4 py-3 touch-target min-h-[44px] flex items-center justify-center transform transition-transform duration-300 hover:bg-white/10 rounded-lg
                             ${
                                 menuOpen 
                                     ? "translate-y-0" 
@@ -41,7 +41,7 @@ export const MobileMenu = ({menuOpen, setMenuOpen}) => {
                     <a
                         href="#overview"
                         onClick={() => setMenuOpen(false)}
-                        className={`text-2xl font-semibold text-white my-4 transform transition-transform duration-300
+                        className={`text-xl md:text-2xl font-semibold text-white my-3 md:my-4 px-4 py-3 touch-target min-h-[44px] flex items-center justify-center transform transition-transform duration-300 hover:bg-white/10 rounded-lg
                             ${
                                 menuOpen 
                                     ? "translate-y-0" 
@@ -54,7 +54,7 @@ export const MobileMenu = ({menuOpen, setMenuOpen}) => {
                     <a
                         href="#problem"
                         onClick={() => setMenuOpen(false)}
-                        className={`text-2xl font-semibold text-white my-4 transform transition-transform duration-300
+                        className={`text-xl md:text-2xl font-semibold text-white my-3 md:my-4 px-4 py-3 touch-target min-h-[44px] flex items-center justify-center transform transition-transform duration-300 hover:bg-white/10 rounded-lg
                             ${
                                 menuOpen 
                                     ? "translate-y-0" 
@@ -67,7 +67,7 @@ export const MobileMenu = ({menuOpen, setMenuOpen}) => {
                     <a
                         href="#rr"
                         onClick={() => setMenuOpen(false)}
-                        className={`text-2xl font-semibold text-white my-4 transform transition-transform duration-300
+                        className={`text-xl md:text-2xl font-semibold text-white my-3 md:my-4 px-4 py-3 touch-target min-h-[44px] flex items-center justify-center transform transition-transform duration-300 hover:bg-white/10 rounded-lg
                             ${
                                 menuOpen 
                                     ? "translate-y-0" 
@@ -80,7 +80,7 @@ export const MobileMenu = ({menuOpen, setMenuOpen}) => {
                     <a
                         href="#process"
                         onClick={() => setMenuOpen(false)}
-                        className={`text-2xl font-semibold text-white my-4 transform transition-transform duration-300
+                        className={`text-xl md:text-2xl font-semibold text-white my-3 md:my-4 px-4 py-3 touch-target min-h-[44px] flex items-center justify-center transform transition-transform duration-300 hover:bg-white/10 rounded-lg
                             ${
                                 menuOpen 
                                     ? "translate-y-0" 
@@ -93,7 +93,7 @@ export const MobileMenu = ({menuOpen, setMenuOpen}) => {
                     <a
                         href="#results"
                         onClick={() => setMenuOpen(false)}
-                        className={`text-2xl font-semibold text-white my-4 transform transition-transform duration-300
+                        className={`text-xl md:text-2xl font-semibold text-white my-3 md:my-4 px-4 py-3 touch-target min-h-[44px] flex items-center justify-center transform transition-transform duration-300 hover:bg-white/10 rounded-lg
                             ${
                                 menuOpen 
                                     ? "translate-y-0" 
@@ -106,7 +106,7 @@ export const MobileMenu = ({menuOpen, setMenuOpen}) => {
                     <a
                         href="#conclusion"
                         onClick={() => setMenuOpen(false)}
-                        className={`text-2xl font-semibold text-white my-4 transform transition-transform duration-300
+                        className={`text-xl md:text-2xl font-semibold text-white my-3 md:my-4 px-4 py-3 touch-target min-h-[44px] flex items-center justify-center transform transition-transform duration-300 hover:bg-white/10 rounded-lg
                             ${
                                 menuOpen 
                                     ? "translate-y-0" 
@@ -122,7 +122,7 @@ export const MobileMenu = ({menuOpen, setMenuOpen}) => {
                     <a
                         href="#home" 
                         onClick={() => setMenuOpen(false)}
-                        className={`text-2xl font-semibold text-white my-4 transform transition-transform duration-300
+                        className={`text-xl md:text-2xl font-semibold text-white my-3 md:my-4 px-4 py-3 touch-target min-h-[44px] flex items-center justify-center transform transition-transform duration-300 hover:bg-white/10 rounded-lg
                             ${
                                 menuOpen 
                                     ? "translate-y-0" 
@@ -135,7 +135,7 @@ export const MobileMenu = ({menuOpen, setMenuOpen}) => {
                     <a
                         href="#about" 
                         onClick={() => setMenuOpen(false)}
-                        className={`text-2xl font-semibold text-white my-4 transform transition-transform duration-300
+                        className={`text-xl md:text-2xl font-semibold text-white my-3 md:my-4 px-4 py-3 touch-target min-h-[44px] flex items-center justify-center transform transition-transform duration-300 hover:bg-white/10 rounded-lg
                             ${
                                 menuOpen 
                                     ? "translate-y-0" 
@@ -148,7 +148,7 @@ export const MobileMenu = ({menuOpen, setMenuOpen}) => {
                     <a
                         href="#projects" 
                         onClick={() => setMenuOpen(false)}
-                        className={`text-2xl font-semibold text-white my-4 transform transition-transform duration-300
+                        className={`text-xl md:text-2xl font-semibold text-white my-3 md:my-4 px-4 py-3 touch-target min-h-[44px] flex items-center justify-center transform transition-transform duration-300 hover:bg-white/10 rounded-lg
                             ${
                                 menuOpen 
                                     ? "translate-y-0" 
@@ -161,7 +161,7 @@ export const MobileMenu = ({menuOpen, setMenuOpen}) => {
                     <a
                         href="#contact" 
                         onClick={() => setMenuOpen(false)}
-                        className={`text-2xl font-semibold text-white my-4 transform transition-transform duration-300
+                        className={`text-xl md:text-2xl font-semibold text-white my-3 md:my-4 px-4 py-3 touch-target min-h-[44px] flex items-center justify-center transform transition-transform duration-300 hover:bg-white/10 rounded-lg
                             ${
                                 menuOpen 
                                     ? "translate-y-0" 
@@ -176,7 +176,7 @@ export const MobileMenu = ({menuOpen, setMenuOpen}) => {
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={() => setMenuOpen(false)}
-                        className={`text-2xl font-semibold text-white my-4 transform transition-transform duration-300
+                        className={`text-xl md:text-2xl font-semibold text-white my-3 md:my-4 px-4 py-3 touch-target min-h-[44px] flex items-center justify-center transform transition-transform duration-300 hover:bg-white/10 rounded-lg
                             ${
                                 menuOpen 
                                     ? "translate-y-0" 

@@ -43,7 +43,7 @@ const ImageCarouselWithCaptions = ({ images }) => {
     return (
         <div className="relative mt-4" role="region" aria-label="Image carousel">
             <div className="glass rounded-xl p-6 border-white/10 border overflow-hidden">
-                <div className={`relative min-h-[400px] flex items-center justify-center rounded-lg overflow-hidden ${
+                <div className={`relative min-h-[250px] sm:min-h-[300px] md:min-h-[400px] flex items-center justify-center rounded-lg overflow-hidden ${
                     isPNG ? 'bg-white' : 'bg-gradient-to-br from-blue-500/10 to-cyan-500/10'
                 }`}>
                     <img 
@@ -63,10 +63,10 @@ const ImageCarouselWithCaptions = ({ images }) => {
                                         prevImage();
                                     }
                                 }}
-                                className="absolute left-4 top-1/2 -translate-y-1/2 bg-blue-500/20 hover:bg-blue-500/30 focus:bg-blue-500/40 text-white p-3 rounded-full transition-all border-2 border-blue-500/30 focus:border-blue-500 z-10 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-black"
+                                className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 bg-blue-500/20 hover:bg-blue-500/30 focus:bg-blue-500/40 text-white p-3 sm:p-4 rounded-full transition-all border-2 border-blue-500/30 focus:border-blue-500 z-10 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-black touch-target min-h-[44px] min-w-[44px] flex items-center justify-center"
                                 aria-label="Previous image"
                             >
-                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                                 </svg>
                             </button>
@@ -78,10 +78,10 @@ const ImageCarouselWithCaptions = ({ images }) => {
                                         nextImage();
                                     }
                                 }}
-                                className="absolute right-4 top-1/2 -translate-y-1/2 bg-blue-500/20 hover:bg-blue-500/30 focus:bg-blue-500/40 text-white p-3 rounded-full transition-all border-2 border-blue-500/30 focus:border-blue-500 z-10 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-black"
+                                className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 bg-blue-500/20 hover:bg-blue-500/30 focus:bg-blue-500/40 text-white p-3 sm:p-4 rounded-full transition-all border-2 border-blue-500/30 focus:border-blue-500 z-10 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-black touch-target min-h-[44px] min-w-[44px] flex items-center justify-center"
                                 aria-label="Next image"
                             >
-                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                                 </svg>
                             </button>
@@ -164,16 +164,16 @@ export const IoTMaker = () => {
             {/* Overview/Project Summary Section */}
             <section 
                 id="overview" 
-                className="min-h-screen flex items-center justify-center py-20"
+                className="min-h-screen flex items-center justify-center py-8 sm:py-12 md:py-20"
                 aria-label="Overview and Project Summary"
             >
                 <RevealOnScroll>
-                    <div className="max-w-6xl mx-auto px-4 w-full">
-                        <h1 className="text-5xl md:text-7xl font-bold mb-8 bg-gradient-to-r from-orange-500 to-sky-600 bg-clip-text text-transparent text-center">
+                    <div className="max-w-6xl mx-auto px-4 sm:px-6 w-full">
+                        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-6 md:mb-8 bg-gradient-to-r from-orange-500 to-sky-600 bg-clip-text text-transparent text-center">
                             IoT Maker
                         </h1>
-                        <div className="glass rounded-xl p-8 border-white/10 border">
-                            <h2 className="text-3xl font-bold mb-6 bg-gradient-to-r from-blue-500 to-cyan-600 bg-clip-text text-transparent">
+                        <div className="glass rounded-xl p-4 sm:p-6 md:p-8 border-white/10 border">
+                            <h2 className="text-2xl sm:text-3xl font-bold mb-4 md:mb-6 bg-gradient-to-r from-blue-500 to-cyan-600 bg-clip-text text-transparent">
                                 Overview / Project Summary
                             </h2>
                             <div className="space-y-4 text-gray-200 mb-8">
@@ -249,13 +249,13 @@ export const IoTMaker = () => {
             {/* The Problem Section */}
             <section 
                 id="problem" 
-                className="min-h-screen flex items-center justify-center py-20"
+                className="min-h-screen flex items-center justify-center py-8 sm:py-12 md:py-20"
                 aria-label="The Problem"
             >
                 <RevealOnScroll>
-                    <div className="max-w-6xl mx-auto px-4 w-full">
-                        <div className="glass rounded-xl p-8 border-white/10 border">
-                            <h2 className="text-3xl font-bold mb-8 bg-gradient-to-r from-blue-500 to-cyan-600 bg-clip-text text-transparent text-center">
+                    <div className="max-w-6xl mx-auto px-4 sm:px-6 w-full">
+                        <div className="glass rounded-xl p-4 sm:p-6 md:p-8 border-white/10 border">
+                            <h2 className="text-2xl sm:text-3xl font-bold mb-6 md:mb-8 bg-gradient-to-r from-blue-500 to-cyan-600 bg-clip-text text-transparent text-center">
                                 The Problem
                             </h2>
                             
@@ -353,13 +353,13 @@ export const IoTMaker = () => {
             {/* My Role and Responsibilities Section */}
             <section 
                 id="rr" 
-                className="min-h-screen flex items-center justify-center py-20"
+                className="min-h-screen flex items-center justify-center py-8 sm:py-12 md:py-20"
                 aria-label="My Role and Responsibilities"
             >
                 <RevealOnScroll>
-                    <div className="max-w-6xl mx-auto px-4 w-full">
-                        <div className="glass rounded-xl p-8 border-white/10 border">
-                            <h2 className="text-3xl font-bold mb-8 bg-gradient-to-r from-blue-500 to-cyan-600 bg-clip-text text-transparent text-center">
+                    <div className="max-w-6xl mx-auto px-4 sm:px-6 w-full">
+                        <div className="glass rounded-xl p-4 sm:p-6 md:p-8 border-white/10 border">
+                            <h2 className="text-2xl sm:text-3xl font-bold mb-6 md:mb-8 bg-gradient-to-r from-blue-500 to-cyan-600 bg-clip-text text-transparent text-center">
                                 My Role and Responsibilities
                             </h2>
                             
@@ -580,13 +580,13 @@ export const IoTMaker = () => {
             {/* Process and Solution Section */}
             <section 
                 id="process" 
-                className="min-h-screen flex items-center justify-center py-20"
+                className="min-h-screen flex items-center justify-center py-8 sm:py-12 md:py-20"
                 aria-label="Process and Solution"
             >
                 <RevealOnScroll>
-                    <div className="max-w-6xl mx-auto px-4 w-full">
-                        <div className="glass rounded-xl p-8 border-white/10 border">
-                            <h2 className="text-3xl font-bold mb-8 bg-gradient-to-r from-blue-500 to-cyan-600 bg-clip-text text-transparent text-center">
+                    <div className="max-w-6xl mx-auto px-4 sm:px-6 w-full">
+                        <div className="glass rounded-xl p-4 sm:p-6 md:p-8 border-white/10 border">
+                            <h2 className="text-2xl sm:text-3xl font-bold mb-6 md:mb-8 bg-gradient-to-r from-blue-500 to-cyan-600 bg-clip-text text-transparent text-center">
                                 Process and Solution
                             </h2>
                             
@@ -598,7 +598,7 @@ export const IoTMaker = () => {
                                 </p>
                                 
                                 {/* Component Selection Grid */}
-                                <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+                                <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3 md:gap-4 mb-6 md:mb-8">
                                     <div 
                                         className={`glass rounded-xl p-4 border text-center transition-all cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-black ${
                                             activeComponent === 0 
@@ -852,12 +852,12 @@ export const IoTMaker = () => {
             {/* Evaluation Study Section */}
             <section 
                 id="evaluation-study" 
-                className="min-h-screen flex items-center justify-center py-20"
+                className="min-h-screen flex items-center justify-center py-8 sm:py-12 md:py-20"
             >
                 <RevealOnScroll>
-                    <div className="max-w-6xl mx-auto px-4 w-full">
-                        <div className="glass rounded-xl p-8 border-white/10 border">
-                            <h2 className="text-3xl font-bold mb-6 bg-gradient-to-r from-blue-500 to-cyan-600 bg-clip-text text-transparent text-center">
+                    <div className="max-w-6xl mx-auto px-4 sm:px-6 w-full">
+                        <div className="glass rounded-xl p-4 sm:p-6 md:p-8 border-white/10 border">
+                            <h2 className="text-2xl sm:text-3xl font-bold mb-4 md:mb-6 bg-gradient-to-r from-blue-500 to-cyan-600 bg-clip-text text-transparent text-center">
                                 Evaluation Study: Expert Feedback
                             </h2>
                             
@@ -1029,12 +1029,12 @@ export const IoTMaker = () => {
             {/* Youth Study Section */}
             <section 
                 id="youth-study" 
-                className="min-h-screen flex items-center justify-center py-20"
+                className="min-h-screen flex items-center justify-center py-8 sm:py-12 md:py-20"
             >
                 <RevealOnScroll>
-                    <div className="max-w-6xl mx-auto px-4 w-full">
-                        <div className="glass rounded-xl p-8 border-white/10 border">
-                            <h2 className="text-3xl font-bold mb-6 bg-gradient-to-r from-blue-500 to-cyan-600 bg-clip-text text-transparent text-center">
+                    <div className="max-w-6xl mx-auto px-4 sm:px-6 w-full">
+                        <div className="glass rounded-xl p-4 sm:p-6 md:p-8 border-white/10 border">
+                            <h2 className="text-2xl sm:text-3xl font-bold mb-4 md:mb-6 bg-gradient-to-r from-blue-500 to-cyan-600 bg-clip-text text-transparent text-center">
                                 Youth Study: Novice User Evaluation
                             </h2>
                             
@@ -1217,13 +1217,13 @@ export const IoTMaker = () => {
             {/* Results and Outcomes Section */}
             <section 
                 id="results" 
-                className="min-h-screen flex items-center justify-center py-20"
+                className="min-h-screen flex items-center justify-center py-8 sm:py-12 md:py-20"
                 aria-label="Results and Outcomes"
             >
                 <RevealOnScroll>
-                    <div className="max-w-6xl mx-auto px-4 w-full">
-                        <div className="glass rounded-xl p-8 border-white/10 border">
-                            <h2 className="text-3xl font-bold mb-6 bg-gradient-to-r from-blue-500 to-cyan-600 bg-clip-text text-transparent text-center">
+                    <div className="max-w-6xl mx-auto px-4 sm:px-6 w-full">
+                        <div className="glass rounded-xl p-4 sm:p-6 md:p-8 border-white/10 border">
+                            <h2 className="text-2xl sm:text-3xl font-bold mb-4 md:mb-6 bg-gradient-to-r from-blue-500 to-cyan-600 bg-clip-text text-transparent text-center">
                                 Results and Outcomes
                             </h2>
                             
@@ -1463,13 +1463,13 @@ export const IoTMaker = () => {
             {/* Conclusion Section */}
             <section 
                 id="conclusion" 
-                className="min-h-screen flex items-center justify-center py-20"
+                className="min-h-screen flex items-center justify-center py-8 sm:py-12 md:py-20"
                 aria-label="Conclusion"
             >
                 <RevealOnScroll>
-                    <div className="max-w-6xl mx-auto px-4 w-full">
-                        <div className="glass rounded-xl p-8 border-white/10 border">
-                            <h2 className="text-3xl font-bold mb-8 bg-gradient-to-r from-blue-500 to-cyan-600 bg-clip-text text-transparent text-center">
+                    <div className="max-w-6xl mx-auto px-4 sm:px-6 w-full">
+                        <div className="glass rounded-xl p-4 sm:p-6 md:p-8 border-white/10 border">
+                            <h2 className="text-2xl sm:text-3xl font-bold mb-6 md:mb-8 bg-gradient-to-r from-blue-500 to-cyan-600 bg-clip-text text-transparent text-center">
                                 Conclusion
                             </h2>
                             

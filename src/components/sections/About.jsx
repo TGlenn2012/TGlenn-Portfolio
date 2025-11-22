@@ -69,34 +69,36 @@ export const About = () => {
             className="min-h-screen flex items-center justify-center py-20"
         >
             <RevealOnScroll>
-                <div className="max-w-6xl mx-auto px-4">
-                    <h2 className="text-3xl font-bold mb-8 bg-gradient-to-r from-blue-500 to-cyan-600 bg-clip-text text-transparent text-center">
+                <div className="max-w-6xl mx-auto px-4 sm:px-6">
+                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 md:mb-8 bg-gradient-to-r from-blue-500 to-cyan-600 bg-clip-text text-transparent text-center">
                         About Me
                     </h2>    
-                    <div className="glass rounded-xl p-8 border-white/10 border hover:-translate-y-1 transition-all">
+                    <div className="glass rounded-xl p-4 sm:p-6 md:p-8 border-white/10 border hover:-translate-y-1 transition-all">
                         {/* Headshot and Intro Section */}
-                        <div className="flex flex-col md:flex-row items-center md:items-start gap-6 mb-8">
+                        <div className="flex flex-col md:flex-row items-center md:items-start gap-4 md:gap-6 mb-6 md:mb-8">
                             <div className="flex-shrink-0">
-                                <div className="w-48 h-48 md:w-56 md:h-56 rounded-full p-1 bg-gradient-to-r from-orange-500 to-sky-600">
-                                    <img 
-                                        src={headshot} 
-                                        alt="Terrell Glenn" 
-                                        className="w-full h-full rounded-full object-cover"
-                                        style={{ objectPosition: 'center 20%' }}
-                                    />
+                                <div className="w-32 h-32 sm:w-40 sm:h-40 md:w-56 md:h-56 rounded-full p-1 bg-gradient-to-r from-orange-500 to-sky-600 overflow-hidden">
+                                    <div className="w-full h-full rounded-full overflow-hidden">
+                                        <img 
+                                            src={headshot} 
+                                            alt="Terrell Glenn" 
+                                            className="w-full h-full object-cover"
+                                            style={{ objectPosition: 'center 20%' }}
+                                        />
+                                    </div>
                                 </div>
                             </div>
                             <div className="flex-1">
-                                <p className="text-gray-300 text-lg">
+                                <p className="text-gray-300 text-base sm:text-lg leading-relaxed">
                                     Technical leader with a Ph.D. in Human-Computer Interaction, and notable work at Microsoft. Skilled in hardware engineering, product design, UX research, and product management, with proven leadership in developing technology roadmaps and collaborating across teams. Experienced in driving data-based decisions, evaluating AI solutions, and enhancing user experiences. Recognized for impactful projects that improved satisfaction through rapid prototyping and design iteration. Committed to using engineering and design expertise for innovation and effective product team leadership.
                                 </p>
                             </div>
                         </div>
 
                         {/* Notable Metrics Section */}
-                        <div className="mb-8">
-                            <h3 className="text-2xl font-bold mb-6 text-center">Notable Metrics</h3>
-                            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div className="mb-6 md:mb-8">
+                            <h3 className="text-xl sm:text-2xl font-bold mb-4 md:mb-6 text-center">Notable Metrics</h3>
+                            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
                                 <div className="glass rounded-xl p-6 border-white/10 border text-center hover:-translate-y-1 transition-all">
                                     <div className="text-4xl mb-2">📚</div>
                                     <div className="text-3xl font-bold bg-gradient-to-r from-orange-500 to-sky-600 bg-clip-text text-transparent mb-2">
@@ -129,9 +131,9 @@ export const About = () => {
                         </div>
                         
                         {/* Skills Section with Enhanced Visualization */}
-                        <div className="mb-8">
-                            <h3 className="text-2xl font-bold mb-6 text-center">Skills</h3>
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div className="mb-6 md:mb-8">
+                            <h3 className="text-xl sm:text-2xl font-bold mb-4 md:mb-6 text-center">Skills</h3>
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
                                 {/* Research Skills Section */}
                                 <div className="glass rounded-xl p-6 border-white/10 border hover:-translate-y-1 transition-all">
                                     <div className="flex items-center gap-2 mb-4">
@@ -243,9 +245,9 @@ export const About = () => {
                         </div>
                         
                         {/* Education Section - Individual Cards */}
-                        <div className="mb-8">
-                            <h3 className="text-2xl font-bold mb-6 text-center">Education</h3>
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div className="mb-6 md:mb-8">
+                            <h3 className="text-xl sm:text-2xl font-bold mb-4 md:mb-6 text-center">Education</h3>
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
                                 {/* Purdue Doctorate Card */}
                                 <div className="glass rounded-xl p-6 border-white/10 border hover:-translate-y-1 transition-all text-center">
                                     <div className="flex justify-center mb-4">
@@ -307,9 +309,9 @@ export const About = () => {
                         </div>
 
                         {/* Professional Experience Section - Individual Cards */}
-                        <div className="mb-8">
-                            <h3 className="text-2xl font-bold mb-6 text-center">Professional Experience</h3>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="mb-6 md:mb-8">
+                            <h3 className="text-xl sm:text-2xl font-bold mb-4 md:mb-6 text-center">Professional Experience</h3>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                                 {/* Microsoft Card */}
                                 <div className="glass rounded-xl p-6 border-white/10 border hover:-translate-y-1 transition-all">
                                     <div className="flex items-start justify-between mb-3">

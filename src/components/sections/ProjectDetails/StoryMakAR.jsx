@@ -118,7 +118,7 @@ const ImageCarouselWithCaptions = ({ images }) => {
     return (
         <div className="relative mt-4" role="region" aria-label="Image carousel">
             <div className="glass rounded-xl p-6 border-white/10 border overflow-hidden">
-                <div className={`relative min-h-[400px] flex items-center justify-center rounded-lg overflow-hidden ${
+                <div className={`relative min-h-[250px] sm:min-h-[300px] md:min-h-[400px] flex items-center justify-center rounded-lg overflow-hidden ${
                     isPNG ? 'bg-white' : 'bg-gradient-to-br from-blue-500/10 to-cyan-500/10'
                 }`}>
                     <img 
@@ -138,10 +138,10 @@ const ImageCarouselWithCaptions = ({ images }) => {
                                         prevImage();
                                     }
                                 }}
-                                className="absolute left-4 top-1/2 -translate-y-1/2 bg-blue-500/20 hover:bg-blue-500/30 focus:bg-blue-500/40 text-white p-3 rounded-full transition-all border-2 border-blue-500/30 focus:border-blue-500 z-10 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-black"
+                                className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 bg-blue-500/20 hover:bg-blue-500/30 focus:bg-blue-500/40 text-white p-3 sm:p-4 rounded-full transition-all border-2 border-blue-500/30 focus:border-blue-500 z-10 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-black touch-target min-h-[44px] min-w-[44px] flex items-center justify-center"
                                 aria-label="Previous image"
                             >
-                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                                 </svg>
                             </button>
@@ -153,10 +153,10 @@ const ImageCarouselWithCaptions = ({ images }) => {
                                         nextImage();
                                     }
                                 }}
-                                className="absolute right-4 top-1/2 -translate-y-1/2 bg-blue-500/20 hover:bg-blue-500/30 focus:bg-blue-500/40 text-white p-3 rounded-full transition-all border-2 border-blue-500/30 focus:border-blue-500 z-10 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-black"
+                                className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 bg-blue-500/20 hover:bg-blue-500/30 focus:bg-blue-500/40 text-white p-3 sm:p-4 rounded-full transition-all border-2 border-blue-500/30 focus:border-blue-500 z-10 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-black touch-target min-h-[44px] min-w-[44px] flex items-center justify-center"
                                 aria-label="Next image"
                             >
-                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                                 </svg>
                             </button>
@@ -368,16 +368,16 @@ export const StoryMakAR = () => {
                 {/* Overview/Project Summary Section */}
                 <section 
                     id="overview" 
-                    className="min-h-screen flex items-center justify-center py-20"
+                    className="min-h-screen flex items-center justify-center py-8 sm:py-12 md:py-20"
                     aria-label="Overview and Project Summary"
                 >
                     <RevealOnScroll>
-                        <div className="max-w-6xl mx-auto px-4 w-full">
-                            <h1 className="text-5xl md:text-7xl font-bold mb-8 bg-gradient-to-r from-orange-500 to-sky-600 bg-clip-text text-transparent text-center">
+                        <div className="max-w-6xl mx-auto px-4 sm:px-6 w-full">
+                            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-6 md:mb-8 bg-gradient-to-r from-orange-500 to-sky-600 bg-clip-text text-transparent text-center">
                                 StoryMakAR
                             </h1>
-                            <div className="glass rounded-xl p-8 border-white/10 border">
-                                <h2 className="text-3xl font-bold mb-6 bg-gradient-to-r from-blue-500 to-cyan-600 bg-clip-text text-transparent">
+                            <div className="glass rounded-xl p-4 sm:p-6 md:p-8 border-white/10 border">
+                                <h2 className="text-2xl sm:text-3xl font-bold mb-4 md:mb-6 bg-gradient-to-r from-blue-500 to-cyan-600 bg-clip-text text-transparent">
                                     Overview / Project Summary
                                 </h2>
                                 <div className="space-y-4 text-gray-200 mb-8">
@@ -453,13 +453,13 @@ export const StoryMakAR = () => {
                 {/* The Problem Section */}
                 <section 
                     id="problem" 
-                    className="min-h-screen flex items-center justify-center py-20"
+                    className="min-h-screen flex items-center justify-center py-8 sm:py-12 md:py-20"
                     aria-label="The Problem"
                 >
                     <RevealOnScroll>
-                        <div className="max-w-6xl mx-auto px-4 w-full">
-                            <div className="glass rounded-xl p-8 border-white/10 border">
-                                <h2 className="text-3xl font-bold mb-8 bg-gradient-to-r from-blue-500 to-cyan-600 bg-clip-text text-transparent text-center">
+                        <div className="max-w-6xl mx-auto px-4 sm:px-6 w-full">
+                            <div className="glass rounded-xl p-4 sm:p-6 md:p-8 border-white/10 border">
+                                <h2 className="text-2xl sm:text-3xl font-bold mb-6 md:mb-8 bg-gradient-to-r from-blue-500 to-cyan-600 bg-clip-text text-transparent text-center">
                                     The Problem
                                 </h2>
                                 
@@ -528,13 +528,13 @@ export const StoryMakAR = () => {
                 {/* My Role and Responsibilities Section */}
                 <section 
                     id="rr" 
-                    className="min-h-screen flex items-center justify-center py-20"
+                    className="min-h-screen flex items-center justify-center py-8 sm:py-12 md:py-20"
                     aria-label="My Role and Responsibilities"
                 >
                     <RevealOnScroll>
-                        <div className="max-w-6xl mx-auto px-4 w-full">
-                            <div className="glass rounded-xl p-8 border-white/10 border">
-                                <h2 className="text-3xl font-bold mb-8 bg-gradient-to-r from-blue-500 to-cyan-600 bg-clip-text text-transparent text-center">
+                        <div className="max-w-6xl mx-auto px-4 sm:px-6 w-full">
+                            <div className="glass rounded-xl p-4 sm:p-6 md:p-8 border-white/10 border">
+                                <h2 className="text-2xl sm:text-3xl font-bold mb-6 md:mb-8 bg-gradient-to-r from-blue-500 to-cyan-600 bg-clip-text text-transparent text-center">
                                     My Role and Responsibilities
                                 </h2>
                                 
@@ -822,13 +822,13 @@ export const StoryMakAR = () => {
                 {/* Process and Solution Section */}
                 <section 
                     id="process" 
-                    className="min-h-screen flex items-center justify-center py-20"
+                    className="min-h-screen flex items-center justify-center py-8 sm:py-12 md:py-20"
                     aria-label="Process and Solution"
                 >
                     <RevealOnScroll>
-                        <div className="max-w-6xl mx-auto px-4 w-full">
-                            <div className="glass rounded-xl p-8 border-white/10 border">
-                                <h2 className="text-3xl font-bold mb-8 bg-gradient-to-r from-blue-500 to-cyan-600 bg-clip-text text-transparent text-center">
+                        <div className="max-w-6xl mx-auto px-4 sm:px-6 w-full">
+                            <div className="glass rounded-xl p-4 sm:p-6 md:p-8 border-white/10 border">
+                                <h2 className="text-2xl sm:text-3xl font-bold mb-6 md:mb-8 bg-gradient-to-r from-blue-500 to-cyan-600 bg-clip-text text-transparent text-center">
                                     Process and Solution
                                 </h2>
                                 
@@ -842,9 +842,9 @@ export const StoryMakAR = () => {
                                     </p>
                                     
                                     {/* System Components Visual Grid */}
-                                    <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-8">
+                                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2 sm:gap-3 md:gap-4 mb-6 md:mb-8">
                                         <div 
-                                            className={`glass rounded-xl p-4 border text-center transition-all cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-black ${
+                                            className={`glass rounded-xl p-3 sm:p-4 border text-center transition-all cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-black touch-target min-h-[80px] sm:min-h-[100px] flex flex-col items-center justify-center ${
                                                 activeComponent === 0 
                                                     ? 'border-blue-500/80 bg-blue-500/20 scale-105 shadow-lg shadow-blue-500/30' 
                                                     : 'border-white/10 hover:scale-105 hover:border-blue-500/30 focus:border-blue-500/50'
@@ -861,8 +861,8 @@ export const StoryMakAR = () => {
                                             aria-label="Select Electronics Toolkit component"
                                             aria-pressed={activeComponent === 0}
                                         >
-                                            <div className="text-4xl mb-2">⚡</div>
-                                            <h4 className="text-sm font-bold text-white">Electronics Toolkit</h4>
+                                            <div className="text-2xl sm:text-3xl md:text-4xl mb-1 sm:mb-2">⚡</div>
+                                            <h4 className="text-xs sm:text-sm font-bold text-white">Electronics Toolkit</h4>
                                         </div>
                                         <div 
                                             className={`glass rounded-xl p-4 border text-center transition-all cursor-pointer focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 focus:ring-offset-black ${
@@ -1272,12 +1272,12 @@ export const StoryMakAR = () => {
                 {/* User Study 1 Section */}
                 <section 
                     id="user-study-1" 
-                    className="min-h-screen flex items-center justify-center py-20"
+                    className="min-h-screen flex items-center justify-center py-8 sm:py-12 md:py-20"
                 >
                     <RevealOnScroll>
-                        <div className="max-w-6xl mx-auto px-4 w-full">
-                            <div className="glass rounded-xl p-8 border-white/10 border">
-                                <h2 className="text-3xl font-bold mb-6 bg-gradient-to-r from-blue-500 to-cyan-600 bg-clip-text text-transparent text-center">
+                        <div className="max-w-6xl mx-auto px-4 sm:px-6 w-full">
+                            <div className="glass rounded-xl p-4 sm:p-6 md:p-8 border-white/10 border">
+                                <h2 className="text-2xl sm:text-3xl font-bold mb-4 md:mb-6 bg-gradient-to-r from-blue-500 to-cyan-600 bg-clip-text text-transparent text-center">
                                     User Study 1: Default Events & Devices
                                 </h2>
                                 
@@ -1474,12 +1474,12 @@ export const StoryMakAR = () => {
                 {/* User Study 2 Section */}
                 <section 
                     id="user-study-2" 
-                    className="min-h-screen flex items-center justify-center py-20"
+                    className="min-h-screen flex items-center justify-center py-8 sm:py-12 md:py-20"
                 >
                     <RevealOnScroll>
-                        <div className="max-w-6xl mx-auto px-4 w-full">
-                            <div className="glass rounded-xl p-8 border-white/10 border">
-                                <h2 className="text-3xl font-bold mb-6 bg-gradient-to-r from-blue-500 to-cyan-600 bg-clip-text text-transparent text-center">
+                        <div className="max-w-6xl mx-auto px-4 sm:px-6 w-full">
+                            <div className="glass rounded-xl p-4 sm:p-6 md:p-8 border-white/10 border">
+                                <h2 className="text-2xl sm:text-3xl font-bold mb-4 md:mb-6 bg-gradient-to-r from-blue-500 to-cyan-600 bg-clip-text text-transparent text-center">
                                     User Study 2: Custom Events & Devices
                                 </h2>
                                 
@@ -1676,13 +1676,13 @@ export const StoryMakAR = () => {
                 {/* Results and Outcomes Section */}
                 <section 
                     id="results" 
-                    className="min-h-screen flex items-center justify-center py-20"
+                    className="min-h-screen flex items-center justify-center py-8 sm:py-12 md:py-20"
                     aria-label="Results and Outcomes"
                 >
                     <RevealOnScroll>
-                        <div className="max-w-6xl mx-auto px-4 w-full">
-                            <div className="glass rounded-xl p-8 border-white/10 border">
-                                <h2 className="text-3xl font-bold mb-6 bg-gradient-to-r from-blue-500 to-cyan-600 bg-clip-text text-transparent text-center">
+                        <div className="max-w-6xl mx-auto px-4 sm:px-6 w-full">
+                            <div className="glass rounded-xl p-4 sm:p-6 md:p-8 border-white/10 border">
+                                <h2 className="text-2xl sm:text-3xl font-bold mb-4 md:mb-6 bg-gradient-to-r from-blue-500 to-cyan-600 bg-clip-text text-transparent text-center">
                                     Results and Outcomes
                                 </h2>
                                 
@@ -1718,8 +1718,8 @@ export const StoryMakAR = () => {
                                     {/* Table 2: User Study 1 Demographics */}
                                     <div className="mb-6">
                                         <h4 className="text-xl font-bold mb-3 text-cyan-400">Table 2: Participant Demographics and Experience Levels</h4>
-                                        <div className="overflow-x-auto">
-                                            <table className="w-full border-collapse glass rounded-lg border border-white/10" role="table" aria-label="Participant Demographics and Experience Levels">
+                                        <div className="overflow-x-auto -mx-4 sm:mx-0 px-4 sm:px-0" style={{ WebkitOverflowScrolling: 'touch' }}>
+                                            <table className="w-full min-w-[600px] border-collapse glass rounded-lg border border-white/10 text-xs sm:text-sm" role="table" aria-label="Participant Demographics and Experience Levels">
                                                 <thead>
                                                     <tr className="bg-blue-500/20">
                                                         <th scope="col" className="border border-white/20 p-3 text-left text-white font-semibold">Group Size</th>
@@ -1841,8 +1841,8 @@ export const StoryMakAR = () => {
                                     {/* Table 4: User Study 2 Custom Devices and Events */}
                                     <div className="mb-6">
                                         <h4 className="text-xl font-bold mb-3 text-cyan-400">Table 4: Custom Devices and Event Interactions Created by Students</h4>
-                                        <div className="overflow-x-auto">
-                                            <table className="w-full border-collapse glass rounded-lg border border-white/10" role="table" aria-label="Custom Devices and Event Interactions Created by Students">
+                                        <div className="overflow-x-auto -mx-4 sm:mx-0 px-4 sm:px-0" style={{ WebkitOverflowScrolling: 'touch' }}>
+                                            <table className="w-full min-w-[600px] border-collapse glass rounded-lg border border-white/10 text-xs sm:text-sm" role="table" aria-label="Custom Devices and Event Interactions Created by Students">
                                                 <thead>
                                                     <tr className="bg-blue-500/20">
                                                         <th scope="col" className="border border-white/20 p-3 text-left text-white font-semibold">Group Size</th>
@@ -2045,13 +2045,13 @@ export const StoryMakAR = () => {
                 {/* Conclusion Section */}
                 <section 
                     id="conclusion" 
-                    className="min-h-screen flex items-center justify-center py-20"
+                    className="min-h-screen flex items-center justify-center py-8 sm:py-12 md:py-20"
                     aria-label="Conclusion"
                 >
                     <RevealOnScroll>
-                        <div className="max-w-6xl mx-auto px-4 w-full">
-                            <div className="glass rounded-xl p-8 border-white/10 border">
-                                <h2 className="text-3xl font-bold mb-8 bg-gradient-to-r from-blue-500 to-cyan-600 bg-clip-text text-transparent text-center">
+                        <div className="max-w-6xl mx-auto px-4 sm:px-6 w-full">
+                            <div className="glass rounded-xl p-4 sm:p-6 md:p-8 border-white/10 border">
+                                <h2 className="text-2xl sm:text-3xl font-bold mb-6 md:mb-8 bg-gradient-to-r from-blue-500 to-cyan-600 bg-clip-text text-transparent text-center">
                                     Conclusion
                                 </h2>
                                 

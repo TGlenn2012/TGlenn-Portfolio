@@ -95,23 +95,23 @@ export const Projects = () => {
             className="min-h-screen flex items-center justify-center py-20"
         >
             <RevealOnScroll>
-                <div className="max-w-6xl mx-auto px-4">
-                    <h2 className="text-3xl font-bold mb-8 bg-gradient-to-r from-blue-500 to-cyan-600 bg-clip-text text-transparent text-center">
+                <div className="max-w-6xl mx-auto px-4 sm:px-6">
+                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 md:mb-8 bg-gradient-to-r from-blue-500 to-cyan-600 bg-clip-text text-transparent text-center">
                         Featured Projects
                     </h2>
                     {/* START GRID FOR PROJECTS */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                         {/* Project card #1 MICROKARTS */}
-                        <div className="glass rounded-xl p-6 border-white/10 border hover:-translate-y-1 transition-all">
+                        <div className="glass rounded-xl p-4 sm:p-5 md:p-6 border-white/10 border hover:-translate-y-1 transition-all">
                             <div className="mb-4">
                                 <img 
                                     src={microkartsHeroImage} 
                                     alt="MicrokARts" 
-                                    className="w-full h-48 object-cover rounded-lg mb-4"
+                                    className="w-full h-40 sm:h-48 object-cover rounded-lg mb-3 md:mb-4"
                                 />
-                            <h3 className="text-xl font-bold mb-4">MicrokARts</h3>
+                            <h3 className="text-lg sm:text-xl font-bold mb-3 md:mb-4">MicrokARts</h3>
                             </div>
-                            <p className="text-gray-300 mb-4 text-justify">
+                            <p className="text-gray-300 mb-4 text-sm sm:text-base text-justify leading-relaxed">
                                 MicrokARts empowers children to design, build, and program their own IoT-enabled karts using a block-based programming environment. The system encourages creative play and collaboration in a shared AR-IoT environment. Through hands-on activities, youth gain foundational skills in physical computing and interactive technology. The project was evaluated with both graduate experts and youth participants.
                             </p>
                             {/* Grouped Categories with Icons - Visual Test */}
@@ -121,11 +121,11 @@ export const Projects = () => {
                                         <span className="text-lg">🌐</span>
                                         <span className="text-sm font-semibold text-blue-400">AR/IoT</span>
                                     </div>
-                                    <div className="flex flex-wrap gap-2">
+                                    <div className="flex flex-wrap gap-1.5 md:gap-2">
                                         {["Augmented Reality", "IoT", "Cloud Anchors"].map((tech, key) => (
                                             <span 
                                                 key={key}
-                                                className="inline-block bg-blue-500/10 text-blue-500 px-3 rounded-full text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition">
+                                                className="inline-block bg-blue-500/10 text-blue-500 px-2 md:px-3 py-1 rounded-full text-xs sm:text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition">
                                                 {tech}
                                             </span>
                                         ))}
@@ -180,7 +180,7 @@ export const Projects = () => {
                             <div className="mt-4">
                                 <button 
                                     onClick={() => openModal("microkarts")} 
-                                    className="text-blue-500 hover:underline"
+                                    className="text-blue-500 hover:text-blue-400 hover:underline text-base md:text-lg py-2 px-2 touch-target min-h-[44px] flex items-center focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-black rounded"
                                 >
                                     View Project →
                                 </button>
@@ -192,9 +192,9 @@ export const Projects = () => {
                                 <img 
                                     src={sharediotHeroImage} 
                                     alt="ShARed IoT" 
-                                    className="w-full h-48 object-cover rounded-lg mb-4"
+                                    className="w-full h-40 sm:h-48 object-cover rounded-lg mb-3 md:mb-4"
                                 />
-                            <h3 className="text-xl font-bold mb-4">ShARed IoT</h3>
+                            <h3 className="text-lg sm:text-xl font-bold mb-3 md:mb-4">ShARed IoT</h3>
                             </div>
                             <p className="text-gray-300 mb-4 text-justify">
                                 ShARed IoT enables users to interact with custom-built IoT devices through mobile augmented reality, supporting shared experiences across multiple smartphones. The system uses cloud anchors and a wireless protocol for real-time device control and AR content sharing. It lowers barriers for novice makers to create dynamic, networked AR-IoT experiences. Studies with UX experts and users highlight its effectiveness for both beginners and experts.
@@ -250,7 +250,7 @@ export const Projects = () => {
                             <div className="mt-4">
                                 <button 
                                     onClick={() => openModal("sharediot")} 
-                                    className="text-blue-500 hover:underline"
+                                    className="text-blue-500 hover:text-blue-400 hover:underline text-base md:text-lg py-2 px-2 touch-target min-h-[44px] flex items-center focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-black rounded"
                                 >
                                     View Project →
                                 </button>
@@ -262,9 +262,9 @@ export const Projects = () => {
                                 <img 
                                     src={iotmakerHeroImage} 
                                     alt="IoT Maker" 
-                                    className="w-full h-48 object-cover rounded-lg mb-4"
+                                    className="w-full h-40 sm:h-48 object-cover rounded-lg mb-3 md:mb-4"
                                 />
-                            <h3 className="text-xl font-bold mb-4">IoT Maker</h3>
+                            <h3 className="text-lg sm:text-xl font-bold mb-3 md:mb-4">IoT Maker</h3>
                             </div>
                             <p className="text-gray-300 mb-4 text-justify">
                                 IoT Maker is a web app for live programming and simulation of electronic devices using a drag-and-drop interface. Users can interact with sensors in real time and upload their code to custom hardware for hands-on control. The platform is designed to make advanced electro-mechanical device creation accessible to youth. Evaluation studies show it reduces barriers for novice programmers.
@@ -276,11 +276,11 @@ export const Projects = () => {
                                         <span className="text-lg">💻</span>
                                         <span className="text-sm font-semibold text-blue-400">Development</span>
                                     </div>
-                                    <div className="flex flex-wrap gap-2">
+                                    <div className="flex flex-wrap gap-1.5 md:gap-2">
                                         {["Live Programming", "Blockly/Blocklyduino", "JavaScript/Web Development", "ESP32/Arduino"].map((tech, key) => (
                                             <span 
                                                 key={key}
-                                                className="inline-block bg-blue-500/10 text-blue-500 px-3 rounded-full text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition">
+                                                className="inline-block bg-blue-500/10 text-blue-500 px-2 md:px-3 py-1 rounded-full text-xs sm:text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition">
                                                 {tech}
                                             </span>
                                         ))}
@@ -288,14 +288,14 @@ export const Projects = () => {
                                 </div>
                                 <div>
                                     <div className="flex items-center gap-2 mb-2">
-                                        <span className="text-lg">🔧</span>
-                                        <span className="text-sm font-semibold text-blue-400">Hardware/Embedded Systems</span>
+                                        <span className="text-base md:text-lg">🔧</span>
+                                        <span className="text-xs sm:text-sm font-semibold text-blue-400">Hardware/Embedded Systems</span>
                                     </div>
-                                    <div className="flex flex-wrap gap-2">
+                                    <div className="flex flex-wrap gap-1.5 md:gap-2">
                                         {["PCB Design", "Embedded Systems", "Electronics Design", "WiFi/UDP Communication"].map((tech, key) => (
                                             <span 
                                                 key={key}
-                                                className="inline-block bg-blue-500/10 text-blue-500 px-3 rounded-full text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition">
+                                                className="inline-block bg-blue-500/10 text-blue-500 px-2 md:px-3 py-1 rounded-full text-xs sm:text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition">
                                                 {tech}
                                             </span>
                                         ))}
@@ -303,14 +303,14 @@ export const Projects = () => {
                                 </div>
                                 <div>
                                     <div className="flex items-center gap-2 mb-2">
-                                        <span className="text-lg">🌐</span>
-                                        <span className="text-sm font-semibold text-blue-400">IoT & Simulation</span>
+                                        <span className="text-base md:text-lg">🌐</span>
+                                        <span className="text-xs sm:text-sm font-semibold text-blue-400">IoT & Simulation</span>
                                     </div>
-                                    <div className="flex flex-wrap gap-2">
+                                    <div className="flex flex-wrap gap-1.5 md:gap-2">
                                         {["IoT Development", "Real-time Simulation", "Hardware Simulation", "Wireless Device Control"].map((tech, key) => (
                                             <span 
                                                 key={key}
-                                                className="inline-block bg-blue-500/10 text-blue-500 px-3 rounded-full text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition">
+                                                className="inline-block bg-blue-500/10 text-blue-500 px-2 md:px-3 py-1 rounded-full text-xs sm:text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition">
                                                 {tech}
                                             </span>
                                         ))}
@@ -318,14 +318,14 @@ export const Projects = () => {
                                 </div>
                                 <div>
                                     <div className="flex items-center gap-2 mb-2">
-                                        <span className="text-lg">🔬</span>
-                                        <span className="text-sm font-semibold text-blue-400">Research & Education</span>
+                                        <span className="text-base md:text-lg">🔬</span>
+                                        <span className="text-xs sm:text-sm font-semibold text-blue-400">Research & Education</span>
                                     </div>
-                                    <div className="flex flex-wrap gap-2">
+                                    <div className="flex flex-wrap gap-1.5 md:gap-2">
                                         {["User Studies & Evaluation", "STEM Education Research", "Mixed-Methods Research", "Curriculum Design"].map((tech, key) => (
                                     <span 
                                         key={key}
-                                                className="inline-block bg-blue-500/10 text-blue-500 px-3 rounded-full text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition">
+                                                className="inline-block bg-blue-500/10 text-blue-500 px-2 md:px-3 py-1 rounded-full text-xs sm:text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition">
                                         {tech}
                                     </span>
                                 ))}
@@ -336,22 +336,22 @@ export const Projects = () => {
                             <div className="mt-auto">
                                 <Link
                                     to="/iotmaker"
-                                    className="block w-full bg-blue-500 text-white py-2 px-4 rounded font-medium transition relative overflow-hidden text-center
-                                    hover:-translate-y-0.5 hover:shadow-[0_0_15px_rgba(59,130,246,0.4)]"
+                                    className="block w-full bg-blue-500 text-white py-3 md:py-4 px-4 md:px-6 rounded-lg font-medium text-base md:text-lg transition relative overflow-hidden text-center touch-target min-h-[44px] flex items-center justify-center
+                                    hover:-translate-y-0.5 hover:shadow-[0_0_15px_rgba(59,130,246,0.4)] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-black"
                                 >
                                     View Case Study
                                 </Link>
                             </div>                        
                         </div>
                         {/* Project card #4 STORYMAKAR*/}
-                        <div className="glass rounded-xl p-6 border-white/10 border hover:-translate-y-1 transition-all flex flex-col">
+                        <div className="glass rounded-xl p-4 sm:p-5 md:p-6 border-white/10 border hover:-translate-y-1 transition-all flex flex-col">
                             <div className="mb-4">
                                 <img 
                                     src={storymakarHeroImage} 
                                     alt="StoryMakAR" 
-                                    className="w-full h-48 object-cover rounded-lg mb-4"
+                                    className="w-full h-40 sm:h-48 object-cover rounded-lg mb-3 md:mb-4"
                                 />
-                            <h3 className="text-xl font-bold mb-4">StoryMakAR</h3>
+                            <h3 className="text-lg sm:text-xl font-bold mb-3 md:mb-4">StoryMakAR</h3>
                             </div>
                             <p className="text-gray-300 mb-4 text-justify">
                                 StoryMakAR combines physical prototyping and storytelling through AR, allowing youth to build devices and create interactive stories. The toolkit uses block programming and event-based logic to bring virtual and physical worlds together. Workshops with high school students revealed strong engagement and creativity. The system is designed to lower barriers for maker-based storytelling in educational settings.
@@ -363,11 +363,11 @@ export const Projects = () => {
                                         <span className="text-lg">🌐</span>
                                         <span className="text-sm font-semibold text-blue-400">AR/IoT</span>
                                     </div>
-                                    <div className="flex flex-wrap gap-2">
+                                    <div className="flex flex-wrap gap-1.5 md:gap-2">
                                         {["Augmented Reality", "SLAM", "Physical Computing", "IoT/Wireless Communication"].map((tech, key) => (
                                             <span 
                                                 key={key}
-                                                className="inline-block bg-blue-500/10 text-blue-500 px-3 rounded-full text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition">
+                                                className="inline-block bg-blue-500/10 text-blue-500 px-2 md:px-3 py-1 rounded-full text-xs sm:text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition">
                                                 {tech}
                                             </span>
                                         ))}
@@ -375,14 +375,14 @@ export const Projects = () => {
                                 </div>
                                 <div>
                                     <div className="flex items-center gap-2 mb-2">
-                                        <span className="text-lg">💻</span>
-                                        <span className="text-sm font-semibold text-blue-400">Development</span>
+                                        <span className="text-base md:text-lg">💻</span>
+                                        <span className="text-xs sm:text-sm font-semibold text-blue-400">Development</span>
                                     </div>
-                                    <div className="flex flex-wrap gap-2">
+                                    <div className="flex flex-wrap gap-1.5 md:gap-2">
                                         {["Blockly/BlocklyDuino", "Arduino Programming", "Unity3D", "ESP32/Embedded Systems"].map((tech, key) => (
                                             <span 
                                                 key={key}
-                                                className="inline-block bg-blue-500/10 text-blue-500 px-3 rounded-full text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition">
+                                                className="inline-block bg-blue-500/10 text-blue-500 px-2 md:px-3 py-1 rounded-full text-xs sm:text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition">
                                                 {tech}
                                             </span>
                                         ))}
@@ -390,14 +390,14 @@ export const Projects = () => {
                                 </div>
                                 <div>
                                     <div className="flex items-center gap-2 mb-2">
-                                        <span className="text-lg">🔧</span>
-                                        <span className="text-sm font-semibold text-blue-400">Hardware</span>
+                                        <span className="text-base md:text-lg">🔧</span>
+                                        <span className="text-xs sm:text-sm font-semibold text-blue-400">Hardware</span>
                                     </div>
-                                    <div className="flex flex-wrap gap-2">
+                                    <div className="flex flex-wrap gap-1.5 md:gap-2">
                                         {["PCB Design", "Electronics Design", "3D Printing & Laser Cutting", "Hardware Prototyping"].map((tech, key) => (
                                             <span 
                                                 key={key}
-                                                className="inline-block bg-blue-500/10 text-blue-500 px-3 rounded-full text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition">
+                                                className="inline-block bg-blue-500/10 text-blue-500 px-2 md:px-3 py-1 rounded-full text-xs sm:text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition">
                                                 {tech}
                                             </span>
                                         ))}
@@ -405,14 +405,14 @@ export const Projects = () => {
                                 </div>
                                 <div>
                                     <div className="flex items-center gap-2 mb-2">
-                                        <span className="text-lg">🔬</span>
-                                        <span className="text-sm font-semibold text-blue-400">Research</span>
+                                        <span className="text-base md:text-lg">🔬</span>
+                                        <span className="text-xs sm:text-sm font-semibold text-blue-400">Research</span>
                                     </div>
-                                    <div className="flex flex-wrap gap-2">
+                                    <div className="flex flex-wrap gap-1.5 md:gap-2">
                                         {["User Studies & Evaluation", "Mixed-Methods Research", "Workshop Facilitation", "Human-Computer Interaction"].map((tech, key) => (
                                     <span 
                                         key={key}
-                                                className="inline-block bg-blue-500/10 text-blue-500 px-3 rounded-full text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition">
+                                                className="inline-block bg-blue-500/10 text-blue-500 px-2 md:px-3 py-1 rounded-full text-xs sm:text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition">
                                         {tech}
                                     </span>
                                 ))}
@@ -423,22 +423,22 @@ export const Projects = () => {
                             <div className="mt-auto">
                                 <Link 
                                     to="/storymakar"
-                                    className="block w-full bg-blue-500 text-white py-2 px-4 rounded font-medium transition relative overflow-hidden text-center
-                                    hover:-translate-y-0.5 hover:shadow-[0_0_15px_rgba(59,130,246,0.4)]"
+                                    className="block w-full bg-blue-500 text-white py-3 md:py-4 px-4 md:px-6 rounded-lg font-medium text-base md:text-lg transition relative overflow-hidden text-center touch-target min-h-[44px] flex items-center justify-center
+                                    hover:-translate-y-0.5 hover:shadow-[0_0_15px_rgba(59,130,246,0.4)] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-black"
                                 >
                                     View Case Study
                                 </Link>
                             </div>                        
                         </div>
                         {/* Project card #5 */}
-                        <div className="glass rounded-xl p-6 border-white/10 border hover:-translate-y-1 transition-all">
+                        <div className="glass rounded-xl p-4 sm:p-5 md:p-6 border-white/10 border hover:-translate-y-1 transition-all">
                             <div className="mb-4">
                                 <img 
                                     src={sixDofHeroImage} 
                                     alt="6-DoF Robotic Arm" 
-                                    className="w-full h-48 object-cover rounded-lg mb-4"
+                                    className="w-full h-40 sm:h-48 object-cover rounded-lg mb-3 md:mb-4"
                                 />
-                                <h3 className="text-xl font-bold mb-4">6-DoF Robotic Arm</h3>
+                                <h3 className="text-lg sm:text-xl font-bold mb-3 md:mb-4">6-DoF Robotic Arm</h3>
                             </div>
                             <p className="text-gray-300 mb-4 text-justify">
                                 This project features a 6-DoF robotic arm mounted on a mobile chassis, controlled via ESP32 and programmed in Arduino. A phone streams live video to a host computer, while a Unity3D interface enables remote operation using UDP. The project integrates computer vision, robotics, and wireless communication. It demonstrates advanced skills in both hardware and software integration.
@@ -495,21 +495,21 @@ export const Projects = () => {
                             <div className="mt-4">
                             <button 
                                     onClick={() => openModal("sixdofroboticarm")} 
-                                    className="text-blue-500 hover:underline"
+                                    className="text-blue-500 hover:text-blue-400 hover:underline text-base md:text-lg py-2 px-2 touch-target min-h-[44px] flex items-center focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-black rounded"
                                 >
                                     View Project →
                             </button>
                         </div>  
                         </div>
                         {/* Project card #6 */}
-                        <div className="glass rounded-xl p-6 border-white/10 border hover:-translate-y-1 transition-all">
+                        <div className="glass rounded-xl p-4 sm:p-5 md:p-6 border-white/10 border hover:-translate-y-1 transition-all">
                             <div className="mb-4">
                                 <img 
                                     src={iotcourseHeroImage} 
                                     alt="IoT Course Design" 
-                                    className="w-full h-48 object-cover rounded-lg mb-4"
+                                    className="w-full h-40 sm:h-48 object-cover rounded-lg mb-3 md:mb-4"
                                 />
-                                <h3 className="text-xl font-bold mb-4">IoT Course Design for High Schoolers</h3>
+                                <h3 className="text-lg sm:text-xl font-bold mb-3 md:mb-4">IoT Course Design for High Schoolers</h3>
                                 <h4 className="text-gray-400 mb-2">Research Paper (2025)</h4>
                             </div>
                             <p className="text-gray-300 mb-4 text-justify">
@@ -567,7 +567,7 @@ export const Projects = () => {
                             <div className="mt-4">
                                 <button 
                                     onClick={() => openModal("iotconstructionism")} 
-                                    className="text-blue-500 hover:underline"
+                                    className="text-blue-500 hover:text-blue-400 hover:underline text-base md:text-lg py-2 px-2 touch-target min-h-[44px] flex items-center focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-black rounded"
                                 >
                                     View Project →
                                 </button>

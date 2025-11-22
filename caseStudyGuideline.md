@@ -13,7 +13,8 @@ This document provides comprehensive guidelines for creating case study pages in
 3. [Content Guidelines](#content-guidelines)
 4. [WCAG Accessibility Standards](#wcag-accessibility-standards)
 5. [Technical Implementation](#technical-implementation)
-6. [Best Practices](#best-practices)
+6. [Responsive Design Best Practices](#responsive-design-best-practices)
+7. [Best Practices](#best-practices)
 
 ---
 
@@ -84,16 +85,16 @@ This document provides comprehensive guidelines for creating case study pages in
 - **Background**: Dark theme with glassmorphism effects
 
 ### Typography
-- **Main Heading (h1)**: `text-5xl md:text-7xl font-bold bg-gradient-to-r from-orange-500 to-sky-600 bg-clip-text text-transparent`
-- **Section Heading (h2)**: `text-3xl font-bold bg-gradient-to-r from-blue-500 to-cyan-600 bg-clip-text text-transparent text-center`
-- **Subsection Heading (h3)**: `text-2xl font-bold text-blue-400 text-center`
-- **Body Text**: `text-gray-200 leading-relaxed`
+- **Main Heading (h1)**: `text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold bg-gradient-to-r from-orange-500 to-sky-600 bg-clip-text text-transparent` (responsive)
+- **Section Heading (h2)**: `text-2xl sm:text-3xl font-bold bg-gradient-to-r from-blue-500 to-cyan-600 bg-clip-text text-transparent text-center` (responsive)
+- **Subsection Heading (h3)**: `text-xl sm:text-2xl font-bold text-blue-400 text-center` (responsive)
+- **Body Text**: `text-base sm:text-lg text-gray-200 leading-relaxed` (responsive)
 
 ### Spacing
-- **Section Padding**: `min-h-screen flex items-center justify-center py-20`
-- **Container Max Width**: `max-w-6xl mx-auto px-4 w-full`
-- **Card Spacing**: `mb-8` or `mb-10` between major sections
-- **Grid Gaps**: `gap-4` or `gap-6` for card grids
+- **Section Padding**: `min-h-screen flex items-center justify-center py-8 sm:py-12 md:py-20` (responsive)
+- **Container Max Width**: `max-w-6xl mx-auto px-4 sm:px-6 w-full` (responsive padding)
+- **Card Spacing**: `mb-6 md:mb-8` or `mb-8 md:mb-10` between major sections (responsive)
+- **Grid Gaps**: `gap-2 sm:gap-3 md:gap-4` or `gap-4 md:gap-6` for card grids (responsive)
 
 ---
 
@@ -266,6 +267,224 @@ export const ProjectName = () => {
 
 ---
 
+## Responsive Design Best Practices
+
+### Overview
+All case studies must be fully responsive and optimized for mobile devices. This section outlines the responsive design patterns and best practices implemented across the portfolio.
+
+### Mobile-First Approach
+- **Design Philosophy**: Start with mobile layout, then enhance for larger screens
+- **Breakpoint Strategy**: Use Tailwind's default breakpoints (sm: 640px, md: 768px, lg: 1024px)
+- **Progressive Enhancement**: Add features and complexity as screen size increases
+
+### Responsive Typography
+- **Main Heading (h1)**: `text-3xl sm:text-4xl md:text-5xl lg:text-7xl`
+  - Scales from 30px (mobile) to 72px (desktop)
+- **Section Heading (h2)**: `text-2xl sm:text-3xl`
+  - Scales from 24px (mobile) to 30px (desktop)
+- **Subsection Heading (h3)**: `text-xl sm:text-2xl`
+  - Scales from 20px (mobile) to 24px (desktop)
+- **Body Text**: `text-base sm:text-lg`
+  - Scales from 16px (mobile) to 18px (desktop)
+- **Small Text**: `text-xs sm:text-sm`
+  - For labels, captions, and secondary information
+
+### Responsive Spacing
+- **Section Padding**: `py-8 sm:py-12 md:py-20`
+  - Reduced vertical padding on mobile to maximize content visibility
+- **Container Padding**: `px-4 sm:px-6`
+  - Consistent horizontal padding that scales slightly on larger screens
+- **Card Padding**: `p-4 sm:p-6 md:p-8`
+  - Tighter padding on mobile, more spacious on desktop
+- **Grid Gaps**: `gap-2 sm:gap-3 md:gap-4` or `gap-4 md:gap-6`
+  - Tighter gaps on mobile to maximize space utilization
+- **Margins**: `mb-4 md:mb-6` or `mb-6 md:mb-8`
+  - Reduced margins on mobile for better content density
+
+### Touch Target Optimization
+- **Minimum Size**: All interactive elements must be at least 44x44px (WCAG 2.5.5 - Level AAA)
+- **Implementation**: Add `touch-target min-h-[44px] min-w-[44px]` classes
+- **Button Padding**: Use `py-3 md:py-4 px-4 md:px-6` for comfortable touch targets
+- **Navigation Elements**: 
+  - Hamburger menu: `w-11 h-11` minimum
+  - Menu items: `px-4 py-3` padding for better touch targets
+  - Close button: `min-h-[44px] min-w-[44px]`
+- **Carousel Buttons**: `p-3 sm:p-4` with `min-h-[44px] min-w-[44px]`
+
+### Responsive Grids
+- **Component Selection**: `grid-cols-2 sm:grid-cols-3 md:grid-cols-5`
+  - 2 columns on mobile, 3 on small tablets, 5 on desktop
+- **Metrics Cards**: `grid-cols-2 md:grid-cols-4`
+  - 2 columns on mobile, 4 on desktop
+- **Project Cards**: `grid-cols-1 md:grid-cols-2`
+  - Single column on mobile, 2 columns on desktop
+- **Skills Grid**: `grid-cols-1 md:grid-cols-2 lg:grid-cols-3`
+  - Progressive enhancement: 1 → 2 → 3 columns
+- **Education/Experience**: `grid-cols-1 md:grid-cols-2` or `grid-cols-1 md:grid-cols-3`
+
+### Responsive Images
+- **Hero Images**: `h-40 sm:h-48` (160px mobile, 192px desktop)
+- **Carousel Images**: `min-h-[250px] sm:min-h-[300px] md:min-h-[400px]`
+  - Scales from 250px to 400px based on screen size
+- **Profile Images**: `w-32 h-32 sm:w-40 sm:h-40 md:w-56 md:h-56`
+  - Progressive sizing: 128px → 160px → 224px
+- **Project Card Images**: `h-40 sm:h-48` (consistent with hero images)
+- **Always Include**: 
+  - `object-cover` for proper image scaling
+  - `rounded-lg` or `rounded-full` for consistent appearance
+  - `overflow-hidden` on container to prevent overflow
+
+### Responsive Tables
+- **Container Wrapper**: 
+  ```jsx
+  <div className="overflow-x-auto -mx-4 sm:mx-0 px-4 sm:px-0" 
+       style={{ WebkitOverflowScrolling: 'touch' }}>
+    <table className="w-full min-w-[600px] text-xs sm:text-sm">
+      {/* table content */}
+    </table>
+  </div>
+  ```
+- **Key Features**:
+  - Horizontal scrolling on mobile
+  - Full-width on mobile with negative margins
+  - Minimum width ensures readability
+  - Responsive text sizing
+  - Smooth scrolling on iOS devices
+
+### Responsive Navigation
+- **Hamburger Menu**: 
+  - Visible on mobile: `md:hidden`
+  - Button size: `w-11 h-11` minimum
+  - Position: `top-4 right-4 md:top-6 md:right-6`
+- **Desktop Menu**: 
+  - Hidden on mobile: `hidden md:flex`
+  - Spacing: `space-x-6 lg:space-x-8`
+- **Mobile Menu Items**: 
+  - Text size: `text-xl md:text-2xl`
+  - Padding: `px-4 py-3` for touch targets
+  - Spacing: `my-3 md:my-4`
+
+### Responsive Forms
+- **Input Fields**: 
+  - Padding: `py-3 md:py-4 px-4`
+  - Text size: `text-base md:text-lg`
+  - Container: `max-w-2xl mx-auto`
+- **Textarea**: 
+  - Add `resize-y` for vertical resizing only
+  - Same padding and text sizing as inputs
+- **Submit Buttons**: 
+  - Padding: `py-3 md:py-4 px-6 md:px-8`
+  - Text size: `text-base md:text-lg`
+  - Full width on mobile: `w-full`
+
+### Responsive Carousels
+- **Navigation Buttons**: 
+  - Position: `left-2 sm:left-4` and `right-2 sm:right-4`
+  - Size: `p-3 sm:p-4` with `min-h-[44px] min-w-[44px]`
+  - Icon size: `w-5 h-5 sm:w-6 sm:h-6`
+- **Dot Indicators**: 
+  - Smaller spacing on mobile
+  - Touch-friendly sizing
+- **Image Container**: 
+  - Responsive min-height (see Responsive Images section)
+
+### Viewport Configuration
+```html
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
+<meta name="theme-color" content="#0a0a0a" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+```
+
+### Global Mobile Styles
+Add to `src/index.css`:
+```css
+/* Mobile-first responsive typography */
+html {
+  font-size: 16px;
+}
+
+@media (min-width: 640px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 1024px) {
+  html {
+    font-size: 18px;
+  }
+}
+
+/* Ensure minimum touch target size */
+button,
+a[role="button"],
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+.touch-target {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* Improve tap highlight on mobile */
+* {
+  -webkit-tap-highlight-color: rgba(59, 130, 246, 0.2);
+}
+
+/* Better scrolling on mobile */
+@media (max-width: 768px) {
+  body {
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Reduce padding on mobile */
+  .glass {
+    padding: 1rem !important;
+  }
+  
+  /* Better text readability */
+  p, li, span {
+    line-height: 1.6;
+  }
+  
+  /* Better spacing for mobile */
+  section {
+    padding: 2rem 0 !important;
+  }
+  
+  /* Ensure images don't overflow */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Better table scrolling */
+  table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+  }
+}
+```
+
+### Responsive Testing Checklist
+- [ ] Test on actual mobile devices (iPhone, Android)
+- [ ] Test on tablets (iPad, Android tablets)
+- [ ] Test on various screen sizes (320px, 375px, 414px, 768px, 1024px, 1280px)
+- [ ] Verify touch targets are easily tappable
+- [ ] Check that text is readable without zooming
+- [ ] Verify images don't overflow containers
+- [ ] Test horizontal scrolling on tables
+- [ ] Verify navigation works on mobile
+- [ ] Check form inputs are properly sized
+- [ ] Test carousel navigation on touch devices
+- [ ] Verify all interactive elements are accessible
+
+---
+
 ## Best Practices
 
 ### Content Organization
@@ -293,9 +512,138 @@ export const ProjectName = () => {
 
 ### Responsive Design
 1. **Mobile First**: Design for mobile, enhance for desktop
-2. **Breakpoints**: Use Tailwind breakpoints (md:, lg:)
+2. **Breakpoints**: Use Tailwind breakpoints (sm:, md:, lg:)
 3. **Touch Targets**: Minimum 44x44px for interactive elements
 4. **Readable Text**: Ensure text is readable on all screen sizes
+
+#### Responsive Typography
+- **Main Heading (h1)**: Use fluid scaling - `text-3xl sm:text-4xl md:text-5xl lg:text-7xl`
+- **Section Heading (h2)**: `text-2xl sm:text-3xl`
+- **Subsection Heading (h3)**: `text-xl sm:text-2xl`
+- **Body Text**: `text-base sm:text-lg` for better readability
+- **Small Text**: `text-xs sm:text-sm` for labels and captions
+
+#### Responsive Spacing
+- **Section Padding**: `py-8 sm:py-12 md:py-20` (reduced on mobile)
+- **Container Padding**: `px-4 sm:px-6` (consistent horizontal padding)
+- **Card Padding**: `p-4 sm:p-6 md:p-8` (scales with screen size)
+- **Grid Gaps**: `gap-2 sm:gap-3 md:gap-4` (tighter on mobile)
+- **Margins**: `mb-4 md:mb-6` or `mb-6 md:mb-8` (reduced on mobile)
+
+#### Touch Target Optimization
+- **Minimum Size**: All buttons and interactive elements must be at least 44x44px
+- **Implementation**: Add `touch-target min-h-[44px] min-w-[44px]` classes
+- **Padding**: Use `py-3 md:py-4 px-4 md:px-6` for buttons
+- **Navigation**: Hamburger menu button should be `w-11 h-11` minimum
+- **Mobile Menu Items**: Add `px-4 py-3` padding for better touch targets
+
+#### Responsive Grids
+- **Component Selection**: `grid-cols-2 sm:grid-cols-3 md:grid-cols-5` (2 columns on mobile)
+- **Metrics Cards**: `grid-cols-2 md:grid-cols-4` (2 columns on mobile)
+- **Project Cards**: `grid-cols-1 md:grid-cols-2` (single column on mobile)
+- **Skills Grid**: `grid-cols-1 md:grid-cols-2 lg:grid-cols-3` (progressive enhancement)
+
+#### Responsive Images
+- **Hero Images**: `h-40 sm:h-48` (smaller on mobile)
+- **Carousel Images**: `min-h-[250px] sm:min-h-[300px] md:min-h-[400px]`
+- **Profile Images**: `w-32 h-32 sm:w-40 sm:h-40 md:w-56 md:h-56`
+- **Always Include**: `object-cover` and `rounded-lg` for consistent appearance
+- **Container Overflow**: Use `overflow-hidden` to prevent image overflow
+
+#### Responsive Tables
+- **Container**: Wrap tables in `overflow-x-auto` div
+- **Mobile Optimization**: Add `-mx-4 sm:mx-0 px-4 sm:px-0` for full-width scrolling
+- **Minimum Width**: Add `min-w-[600px]` to table to ensure readability
+- **Text Sizing**: Use `text-xs sm:text-sm` for table text
+- **Smooth Scrolling**: Add `style={{ WebkitOverflowScrolling: 'touch' }}` for iOS
+
+#### Responsive Navigation
+- **Hamburger Menu**: Visible on mobile (`md:hidden`)
+- **Desktop Menu**: Hidden on mobile (`hidden md:flex`)
+- **Menu Items**: Larger touch targets with `px-4 py-3` padding
+- **Close Button**: Positioned `top-4 right-4 md:top-6 md:right-6`
+
+#### Responsive Forms
+- **Input Sizing**: `py-3 md:py-4 px-4 text-base md:text-lg`
+- **Textarea**: Add `resize-y` for vertical resizing only
+- **Button Sizing**: `py-3 md:py-4 px-6 md:px-8 text-base md:text-lg`
+- **Form Container**: `max-w-2xl mx-auto` for optimal width
+
+#### Responsive Carousels
+- **Navigation Buttons**: Position `left-2 sm:left-4` and `right-2 sm:right-4`
+- **Button Size**: `p-3 sm:p-4` with `min-h-[44px] min-w-[44px]`
+- **Icon Size**: `w-5 h-5 sm:w-6 sm:h-6` (smaller on mobile)
+- **Dot Indicators**: Smaller spacing on mobile
+
+#### Viewport Meta Tags
+```html
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
+<meta name="theme-color" content="#0a0a0a" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+```
+
+#### Global Mobile Styles
+```css
+/* Mobile-first responsive typography */
+html {
+  font-size: 16px;
+}
+
+@media (min-width: 640px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 1024px) {
+  html {
+    font-size: 18px;
+  }
+}
+
+/* Ensure minimum touch target size */
+button,
+a[role="button"],
+input[type="button"],
+input[type="submit"],
+.touch-target {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* Better scrolling on mobile */
+@media (max-width: 768px) {
+  body {
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Reduce padding on mobile */
+  .glass {
+    padding: 1rem !important;
+  }
+  
+  /* Better table scrolling */
+  table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+  }
+}
+```
+
+#### Responsive Best Practices Checklist
+- [ ] All typography uses responsive classes (sm:, md:, lg:)
+- [ ] Section padding scales from mobile to desktop
+- [ ] All interactive elements meet 44x44px minimum
+- [ ] Grids adapt from 1-2 columns on mobile to multiple on desktop
+- [ ] Images have responsive sizing and proper overflow handling
+- [ ] Tables have horizontal scrolling on mobile
+- [ ] Navigation adapts between hamburger menu and full menu
+- [ ] Forms have appropriate input and button sizing
+- [ ] Carousels have touch-friendly navigation
+- [ ] Viewport meta tags are properly configured
 
 ---
 
@@ -332,7 +680,19 @@ export const ProjectName = () => {
 - [ ] Reusable carousel component used
 - [ ] State management implemented correctly
 - [ ] No linting errors
-- [ ] Responsive design tested
+- [ ] Responsive design tested on multiple screen sizes
+
+### Responsive Design
+- [ ] All typography uses responsive scaling classes
+- [ ] Section padding adapts from mobile to desktop
+- [ ] Touch targets meet 44x44px minimum on all devices
+- [ ] Grids adapt appropriately (1-2 cols mobile, more on desktop)
+- [ ] Images have responsive sizing and overflow protection
+- [ ] Tables scroll horizontally on mobile devices
+- [ ] Navigation adapts between mobile menu and desktop menu
+- [ ] Forms have appropriate sizing for mobile input
+- [ ] Viewport meta tags properly configured
+- [ ] Tested on actual mobile devices (not just browser dev tools)
 
 ---
 
