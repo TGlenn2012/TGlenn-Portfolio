@@ -187,7 +187,7 @@ export const Projects = () => {
                             </div>
                         </div>
                         {/* Project card #2 SHARED IOT */}
-                        <div className="glass rounded-xl p-6 border-white/10 border hover:-translate-y-1 transition-all">
+                        <div className="glass rounded-xl p-4 sm:p-5 md:p-6 border-white/10 border hover:-translate-y-1 transition-all flex flex-col">
                             <div className="mb-4">
                                 <img 
                                     src={sharediotHeroImage} 
@@ -196,7 +196,7 @@ export const Projects = () => {
                                 />
                             <h3 className="text-lg sm:text-xl font-bold mb-3 md:mb-4">ShARed IoT</h3>
                             </div>
-                            <p className="text-gray-300 mb-4 text-justify">
+                            <p className="text-gray-300 mb-4 text-sm sm:text-base text-justify leading-relaxed">
                                 ShARed IoT enables users to interact with custom-built IoT devices through mobile augmented reality, supporting shared experiences across multiple smartphones. The system uses cloud anchors and a wireless protocol for real-time device control and AR content sharing. It lowers barriers for novice makers to create dynamic, networked AR-IoT experiences. Studies with UX experts and users highlight its effectiveness for both beginners and experts.
                             </p>
                             {/* Grouped Categories with Icons */}
@@ -206,11 +206,11 @@ export const Projects = () => {
                                         <span className="text-lg">🌐</span>
                                         <span className="text-sm font-semibold text-blue-400">AR/IoT</span>
                                     </div>
-                                    <div className="flex flex-wrap gap-2">
-                                        {["Augmented Reality", "IoT", "Cloud Anchors", "Electronics"].map((tech, key) => (
+                                    <div className="flex flex-wrap gap-1.5 md:gap-2">
+                                        {["Augmented Reality", "Cloud Anchors", "Physical Computing", "Multiplayer AR"].map((tech, key) => (
                                             <span 
                                                 key={key}
-                                                className="inline-block bg-blue-500/10 text-blue-500 px-3 rounded-full text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition">
+                                                className="inline-block bg-blue-500/10 text-blue-500 px-2 md:px-3 py-1 rounded-full text-xs sm:text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition">
                                                 {tech}
                                             </span>
                                         ))}
@@ -221,11 +221,26 @@ export const Projects = () => {
                                         <span className="text-lg">💻</span>
                                         <span className="text-sm font-semibold text-blue-400">Development</span>
                                     </div>
-                                    <div className="flex flex-wrap gap-2">
-                                        {["Programming", "Wireless Communication", "Mobile Development"].map((tech, key) => (
+                                    <div className="flex flex-wrap gap-1.5 md:gap-2">
+                                        {["Unity3D", "Blockly/Blocklyduino", "JavaScript/Web Development", "Photon Networking"].map((tech, key) => (
                                             <span 
                                                 key={key}
-                                                className="inline-block bg-blue-500/10 text-blue-500 px-3 rounded-full text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition">
+                                                className="inline-block bg-blue-500/10 text-blue-500 px-2 md:px-3 py-1 rounded-full text-xs sm:text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition">
+                                                {tech}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+                                <div>
+                                    <div className="flex items-center gap-2 mb-2">
+                                        <span className="text-base md:text-lg">🔧</span>
+                                        <span className="text-xs sm:text-sm font-semibold text-blue-400">Hardware</span>
+                                    </div>
+                                    <div className="flex flex-wrap gap-1.5 md:gap-2">
+                                        {["PCB Design", "Electronics Design", "Embedded Systems", "WiFi/UDP Communication"].map((tech, key) => (
+                                            <span 
+                                                key={key}
+                                                className="inline-block bg-blue-500/10 text-blue-500 px-2 md:px-3 py-1 rounded-full text-xs sm:text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition">
                                                 {tech}
                                             </span>
                                         ))}
@@ -236,24 +251,24 @@ export const Projects = () => {
                                         <span className="text-lg">🔬</span>
                                         <span className="text-sm font-semibold text-blue-400">Research</span>
                                     </div>
-                                    <div className="flex flex-wrap gap-2">
-                                        {["UX Research", "Prototyping", "User Study"].map((tech, key) => (
+                                    <div className="flex flex-wrap gap-1.5 md:gap-2">
+                                        {["User Studies & Evaluation", "Mixed-Methods Research", "Workshop Facilitation", "Human-Computer Interaction"].map((tech, key) => (
                                     <span 
                                         key={key}
-                                                className="inline-block bg-blue-500/10 text-blue-500 px-3 rounded-full text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition">
+                                                className="inline-block bg-blue-500/10 text-blue-500 px-2 md:px-3 py-1 rounded-full text-xs sm:text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition">
                                         {tech}
                                     </span>
                                 ))}
                                     </div>
                                 </div>
                             </div>
-                            <div className="mt-4">
-                                <button 
-                                    onClick={() => openModal("sharediot")} 
-                                    className="text-blue-500 hover:text-blue-400 hover:underline text-base md:text-lg py-2 px-2 touch-target min-h-[44px] flex items-center focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-black rounded"
+                            <div className="mt-auto">
+                                <Link
+                                    to="/sharediot"
+                                    className="w-full bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white font-semibold py-3 md:py-4 px-6 md:px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center touch-target min-h-[44px] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-black"
                                 >
-                                    View Project →
-                                </button>
+                                    View Case Study
+                                </Link>
                             </div>
                         </div>
                         {/* Project card #3 IOT MAKER*/}

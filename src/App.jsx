@@ -14,6 +14,7 @@ import { Contact } from './components/sections/Contact';
 import { MicrokARts } from './components/sections/ProjectDetails/MicrokARts';
 import { StoryMakAR } from './components/sections/ProjectDetails/StoryMakAR';
 import { IoTMaker } from './components/sections/ProjectDetails/IoTMaker';
+import { ShARedIoT } from './components/sections/ProjectDetails/ShARedIoT';
 import "@fontsource/oswald"; // Defaults to weight 400
 import { useAnalytics } from './hooks/useAnalytics';
 import { ScrollToTop } from './components/ScrollToTop';
@@ -59,6 +60,7 @@ function App() {
             } />
             <Route path="/storymakar" element={<StoryMakAR />} />
             <Route path="/iotmaker" element={<IoTMaker />} />
+            <Route path="/sharediot" element={<ShARedIoT />} />
           </Routes>
       </div>
       </BrowserRouter>
