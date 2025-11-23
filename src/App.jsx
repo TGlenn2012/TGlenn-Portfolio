@@ -20,11 +20,14 @@ import { IoTCourse } from './components/sections/ProjectDetails/IoTCourse';
 import "@fontsource/oswald"; // Defaults to weight 400
 import { useAnalytics } from './hooks/useAnalytics';
 import { ScrollToTop } from './components/ScrollToTop';
+import { ChatbotButton } from './components/ChatbotButton';
+import { ChatWindow } from './components/ChatWindow';
 
 
 function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [chatOpen, setChatOpen] = useState(false);
   
   // Initialize Google Analytics
   const measurementId = import.meta.env.VITE_GA_MEASUREMENT_ID;
@@ -67,6 +70,10 @@ function App() {
             <Route path="/6dof" element={<SixDOFRoboticArm />} />
             <Route path="/iotcourse" element={<IoTCourse />} />
           </Routes>
+          
+          {/* Chatbot Components */}
+          <ChatbotButton onClick={() => setChatOpen(true)} />
+          <ChatWindow isOpen={chatOpen} onClose={() => setChatOpen(false)} />
       </div>
       </BrowserRouter>
     </>

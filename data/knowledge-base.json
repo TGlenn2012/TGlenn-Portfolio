@@ -1,0 +1,245 @@
+[
+  {
+    "id": "about-intro",
+    "content": "Technical leader with a Ph.D. in Human-Computer Interaction, and notable work at Microsoft. Skilled in hardware engineering, product design, UX research, and product management, with proven leadership in developing technology roadmaps and collaborating across teams. Experienced in driving data-based decisions, evaluating AI solutions, and enhancing user experiences. Recognized for impactful projects that improved satisfaction through rapid prototyping and design iteration. Committed to using engineering and design expertise for innovation and effective product team leadership.",
+    "source": "About",
+    "route": "/#about",
+    "section": "Introduction",
+    "metadata": {
+      "type": "bio",
+      "tags": ["introduction", "professional summary", "background"]
+    }
+  },
+  {
+    "id": "about-metrics",
+    "content": "Notable Metrics: 100+ Research Citations, 6+ Publications, 500+ STEAM Workshop Participants, $3-5M Impacted in NRE Costs",
+    "source": "About",
+    "route": "/#about",
+    "section": "Metrics",
+    "metadata": {
+      "type": "achievements",
+      "tags": ["citations", "publications", "workshops", "impact"]
+    }
+  },
+  {
+    "id": "about-research-skills",
+    "content": "Research Skills: User Research, Usability Testing, Mixed-Methods Research, Contextual Inquiry, Statistical Analysis, A/B Testing",
+    "source": "About",
+    "route": "/#about",
+    "section": "Skills",
+    "metadata": {
+      "type": "skills",
+      "tags": ["research", "user research", "usability", "statistics"]
+    }
+  },
+  {
+    "id": "about-design-skills",
+    "content": "Design Skills: UX Design, UI Design, Data-driven Design, Rapid Prototyping, Design Systems, User-Centered Design",
+    "source": "About",
+    "route": "/#about",
+    "section": "Skills",
+    "metadata": {
+      "type": "skills",
+      "tags": ["design", "ux", "ui", "prototyping"]
+    }
+  },
+  {
+    "id": "about-technical-skills",
+    "content": "Technical Skills: Figma, SolidWorks, Autodesk Suite, Sketch, Principle",
+    "source": "About",
+    "route": "/#about",
+    "section": "Skills",
+    "metadata": {
+      "type": "skills",
+      "tags": ["tools", "design tools", "cad"]
+    }
+  },
+  {
+    "id": "about-programming-skills",
+    "content": "Programming Languages: Python, R, C#, C, C++, JavaScript, React, HTML, CSS, Unity3D, MATLAB",
+    "source": "About",
+    "route": "/#about",
+    "section": "Skills",
+    "metadata": {
+      "type": "skills",
+      "tags": ["programming", "languages", "coding", "development"]
+    }
+  },
+  {
+    "id": "about-ai-skills",
+    "content": "AI/ML Skills: Artificial Intelligence (AI), OpenCV, Pytorch, SIFT/SURF, Cursor AI, GitHub Copilot",
+    "source": "About",
+    "route": "/#about",
+    "section": "Skills",
+    "metadata": {
+      "type": "skills",
+      "tags": ["ai", "machine learning", "computer vision"]
+    }
+  },
+  {
+    "id": "about-pm-skills",
+    "content": "Project Management Skills: Project Management, Notion, Stakeholder Advocacy, Jira, Agile Methodologies, Miro",
+    "source": "About",
+    "route": "/#about",
+    "section": "Skills",
+    "metadata": {
+      "type": "skills",
+      "tags": ["project management", "agile", "tools"]
+    }
+  },
+  {
+    "id": "about-education-phd",
+    "content": "Education: Doctorate in Human-Computer Interaction (Mechanical Engineering) from Purdue University",
+    "source": "About",
+    "route": "/#about",
+    "section": "Education",
+    "metadata": {
+      "type": "education",
+      "tags": ["phd", "purdue", "hci", "mechanical engineering"]
+    }
+  },
+  {
+    "id": "about-education-bs",
+    "content": "Education: Bachelor of Science in Physics from Morehouse College",
+    "source": "About",
+    "route": "/#about",
+    "section": "Education",
+    "metadata": {
+      "type": "education",
+      "tags": ["bachelors", "morehouse", "physics"]
+    }
+  },
+  {
+    "id": "about-certification",
+    "content": "Certification: Google UX Design Professional Certificate - Industry recognized, 200+ hour program covering the full UX design process. Completed October 2025.",
+    "source": "About",
+    "route": "/#about",
+    "section": "Certifications",
+    "metadata": {
+      "type": "certification",
+      "tags": ["google", "ux design", "certificate"]
+    }
+  },
+  {
+    "id": "about-microsoft",
+    "content": "Professional Experience: Hardware Engineer & Technical Product Manager at Microsoft Corporation (May 2022 - Aug 2025). Led mixed-methods research with internal and partner stakeholders, combining contextual inquiry, semi-structured interviews, and unmoderated usability studies to extract actionable customer insights and inform roadmap strategy for AI-powered infrastructure management tools. Awards: Hardware Strategy & Planning Culture Award (2023), BAM Minority Student Day Volunteer Speaker (2023-2025)",
+    "source": "About",
+    "route": "/#about",
+    "section": "Experience",
+    "metadata": {
+      "type": "experience",
+      "tags": ["microsoft", "hardware engineer", "product manager", "ux research"]
+    }
+  },
+  {
+    "id": "about-flaretech",
+    "content": "Professional Experience: Product Design Consultant at Flare Tech: Laser & Design LLC (Jan 2020 - Present). Designed and developed custom, hand-crafted items by integrating product design principles with rapid prototyping techniques. Co-developed custom laser-cut products through iterative A/B testing, achieving a 95% engagement uplift and a 5-star Etsy rating. 100% Satisfaction Rate, 5-Star Etsy Rating",
+    "source": "About",
+    "route": "/#about",
+    "section": "Experience",
+    "metadata": {
+      "type": "experience",
+      "tags": ["flare tech", "product design", "consultant", "prototyping"]
+    }
+  },
+  {
+    "id": "about-purdue",
+    "content": "Professional Experience: Graduate Research Assistant at Purdue University (Convergence Design Lab) (Aug 2016 - Jun 2022). Executed qualitative and quantitative UX research on AR and IoT technologies, focusing on user interaction design for 150+ youth aged 12-18. Designed and prototyped interactive AR onboarding flows, improving comprehension by 25% in user studies. Awards: Outstanding Graduate Student Service Award (2020), NSF Graduate Research Fellowship Program (2017 - 2022), Graduate Education for Minorities (GEM) Fellowship",
+    "source": "About",
+    "route": "/#about",
+    "section": "Experience",
+    "metadata": {
+      "type": "experience",
+      "tags": ["purdue", "graduate research", "ar", "iot", "ux research"]
+    }
+  },
+  {
+    "id": "about-intel",
+    "content": "Professional Experience: Software Engineering Intern at Intel Corporation (Performance Analysis Center) (Jun 2016 - Aug 2016). Benchmarked 40+ workloads across Adobe, Autodesk, Microsoft, Apple, Google, and coding environments on 12 custom system configurations for major OEM customers. Used Intel simulation tools and RStudio (R) to analyze CPU/GPU performance metrics. $2M+ Revenue Impact",
+    "source": "About",
+    "route": "/#about",
+    "section": "Experience",
+    "metadata": {
+      "type": "experience",
+      "tags": ["intel", "intern", "software engineering", "benchmarking"]
+    }
+  },
+  {
+    "id": "home-intro",
+    "content": "Hi, I'm Terrell Glenn! I'm a Hardware Engineer, Product Engineer, UX Designer, Researcher, Data Analyst, Project Manager, Public Speaker, Mentor, Vibe Coder, Maker, and Dog Dad.",
+    "source": "Home",
+    "route": "/#home",
+    "section": "Introduction",
+    "metadata": {
+      "type": "intro",
+      "tags": ["introduction", "roles", "terrell glenn"]
+    }
+  },
+  {
+    "id": "projects-microkarts",
+    "content": "MicrokARts: Designing Augmented Reality Enabled Karts for Co-Located Play with Children. MicrokARts is an Augmented Reality platform designed to help children design and program high-level electronics, while collaborating on tasks in a dynamic AR-IoT environment. Users (A) decide which electronics they want to put on their MicrokARt, (B) program their MicrokARt using our block-based live programming website, (C) dock the phone onto the MicrokARt, and (D) control their MicrokARt and play with others through AR-IoT interactions. Skills: Augmented Reality, IoT, Curriculum Design, Arduino, Unity3D. MicrokARts empowers children to design, build, and program their own IoT-enabled karts using a block-based programming environment. The system encourages creative play and collaboration in a shared AR-IoT environment.",
+    "source": "Projects",
+    "route": "/microkarts",
+    "section": "Projects",
+    "metadata": {
+      "type": "project",
+      "tags": ["microkarts", "ar", "iot", "children", "education", "unity", "arduino"]
+    }
+  },
+  {
+    "id": "projects-sharediot",
+    "content": "ShARed IoT: Shared Experiences in Co-Located Spaces with Augmented Reality and Internet of Things Devices. ShARed IoT is a mobile augmented reality system that wirelessly communicates with custom built electro-mechanical IoT devices. IoT devices are crafted from low-fidelity materials and electronics from our Electronics Repository, and then programmed with our block-based programming tool called IoT Maker. Cloud Anchors enable the sharing and control of AR content across multiple smartphones, and our wireless communication protocol enables control of a users customized ShARed IoT device across those smartphones. Skills: Augmented Reality, IoT, Cloud Anchors, Electronics, Programming.",
+    "source": "Projects",
+    "route": "/sharediot",
+    "section": "Projects",
+    "metadata": {
+      "type": "project",
+      "tags": ["sharediot", "ar", "iot", "cloud anchors", "multiplayer", "electronics"]
+    }
+  },
+  {
+    "id": "projects-iotmaker",
+    "content": "IoT Maker: Creating High-Level Electro-Mechanical Devices Through Live Programming for Youth. IoT Maker is a web app that uses live programming to simulate various electronic devices. Users (a) drag-and-drop blocks of code into the programming environment and (b) watch their code execute in real-time on the screen, while interacting with sensors via sliders, buttons, and color pickers. Once the user has a sufficient understanding of the functionality of their code, they can (c) upload the code to our customized iBoard, and (d) connect their phone, tablet, or computer to the iBoard, and control the electronics via WiFi. Skills: Augmented Reality, IoT, Curriculum Design, Arduino, Unity3D.",
+    "source": "Projects",
+    "route": "/iotmaker",
+    "section": "Projects",
+    "metadata": {
+      "type": "project",
+      "tags": ["iotmaker", "live programming", "blockly", "arduino", "education", "iot"]
+    }
+  },
+  {
+    "id": "projects-storymakar",
+    "content": "StoryMakAR: Bringing Stories to Life With An Augmented Reality & Physical Prototyping Toolkit for Youth. Overview of StoryMakAR workflow (from left to right). (a) Users build electro-mechanical devices, program them using our drag-and-drop environment, DeviceMakAR, and control them with our plug-and-play MakAR Board. (b) Users create events for their story with EventMakAR. (c) Finally, using an AR-enabled cell phone, users control the physical devices by using the virtual characters to create Virtual-Physical Interactions. Skills: Augmented Reality, IoT, Curriculum Design, Arduino, Unity3D.",
+    "source": "Projects",
+    "route": "/storymakar",
+    "section": "Projects",
+    "metadata": {
+      "type": "project",
+      "tags": ["storymakar", "ar", "storytelling", "education", "arduino", "unity"]
+    }
+  },
+  {
+    "id": "projects-6dof",
+    "content": "Tele-Operation of a 6 DOF Robotic Arm Using ESP32 Over WiFi (IE 590 Final Project). The final project involved designing a 6-DoF robotic arm mounted on a car-like chassis. Controlled by an ESP32 microcontroller and programmed using Arduino IDE, the system featured servo motors, wheels, and electronics. A phone mounted on the chassis streamed its camera feed to a host computer via WiFi. A Unity 3D-based control interface sent UDP messages over WiFi to manage the robot's movements. The project was a culmination of the course, showcasing the integration of hardware and software skills acquired throughout the semester. Skills: Computer Vision, SIFT/SURF, Python, Human-Robot Interaction, ARCore (Android), ARKit (iPhone), Arduino, Unity3D.",
+    "source": "Projects",
+    "route": "/6dof",
+    "section": "Projects",
+    "metadata": {
+      "type": "project",
+      "tags": ["6dof", "robotics", "esp32", "arduino", "unity", "teleoperation", "computer vision"]
+    }
+  },
+  {
+    "id": "projects-iotcourse",
+    "content": "Adopting Backward Design into a Constructionist Curriculum Design for IoT Skill Development in High Schoolers. IoT curriculum designed using Backward design model. Using scaffolding and learning by doing approach, the learning modules (A) Basic Electronic Components and Wiring, (B) Basics of Microcontroller Programming, (C) Connecting Devices to the Internet, and (D) Design of Physical Things and Interfaces, can provide necessary skills to E) design and implement Smart Toys and Robots. Skills: Learning Theories, Backward Design, TinkerCAD, Constructionism, Internet of Things, Curriculum Design, Vocational Education, Arduino.",
+    "source": "Projects",
+    "route": "/iotcourse",
+    "section": "Projects",
+    "metadata": {
+      "type": "project",
+      "tags": ["curriculum", "iot", "education", "high school", "constructionism", "arduino"]
+    }
+  }
+]
+
