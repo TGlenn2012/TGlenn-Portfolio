@@ -16,6 +16,7 @@ import { StoryMakAR } from './components/sections/ProjectDetails/StoryMakAR';
 import { IoTMaker } from './components/sections/ProjectDetails/IoTMaker';
 import "@fontsource/oswald"; // Defaults to weight 400
 import { useAnalytics } from './hooks/useAnalytics';
+import { ScrollToTop } from './components/ScrollToTop';
 
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
     <>
       {!isLoaded && <LoadingScreen onComplete = {() => setIsLoaded(true)} /> }
       <BrowserRouter>
+      <ScrollToTop />
       <div 
         className={`min-h-screen transition-opacity duration-700 ${
           isLoaded ? "opacity-100" : "opacity-0"

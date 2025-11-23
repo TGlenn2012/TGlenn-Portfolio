@@ -50,6 +50,11 @@ const ImageCarouselWithCaptions = ({ images }) => {
                         src={currentImage.src} 
                         alt={currentImage.caption || `Image ${currentIndex + 1} of ${images.length}`}
                         className="max-w-full max-h-[500px] object-contain rounded-lg"
+                        loading="lazy"
+                        onError={(e) => {
+                            console.error(`Failed to load image: ${currentImage.src}`);
+                            e.target.style.display = 'none';
+                        }}
                     />
                     
                     {/* Navigation Arrows */}
@@ -155,7 +160,7 @@ export const IoTMaker = () => {
     };
 
     return (
-        <main className="min-h-screen pt-20">
+        <main className="min-h-screen">
             {/* Skip to content link */}
             <a href="#overview" className="skip-link">
                 Skip to main content
@@ -164,15 +169,25 @@ export const IoTMaker = () => {
             {/* Overview/Project Summary Section */}
             <section 
                 id="overview" 
-                className="min-h-screen flex items-center justify-center py-8 sm:py-12 md:py-20"
+                className="min-h-screen pt-24 sm:pt-28 md:pt-20 py-8 sm:py-12 md:py-20 scroll-mt-24 sm:scroll-mt-28 md:scroll-mt-20"
                 aria-label="Overview and Project Summary"
             >
                 <RevealOnScroll>
                     <div className="max-w-6xl mx-auto px-4 sm:px-6 w-full">
-                        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-6 md:mb-8 bg-gradient-to-r from-orange-500 to-sky-600 bg-clip-text text-transparent text-center">
-                            IoT Maker
-                        </h1>
+                        <div className="h-4 sm:h-6 md:h-0"></div>
                         <div className="glass rounded-xl p-4 sm:p-6 md:p-8 border-white/10 border">
+                            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-6 md:mb-8 text-center block relative z-10" style={{ 
+                                background: 'linear-gradient(to right, #f97316, #0284c7)',
+                                WebkitBackgroundClip: 'text',
+                                WebkitTextFillColor: 'transparent',
+                                backgroundClip: 'text',
+                                color: '#f97316', // Fallback color for browsers that don't support gradient text
+                                display: 'block',
+                                visibility: 'visible',
+                                opacity: 1
+                            }}>
+                                IoT Maker
+                            </h1>
                             <h2 className="text-2xl sm:text-3xl font-bold mb-4 md:mb-6 bg-gradient-to-r from-blue-500 to-cyan-600 bg-clip-text text-transparent">
                                 Overview / Project Summary
                             </h2>
@@ -191,6 +206,11 @@ export const IoTMaker = () => {
                                             src="/assets/images/iotmaker-header.png" 
                                             alt="IoT Maker Interface Overview" 
                                             className="w-full rounded-lg mb-2"
+                                            loading="eager"
+                                            onError={(e) => {
+                                                console.error(`Failed to load image: /assets/images/iotmaker-header.png`);
+                                                e.target.style.display = 'none';
+                                            }}
                                         />
                                         <p className="text-orange-300 text-sm italic text-center">
                                             IoT Maker is a web application that uses live programming to simulate various electronic devices, enabling youth to learn programming and electronics in an accessible way. Users (a) drag-and-drop blocks of code into the programming environment and (b) watch their code execute in real-time on the screen, while interacting with sensors via sliders, buttons, and color pickers. Once users have a sufficient understanding of the functionality of their code, they can (c) upload the code to our customized iBoard and (d) connect their phone, tablet, or computer to the iBoard to control the electronics via WiFi.

@@ -5,7 +5,7 @@ export const MobileMenu = ({menuOpen, setMenuOpen}) => {
     const isCaseStudyPage = location.pathname !== "/";
 
     return (
-        <div className={`fixed top-0 left-0 w-full bg-[rgba(10, 10, 10, 0.95)] backdrop-blur-lg z-40 flex flex-col items-center justify-center
+        <div className={`fixed top-0 left-0 w-full bg-[rgba(0, 0, 0, 0.98)] backdrop-blur-lg z-40 flex flex-col items-center justify-center
                         transition-all duration-300 ease-in-out
 
                             ${

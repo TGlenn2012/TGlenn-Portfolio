@@ -12,7 +12,7 @@ export const Navbar = ({menuOpen, setMenuOpen}) => {
     return (
         <nav className="fixed top-0 w-full z-50 bg-[rgba(10, 10, 10, 0.8)] backdrop-blur-lg border-b border-white/10 shadow-lg">
             <div className="max-w-5xl mx-auto px-4">
-                <div className="flex items-center justify-between h-35">
+                <div className="flex items-center justify-between h-16 sm:h-20">
                     {isCaseStudyPage ? (
                         <Link to="/" className="font-mono text-lg md:text-xl font-bold text-white touch-target min-h-[44px] min-w-[44px] flex items-center">
                             <img src="https://tglenn2012.github.io/assets/images/Logo.png" alt="Logo" className="h-10 w-10 md:h-12 md:w-12 rounded-full" />
