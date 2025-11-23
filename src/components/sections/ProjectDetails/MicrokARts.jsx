@@ -106,21 +106,28 @@ const ImageCarouselWithCaptions = ({ images }) => {
 
     const currentImage = images[currentIndex];
     const isPNG = currentImage.src.toLowerCase().endsWith('.png');
+    const isGIF = currentImage.src.toLowerCase().endsWith('.gif');
 
     return (
         <div className="relative mt-4" role="region" aria-label="Image carousel">
             <div className="glass rounded-xl p-6 border-white/10 border overflow-hidden">
-                <div className={`relative min-h-[250px] sm:min-h-[300px] md:min-h-[400px] flex items-center justify-center rounded-lg overflow-hidden ${
+                <div className={`relative min-h-[200px] sm:min-h-[250px] md:min-h-[300px] lg:min-h-[400px] flex items-center justify-center rounded-lg overflow-hidden w-full ${
                     isPNG ? 'bg-white' : 'bg-gradient-to-br from-blue-500/10 to-cyan-500/10'
                 }`}>
                     <img 
                         src={currentImage.src} 
                         alt={currentImage.caption || `Image ${currentIndex + 1} of ${images.length}`}
-                        className="max-w-full max-h-[500px] object-contain rounded-lg"
+                        className="w-full h-auto max-w-full max-h-[400px] sm:max-h-[450px] md:max-h-[500px] object-contain rounded-lg"
                         loading="lazy"
+                        decoding="async"
+                        style={{ width: '100%', height: 'auto', maxWidth: '100%' }}
                         onError={(e) => {
                             console.error(`Failed to load image: ${currentImage.src}`);
                             e.target.style.display = 'none';
+                        }}
+                        onLoad={(e) => {
+                            // Ensure image is visible on mobile
+                            e.target.style.display = 'block';
                         }}
                     />
                     
@@ -273,11 +280,16 @@ export const MicrokARts = () => {
                                         <img 
                                             src="/assets/images/microkarts-header.png" 
                                             alt="MicrokARts is an Augmented Reality platform designed to help children design and program electro-mechanical devices, while collaborating on tasks in a dynamic AR-IoT environment. Users (A) decide which electronics they want to put on their MicrokARt, (B) program their MicrokARt using our block-based live programming website, (C) dock the phone onto the MicrokARt, and (D) control their MicrokARt and play with others through AR-IoT interactions."
-                                            className="w-full rounded-lg mb-2"
+                                            className="w-full h-auto rounded-lg mb-2"
                                             loading="eager"
+                                            decoding="async"
+                                            style={{ width: '100%', height: 'auto', maxWidth: '100%' }}
                                             onError={(e) => {
                                                 console.error(`Failed to load image: /assets/images/microkarts-header.png`);
                                                 e.target.style.display = 'none';
+                                            }}
+                                            onLoad={(e) => {
+                                                e.target.style.display = 'block';
                                             }}
                                         />
                                         <p className="text-orange-300 text-sm italic text-center">
@@ -403,23 +415,27 @@ export const MicrokARts = () => {
                                     
                                     <div className="my-6">
                                         <div className="p-4 bg-orange-500/20 rounded-lg border border-orange-500/30 relative">
-                                            <div className="relative">
-                                                <img 
-                                                    src="/assets/images/microkarts/mario-kart-live.gif" 
-                                                    alt="Mario Kart Live: Home Circuit gameplay showing AR content overlaid on real kart video feed" 
-                                                    className={`w-full rounded-lg mb-2 transition-opacity duration-300 ${
-                                                        gifPlaying ? 'opacity-100' : 'opacity-0 absolute'
-                                                    }`}
-                                                    loading="lazy"
-                                                    onError={(e) => {
-                                                        console.error(`Failed to load image: /assets/images/microkarts/mario-kart-live.gif`);
-                                                        e.target.style.display = 'none';
-                                                    }}
-                                                />
-                                                {!gifPlaying && (
+                                            <div className="relative w-full">
+                                                {gifPlaying ? (
+                                                    <img 
+                                                        src="/assets/images/microkarts/mario-kart-live.gif" 
+                                                        alt="Mario Kart Live: Home Circuit gameplay showing AR content overlaid on real kart video feed" 
+                                                        className="w-full h-auto rounded-lg mb-2"
+                                                        loading="lazy"
+                                                        decoding="async"
+                                                        style={{ width: '100%', height: 'auto', maxWidth: '100%', display: 'block' }}
+                                                        onError={(e) => {
+                                                            console.error(`Failed to load image: /assets/images/microkarts/mario-kart-live.gif`);
+                                                            e.target.style.display = 'none';
+                                                        }}
+                                                        onLoad={(e) => {
+                                                            e.target.style.display = 'block';
+                                                        }}
+                                                    />
+                                                ) : (
                                                     <div className="w-full aspect-video bg-black/50 rounded-lg flex items-center justify-center mb-2">
                                                         <div className="text-center">
-                                                            <div className="text-6xl mb-4">⏸️</div>
+                                                            <div className="text-4xl sm:text-6xl mb-4">⏸️</div>
                                                             <p className="text-gray-300 text-sm">Animation paused</p>
                                                         </div>
                                                     </div>
@@ -907,11 +923,16 @@ export const MicrokARts = () => {
                                             <img 
                                                 src="/assets/images/microkarts/Electronics_Toolkit.PNG" 
                                                 alt="MicrokARts Electronics Toolkit showing sensors, actuators, LEDs, kARtridge PCB, and claw attachment" 
-                                                className="w-full rounded-lg"
+                                                className="w-full h-auto rounded-lg"
                                                 loading="lazy"
+                                                decoding="async"
+                                                style={{ width: '100%', height: 'auto', maxWidth: '100%' }}
                                                 onError={(e) => {
                                                     console.error(`Failed to load image: /assets/images/microkarts/Electronics_Toolkit.PNG`);
                                                     e.target.style.display = 'none';
+                                                }}
+                                                onLoad={(e) => {
+                                                    e.target.style.display = 'block';
                                                 }}
                                             />
                                         </div>
@@ -1005,11 +1026,16 @@ export const MicrokARts = () => {
                                             <img 
                                                 src="/assets/images/microkarts/Debug_app.png" 
                                                 alt="MicrokARts debug tool showing Firebase database access and function testing interface" 
-                                                className="w-full rounded-lg"
+                                                className="w-full h-auto rounded-lg"
                                                 loading="lazy"
+                                                decoding="async"
+                                                style={{ width: '100%', height: 'auto', maxWidth: '100%' }}
                                                 onError={(e) => {
                                                     console.error(`Failed to load image: /assets/images/microkarts/Debug_app.png`);
                                                     e.target.style.display = 'none';
+                                                }}
+                                                onLoad={(e) => {
+                                                    e.target.style.display = 'block';
                                                 }}
                                             />
                                         </div>
@@ -1108,11 +1134,16 @@ export const MicrokARts = () => {
                                             <img 
                                                 src="/assets/images/microkarts/System_Chart_V2.2.PNG" 
                                                 alt="MicrokARts system architecture diagram showing Firebase, remote compiler, OTA updates, and QR code connection flow" 
-                                                className="w-full rounded-lg"
+                                                className="w-full h-auto rounded-lg"
                                                 loading="lazy"
+                                                decoding="async"
+                                                style={{ width: '100%', height: 'auto', maxWidth: '100%' }}
                                                 onError={(e) => {
                                                     console.error(`Failed to load image: /assets/images/microkarts/System_Chart_V2.2.PNG`);
                                                     e.target.style.display = 'none';
+                                                }}
+                                                onLoad={(e) => {
+                                                    e.target.style.display = 'block';
                                                 }}
                                             />
                                         </div>

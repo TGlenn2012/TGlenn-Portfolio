@@ -92,11 +92,16 @@ const ProjectCard = ({ title, description, image, technologies }) => {
                     <img 
                         src={image} 
                         alt={title}
-                        className="w-full rounded-lg"
+                        className="w-full h-auto rounded-lg"
                         loading="lazy"
+                        decoding="async"
+                        style={{ width: '100%', height: 'auto', maxWidth: '100%' }}
                         onError={(e) => {
                             console.error(`Failed to load image: ${image}`);
                             e.target.style.display = 'none';
+                        }}
+                        onLoad={(e) => {
+                            e.target.style.display = 'block';
                         }}
                     />
                 </div>
@@ -164,11 +169,16 @@ export const IoTCourse = () => {
                                         <img 
                                             src="/assets/images/constructionism-header.jpg" 
                                             alt="IoT Course Design showing curriculum modules for high school students learning IoT skills through hands-on constructionist activities" 
-                                            className="w-full rounded-lg mb-2"
+                                            className="w-full h-auto rounded-lg mb-2"
                                             loading="eager"
+                                            decoding="async"
+                                            style={{ width: '100%', height: 'auto', maxWidth: '100%' }}
                                             onError={(e) => {
                                                 console.error(`Failed to load image: /assets/images/constructionism-header.jpg`);
                                                 e.target.style.display = 'none';
+                                            }}
+                                            onLoad={(e) => {
+                                                e.target.style.display = 'block';
                                             }}
                                         />
                                         <p className="text-orange-300 text-sm italic text-center">
@@ -705,11 +715,16 @@ export const IoTCourse = () => {
                                         <img 
                                             src="/assets/images/iotcourse/IMG_20180726_182534.jpg" 
                                             alt="Student-created IoT prototypes showcasing the integration of electronics, programming, and physical design from the curriculum modules" 
-                                            className="w-full rounded-lg"
+                                            className="w-full h-auto rounded-lg"
                                             loading="lazy"
+                                            decoding="async"
+                                            style={{ width: '100%', height: 'auto', maxWidth: '100%' }}
                                             onError={(e) => {
                                                 console.error(`Failed to load image: /assets/images/iotcourse/IMG_20180726_182534.jpg`);
                                                 e.target.style.display = 'none';
+                                            }}
+                                            onLoad={(e) => {
+                                                e.target.style.display = 'block';
                                             }}
                                         />
                                     </div>
@@ -718,11 +733,16 @@ export const IoTCourse = () => {
                                         <img 
                                             src="/assets/images/iotcourse/IMG_20180726_182638.jpg" 
                                             alt="Student-created IoT prototypes showcasing the integration of electronics, programming, and physical design from the curriculum modules" 
-                                            className="w-full rounded-lg"
+                                            className="w-full h-auto rounded-lg"
                                             loading="lazy"
+                                            decoding="async"
+                                            style={{ width: '100%', height: 'auto', maxWidth: '100%' }}
                                             onError={(e) => {
                                                 console.error(`Failed to load image: /assets/images/iotcourse/IMG_20180726_182638.jpg`);
                                                 e.target.style.display = 'none';
+                                            }}
+                                            onLoad={(e) => {
+                                                e.target.style.display = 'block';
                                             }}
                                         />
                                     </div>
@@ -731,11 +751,16 @@ export const IoTCourse = () => {
                                         <img 
                                             src="/assets/images/iotcourse/IMG_20190712_170057.jpg" 
                                             alt="Student-created IoT prototypes showcasing the integration of electronics, programming, and physical design from the curriculum modules" 
-                                            className="w-full rounded-lg"
+                                            className="w-full h-auto rounded-lg"
                                             loading="lazy"
+                                            decoding="async"
+                                            style={{ width: '100%', height: 'auto', maxWidth: '100%' }}
                                             onError={(e) => {
                                                 console.error(`Failed to load image: /assets/images/iotcourse/IMG_20190712_170057.jpg`);
                                                 e.target.style.display = 'none';
+                                            }}
+                                            onLoad={(e) => {
+                                                e.target.style.display = 'block';
                                             }}
                                         />
                                     </div>

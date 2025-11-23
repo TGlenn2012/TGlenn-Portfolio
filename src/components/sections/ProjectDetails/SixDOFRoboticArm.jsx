@@ -73,21 +73,28 @@ const ImageCarouselWithCaptions = ({ images }) => {
 
     const currentImage = images[currentIndex];
     const isPNG = currentImage.src.toLowerCase().endsWith('.png');
+    const isGIF = currentImage.src.toLowerCase().endsWith('.gif');
 
     return (
         <div className="relative mt-4" role="region" aria-label="Image carousel">
             <div className="glass rounded-xl p-6 border-white/10 border overflow-hidden">
-                <div className={`relative min-h-[250px] sm:min-h-[300px] md:min-h-[400px] flex items-center justify-center rounded-lg overflow-hidden ${
+                <div className={`relative min-h-[200px] sm:min-h-[250px] md:min-h-[300px] lg:min-h-[400px] flex items-center justify-center rounded-lg overflow-hidden w-full ${
                     isPNG ? 'bg-white' : 'bg-gradient-to-br from-blue-500/10 to-cyan-500/10'
                 }`}>
                     <img 
                         src={currentImage.src} 
                         alt={currentImage.caption || `Image ${currentIndex + 1} of ${images.length}`}
-                        className="max-w-full max-h-[500px] object-contain rounded-lg"
+                        className="w-full h-auto max-w-full max-h-[400px] sm:max-h-[450px] md:max-h-[500px] object-contain rounded-lg"
                         loading="lazy"
+                        decoding="async"
+                        style={{ width: '100%', height: 'auto', maxWidth: '100%' }}
                         onError={(e) => {
                             console.error(`Failed to load image: ${currentImage.src}`);
                             e.target.style.display = 'none';
+                        }}
+                        onLoad={(e) => {
+                            // Ensure image is visible on mobile
+                            e.target.style.display = 'block';
                         }}
                     />
                     
@@ -211,11 +218,16 @@ export const SixDOFRoboticArm = () => {
                                         <img 
                                             src="/assets/images/6dof-header.png" 
                                             alt="6DOF Robotic Arm system showing the robotic arm mounted on a car chassis with ESP32 control, WiFi communication, and Unity interface" 
-                                            className="w-full rounded-lg mb-2"
+                                            className="w-full h-auto rounded-lg mb-2"
                                             loading="eager"
+                                            decoding="async"
+                                            style={{ width: '100%', height: 'auto', maxWidth: '100%' }}
                                             onError={(e) => {
                                                 console.error(`Failed to load image: /assets/images/6dof-header.png`);
                                                 e.target.style.display = 'none';
+                                            }}
+                                            onLoad={(e) => {
+                                                e.target.style.display = 'block';
                                             }}
                                         />
                                         <p className="text-orange-300 text-sm italic text-center">
