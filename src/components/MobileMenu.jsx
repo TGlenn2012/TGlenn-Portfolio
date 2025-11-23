@@ -17,99 +17,208 @@ export const MobileMenu = ({menuOpen, setMenuOpen}) => {
         >
 
             {isCaseStudyPage ? (
-                <>
-                    <Link
-                        to="/"
-                        onClick={() => setMenuOpen(false)}
-                        className={`text-xl md:text-2xl font-semibold text-white my-3 md:my-4 px-4 py-3 touch-target min-h-[44px] flex items-center justify-center transform transition-transform duration-300 hover:bg-white/10 rounded-lg
-                            ${
-                                menuOpen 
-                                    ? "translate-y-0" 
-                                    : "opacity-0 translate-y-5"
-                            }
-                        `}
-                    >
-                        Home
-                    </Link>
-                    <a
-                        href="#overview"
-                        onClick={() => setMenuOpen(false)}
-                        className={`text-xl md:text-2xl font-semibold text-white my-3 md:my-4 px-4 py-3 touch-target min-h-[44px] flex items-center justify-center transform transition-transform duration-300 hover:bg-white/10 rounded-lg
-                            ${
-                                menuOpen 
-                                    ? "translate-y-0" 
-                                    : "opacity-0 translate-y-5"
-                            }
-                        `}
-                    >
-                        Overview
-                    </a>
-                    <a
-                        href="#problem"
-                        onClick={() => setMenuOpen(false)}
-                        className={`text-xl md:text-2xl font-semibold text-white my-3 md:my-4 px-4 py-3 touch-target min-h-[44px] flex items-center justify-center transform transition-transform duration-300 hover:bg-white/10 rounded-lg
-                            ${
-                                menuOpen 
-                                    ? "translate-y-0" 
-                                    : "opacity-0 translate-y-5"
-                            }
-                        `}
-                    >
-                        Problem
-                    </a>
-                    <a
-                        href="#rr"
-                        onClick={() => setMenuOpen(false)}
-                        className={`text-xl md:text-2xl font-semibold text-white my-3 md:my-4 px-4 py-3 touch-target min-h-[44px] flex items-center justify-center transform transition-transform duration-300 hover:bg-white/10 rounded-lg
-                            ${
-                                menuOpen 
-                                    ? "translate-y-0" 
-                                    : "opacity-0 translate-y-5"
-                            }
-                        `}
-                    >
-                        R&R
-                    </a>
-                    <a
-                        href="#process"
-                        onClick={() => setMenuOpen(false)}
-                        className={`text-xl md:text-2xl font-semibold text-white my-3 md:my-4 px-4 py-3 touch-target min-h-[44px] flex items-center justify-center transform transition-transform duration-300 hover:bg-white/10 rounded-lg
-                            ${
-                                menuOpen 
-                                    ? "translate-y-0" 
-                                    : "opacity-0 translate-y-5"
-                            }
-                        `}
-                    >
-                        Process
-                    </a>
-                    <a
-                        href="#results"
-                        onClick={() => setMenuOpen(false)}
-                        className={`text-xl md:text-2xl font-semibold text-white my-3 md:my-4 px-4 py-3 touch-target min-h-[44px] flex items-center justify-center transform transition-transform duration-300 hover:bg-white/10 rounded-lg
-                            ${
-                                menuOpen 
-                                    ? "translate-y-0" 
-                                    : "opacity-0 translate-y-5"
-                            }
-                        `}
-                    >
-                        Results
-                    </a>
-                    <a
-                        href="#conclusion"
-                        onClick={() => setMenuOpen(false)}
-                        className={`text-xl md:text-2xl font-semibold text-white my-3 md:my-4 px-4 py-3 touch-target min-h-[44px] flex items-center justify-center transform transition-transform duration-300 hover:bg-white/10 rounded-lg
-                            ${
-                                menuOpen 
-                                    ? "translate-y-0" 
-                                    : "opacity-0 translate-y-5"
-                            }
-                        `}
-                    >
-                        Conclusion
-                    </a>
-                </>
+                location.pathname === "/iotcourse" ? (
+                    <>
+                        <Link
+                            to="/"
+                            onClick={() => setMenuOpen(false)}
+                            className={`text-xl md:text-2xl font-semibold text-white my-3 md:my-4 px-4 py-3 touch-target min-h-[44px] flex items-center justify-center transform transition-transform duration-300 hover:bg-white/10 rounded-lg
+                                ${
+                                    menuOpen 
+                                        ? "translate-y-0" 
+                                        : "opacity-0 translate-y-5"
+                                }
+                            `}
+                        >
+                            Home
+                        </Link>
+                        <a
+                            href="#overview"
+                            onClick={() => setMenuOpen(false)}
+                            className={`text-xl md:text-2xl font-semibold text-white my-3 md:my-4 px-4 py-3 touch-target min-h-[44px] flex items-center justify-center transform transition-transform duration-300 hover:bg-white/10 rounded-lg
+                                ${
+                                    menuOpen 
+                                        ? "translate-y-0" 
+                                        : "opacity-0 translate-y-5"
+                                }
+                            `}
+                        >
+                            Overview
+                        </a>
+                        <a
+                            href="#problem"
+                            onClick={() => setMenuOpen(false)}
+                            className={`text-xl md:text-2xl font-semibold text-white my-3 md:my-4 px-4 py-3 touch-target min-h-[44px] flex items-center justify-center transform transition-transform duration-300 hover:bg-white/10 rounded-lg
+                                ${
+                                    menuOpen 
+                                        ? "translate-y-0" 
+                                        : "opacity-0 translate-y-5"
+                                }
+                            `}
+                        >
+                            Problem
+                        </a>
+                        <a
+                            href="#curriculum"
+                            onClick={() => setMenuOpen(false)}
+                            className={`text-xl md:text-2xl font-semibold text-white my-3 md:my-4 px-4 py-3 touch-target min-h-[44px] flex items-center justify-center transform transition-transform duration-300 hover:bg-white/10 rounded-lg
+                                ${
+                                    menuOpen 
+                                        ? "translate-y-0" 
+                                        : "opacity-0 translate-y-5"
+                                }
+                            `}
+                        >
+                            Curriculum
+                        </a>
+                        <a
+                            href="#implementation"
+                            onClick={() => setMenuOpen(false)}
+                            className={`text-xl md:text-2xl font-semibold text-white my-3 md:my-4 px-4 py-3 touch-target min-h-[44px] flex items-center justify-center transform transition-transform duration-300 hover:bg-white/10 rounded-lg
+                                ${
+                                    menuOpen 
+                                        ? "translate-y-0" 
+                                        : "opacity-0 translate-y-5"
+                                }
+                            `}
+                        >
+                            Implementation
+                        </a>
+                        <a
+                            href="#contributions"
+                            onClick={() => setMenuOpen(false)}
+                            className={`text-xl md:text-2xl font-semibold text-white my-3 md:my-4 px-4 py-3 touch-target min-h-[44px] flex items-center justify-center transform transition-transform duration-300 hover:bg-white/10 rounded-lg
+                                ${
+                                    menuOpen 
+                                        ? "translate-y-0" 
+                                        : "opacity-0 translate-y-5"
+                                }
+                            `}
+                        >
+                            Contributions
+                        </a>
+                        <a
+                            href="#results"
+                            onClick={() => setMenuOpen(false)}
+                            className={`text-xl md:text-2xl font-semibold text-white my-3 md:my-4 px-4 py-3 touch-target min-h-[44px] flex items-center justify-center transform transition-transform duration-300 hover:bg-white/10 rounded-lg
+                                ${
+                                    menuOpen 
+                                        ? "translate-y-0" 
+                                        : "opacity-0 translate-y-5"
+                                }
+                            `}
+                        >
+                            Results
+                        </a>
+                        <a
+                            href="#conclusion"
+                            onClick={() => setMenuOpen(false)}
+                            className={`text-xl md:text-2xl font-semibold text-white my-3 md:my-4 px-4 py-3 touch-target min-h-[44px] flex items-center justify-center transform transition-transform duration-300 hover:bg-white/10 rounded-lg
+                                ${
+                                    menuOpen 
+                                        ? "translate-y-0" 
+                                        : "opacity-0 translate-y-5"
+                                }
+                            `}
+                        >
+                            Conclusion
+                        </a>
+                    </>
+                ) : (
+                    <>
+                        <Link
+                            to="/"
+                            onClick={() => setMenuOpen(false)}
+                            className={`text-xl md:text-2xl font-semibold text-white my-3 md:my-4 px-4 py-3 touch-target min-h-[44px] flex items-center justify-center transform transition-transform duration-300 hover:bg-white/10 rounded-lg
+                                ${
+                                    menuOpen 
+                                        ? "translate-y-0" 
+                                        : "opacity-0 translate-y-5"
+                                }
+                            `}
+                        >
+                            Home
+                        </Link>
+                        <a
+                            href="#overview"
+                            onClick={() => setMenuOpen(false)}
+                            className={`text-xl md:text-2xl font-semibold text-white my-3 md:my-4 px-4 py-3 touch-target min-h-[44px] flex items-center justify-center transform transition-transform duration-300 hover:bg-white/10 rounded-lg
+                                ${
+                                    menuOpen 
+                                        ? "translate-y-0" 
+                                        : "opacity-0 translate-y-5"
+                                }
+                            `}
+                        >
+                            Overview
+                        </a>
+                        <a
+                            href="#problem"
+                            onClick={() => setMenuOpen(false)}
+                            className={`text-xl md:text-2xl font-semibold text-white my-3 md:my-4 px-4 py-3 touch-target min-h-[44px] flex items-center justify-center transform transition-transform duration-300 hover:bg-white/10 rounded-lg
+                                ${
+                                    menuOpen 
+                                        ? "translate-y-0" 
+                                        : "opacity-0 translate-y-5"
+                                }
+                            `}
+                        >
+                            Problem
+                        </a>
+                        <a
+                            href="#rr"
+                            onClick={() => setMenuOpen(false)}
+                            className={`text-xl md:text-2xl font-semibold text-white my-3 md:my-4 px-4 py-3 touch-target min-h-[44px] flex items-center justify-center transform transition-transform duration-300 hover:bg-white/10 rounded-lg
+                                ${
+                                    menuOpen 
+                                        ? "translate-y-0" 
+                                        : "opacity-0 translate-y-5"
+                                }
+                            `}
+                        >
+                            System Design
+                        </a>
+                        <a
+                            href="#process"
+                            onClick={() => setMenuOpen(false)}
+                            className={`text-xl md:text-2xl font-semibold text-white my-3 md:my-4 px-4 py-3 touch-target min-h-[44px] flex items-center justify-center transform transition-transform duration-300 hover:bg-white/10 rounded-lg
+                                ${
+                                    menuOpen 
+                                        ? "translate-y-0" 
+                                        : "opacity-0 translate-y-5"
+                                }
+                            `}
+                        >
+                            Process
+                        </a>
+                        <a
+                            href="#results"
+                            onClick={() => setMenuOpen(false)}
+                            className={`text-xl md:text-2xl font-semibold text-white my-3 md:my-4 px-4 py-3 touch-target min-h-[44px] flex items-center justify-center transform transition-transform duration-300 hover:bg-white/10 rounded-lg
+                                ${
+                                    menuOpen 
+                                        ? "translate-y-0" 
+                                        : "opacity-0 translate-y-5"
+                                }
+                            `}
+                        >
+                            Results
+                        </a>
+                        <a
+                            href="#conclusion"
+                            onClick={() => setMenuOpen(false)}
+                            className={`text-xl md:text-2xl font-semibold text-white my-3 md:my-4 px-4 py-3 touch-target min-h-[44px] flex items-center justify-center transform transition-transform duration-300 hover:bg-white/10 rounded-lg
+                                ${
+                                    menuOpen 
+                                        ? "translate-y-0" 
+                                        : "opacity-0 translate-y-5"
+                                }
+                            `}
+                        >
+                            Conclusion
+                        </a>
+                    </>
+                )
             ) : (
                 <>
                     <a

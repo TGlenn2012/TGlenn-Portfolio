@@ -15,6 +15,8 @@ import { MicrokARts } from './components/sections/ProjectDetails/MicrokARts';
 import { StoryMakAR } from './components/sections/ProjectDetails/StoryMakAR';
 import { IoTMaker } from './components/sections/ProjectDetails/IoTMaker';
 import { ShARedIoT } from './components/sections/ProjectDetails/ShARedIoT';
+import { SixDOFRoboticArm } from './components/sections/ProjectDetails/SixDOFRoboticArm';
+import { IoTCourse } from './components/sections/ProjectDetails/IoTCourse';
 import "@fontsource/oswald"; // Defaults to weight 400
 import { useAnalytics } from './hooks/useAnalytics';
 import { ScrollToTop } from './components/ScrollToTop';
@@ -61,6 +63,9 @@ function App() {
             <Route path="/storymakar" element={<StoryMakAR />} />
             <Route path="/iotmaker" element={<IoTMaker />} />
             <Route path="/sharediot" element={<ShARedIoT />} />
+            <Route path="/microkarts" element={<MicrokARts />} />
+            <Route path="/6dof" element={<SixDOFRoboticArm />} />
+            <Route path="/iotcourse" element={<IoTCourse />} />
           </Routes>
       </div>
       </BrowserRouter>

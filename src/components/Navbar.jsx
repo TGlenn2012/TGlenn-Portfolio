@@ -38,50 +38,103 @@ export const Navbar = ({menuOpen, setMenuOpen}) => {
                     
                     <div className="hidden md:flex items-center space-x-6 lg:space-x-8">
                         {isCaseStudyPage ? (
-                            <>
-                                <Link
-                                    to="/"
-                                    className="text-gray-300 hover:text-white transition-colors py-2 px-1 touch-target min-h-[44px] flex items-center"
-                                >
-                                    Home
-                                </Link>
-                                <a
-                                    href="#overview"
-                                    className="text-gray-300 hover:text-white transition-colors py-2 px-1 touch-target min-h-[44px] flex items-center"
-                                >
-                                    Overview
-                                </a>
-                                <a
-                                    href="#problem"
-                                    className="text-gray-300 hover:text-white transition-colors py-2 px-1 touch-target min-h-[44px] flex items-center"
-                                >
-                                    Problem
-                                </a>
-                                <a
-                                    href="#rr"
-                                    className="text-gray-300 hover:text-white transition-colors py-2 px-1 touch-target min-h-[44px] flex items-center"
-                                >
-                                    R&R
-                                </a>
-                                <a
-                                    href="#process"
-                                    className="text-gray-300 hover:text-white transition-colors py-2 px-1 touch-target min-h-[44px] flex items-center"
-                                >
-                                    Process
-                                </a>
-                                <a
-                                    href="#results"
-                                    className="text-gray-300 hover:text-white transition-colors py-2 px-1 touch-target min-h-[44px] flex items-center"
-                                >
-                                    Results
-                                </a>
-                                <a
-                                    href="#conclusion"
-                                    className="text-gray-300 hover:text-white transition-colors py-2 px-1 touch-target min-h-[44px] flex items-center"
-                                >
-                                    Conclusion
-                                </a>
-                            </>
+                            location.pathname === "/iotcourse" ? (
+                                <>
+                                    <Link
+                                        to="/"
+                                        className="text-gray-300 hover:text-white transition-colors py-2 px-1 touch-target min-h-[44px] flex items-center"
+                                    >
+                                        Home
+                                    </Link>
+                                    <a
+                                        href="#overview"
+                                        className="text-gray-300 hover:text-white transition-colors py-2 px-1 touch-target min-h-[44px] flex items-center"
+                                    >
+                                        Overview
+                                    </a>
+                                    <a
+                                        href="#problem"
+                                        className="text-gray-300 hover:text-white transition-colors py-2 px-1 touch-target min-h-[44px] flex items-center"
+                                    >
+                                        Problem
+                                    </a>
+                                    <a
+                                        href="#curriculum"
+                                        className="text-gray-300 hover:text-white transition-colors py-2 px-1 touch-target min-h-[44px] flex items-center"
+                                    >
+                                        Curriculum
+                                    </a>
+                                    <a
+                                        href="#implementation"
+                                        className="text-gray-300 hover:text-white transition-colors py-2 px-1 touch-target min-h-[44px] flex items-center"
+                                    >
+                                        Implementation
+                                    </a>
+                                    <a
+                                        href="#contributions"
+                                        className="text-gray-300 hover:text-white transition-colors py-2 px-1 touch-target min-h-[44px] flex items-center"
+                                    >
+                                        Contributions
+                                    </a>
+                                    <a
+                                        href="#results"
+                                        className="text-gray-300 hover:text-white transition-colors py-2 px-1 touch-target min-h-[44px] flex items-center"
+                                    >
+                                        Results
+                                    </a>
+                                    <a
+                                        href="#conclusion"
+                                        className="text-gray-300 hover:text-white transition-colors py-2 px-1 touch-target min-h-[44px] flex items-center"
+                                    >
+                                        Conclusion
+                                    </a>
+                                </>
+                            ) : (
+                                <>
+                                    <Link
+                                        to="/"
+                                        className="text-gray-300 hover:text-white transition-colors py-2 px-1 touch-target min-h-[44px] flex items-center"
+                                    >
+                                        Home
+                                    </Link>
+                                    <a
+                                        href="#overview"
+                                        className="text-gray-300 hover:text-white transition-colors py-2 px-1 touch-target min-h-[44px] flex items-center"
+                                    >
+                                        Overview
+                                    </a>
+                                    <a
+                                        href="#problem"
+                                        className="text-gray-300 hover:text-white transition-colors py-2 px-1 touch-target min-h-[44px] flex items-center"
+                                    >
+                                        Problem
+                                    </a>
+                                    <a
+                                        href="#rr"
+                                        className="text-gray-300 hover:text-white transition-colors py-2 px-1 touch-target min-h-[44px] flex items-center"
+                                    >
+                                        System Design
+                                    </a>
+                                    <a
+                                        href="#process"
+                                        className="text-gray-300 hover:text-white transition-colors py-2 px-1 touch-target min-h-[44px] flex items-center"
+                                    >
+                                        Process
+                                    </a>
+                                    <a
+                                        href="#results"
+                                        className="text-gray-300 hover:text-white transition-colors py-2 px-1 touch-target min-h-[44px] flex items-center"
+                                    >
+                                        Results
+                                    </a>
+                                    <a
+                                        href="#conclusion"
+                                        className="text-gray-300 hover:text-white transition-colors py-2 px-1 touch-target min-h-[44px] flex items-center"
+                                    >
+                                        Conclusion
+                                    </a>
+                                </>
+                            )
                         ) : (
                             <>
                                 <a

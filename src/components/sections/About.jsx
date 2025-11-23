@@ -2,6 +2,7 @@ import { RevealOnScroll } from "../RevealOnScroll";
 import headshot from "/assets/images/Terrell-Headshot.png";
 import purdueLogo from "/assets/images/Purdue_Boilermakers_logo.svg";
 import morehouseLogo from "/assets/images/Morehouse_college_seal.svg";
+import flareTechLogo from "/assets/images/flaretech-logo.png";
 
 export const About = () => {
 
@@ -314,12 +315,22 @@ export const About = () => {
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                                 {/* Microsoft Card */}
                                 <div className="glass rounded-xl p-6 border-white/10 border hover:-translate-y-1 transition-all">
+                                    <div className="flex items-center justify-center mb-4">
+                                        <div className="rounded-lg p-2 sm:p-3 flex items-center justify-center h-12 sm:h-16 w-24 sm:w-auto overflow-hidden">
+                                            <svg className="h-8 sm:h-10 w-8 sm:w-10 flex-shrink-0" viewBox="0 0 108 108" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+                                                <rect x="0" y="0" width="51" height="51" fill="#F25022"/>
+                                                <rect x="57" y="0" width="51" height="51" fill="#7FBA00"/>
+                                                <rect x="0" y="57" width="51" height="51" fill="#00A4EF"/>
+                                                <rect x="57" y="57" width="51" height="51" fill="#FFB900"/>
+                                            </svg>
+                                        </div>
+                                    </div>
                                     <div className="flex items-start justify-between mb-3">
-                                        <div>
+                                        <div className="flex-1">
                                             <h4 className="text-lg font-bold">Hardware Engineer & Technical Product Manager</h4>
                                             <p className="text-gray-400 text-sm">Microsoft Corporation</p>
                                         </div>
-                                        <span className="bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-xs whitespace-nowrap">
+                                        <span className="bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-xs whitespace-nowrap ml-2">
                                             May 2022 - Aug 2025
                                         </span>
                                     </div>
@@ -334,12 +345,26 @@ export const About = () => {
 
                                 {/* Flare Tech Card */}
                                 <div className="glass rounded-xl p-6 border-white/10 border hover:-translate-y-1 transition-all">
+                                    <div className="flex items-center justify-center mb-4">
+                                        <div className="rounded-lg p-2 sm:p-3 flex items-center justify-center h-12 sm:h-16 w-24 sm:w-auto overflow-hidden">
+                                            <img 
+                                                src={flareTechLogo} 
+                                                alt="Flare Tech Logo" 
+                                                className="h-8 sm:h-10 w-auto max-h-full object-contain flex-shrink-0"
+                                                style={{ maxWidth: 'calc(100% - 16px)', maxHeight: '100%' }}
+                                                onError={(e) => {
+                                                    console.error(`Failed to load Flare Tech logo`);
+                                                    e.target.style.display = 'none';
+                                                }}
+                                            />
+                                        </div>
+                                    </div>
                                     <div className="flex items-start justify-between mb-3">
-                                        <div>
+                                        <div className="flex-1">
                                             <h4 className="text-lg font-bold">Product Design Consultant</h4>
                                             <p className="text-gray-400 text-sm">Flare Tech: Laser & Design LLC</p>
                                         </div>
-                                        <span className="bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-xs whitespace-nowrap">
+                                        <span className="bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-xs whitespace-nowrap ml-2">
                                             Jan 2020 - Present
                                         </span>
                                     </div>
@@ -354,12 +379,22 @@ export const About = () => {
 
                                 {/* Purdue Card */}
                                 <div className="glass rounded-xl p-6 border-white/10 border hover:-translate-y-1 transition-all">
+                                    <div className="flex items-center justify-center mb-4">
+                                        <div className="rounded-lg p-2 sm:p-3 flex items-center justify-center h-12 sm:h-16 w-24 sm:w-auto overflow-hidden">
+                                            <img 
+                                                src={purdueLogo} 
+                                                alt="Purdue University Logo" 
+                                                className="h-full w-auto max-h-full object-contain flex-shrink-0"
+                                                style={{ maxWidth: 'calc(100% - 16px)', maxHeight: '100%' }}
+                                            />
+                                        </div>
+                                    </div>
                                     <div className="flex items-start justify-between mb-3">
-                                        <div>
+                                        <div className="flex-1">
                                             <h4 className="text-lg font-bold">Graduate Research Assistant</h4>
                                             <p className="text-gray-400 text-sm">Purdue University (Convergence Design Lab)</p>
                                         </div>
-                                        <span className="bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-xs whitespace-nowrap">
+                                        <span className="bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-xs whitespace-nowrap ml-2">
                                             Aug 2016 - Jun 2022
                                         </span>
                                     </div>
@@ -375,12 +410,26 @@ export const About = () => {
 
                                 {/* Intel Card */}
                                 <div className="glass rounded-xl p-6 border-white/10 border hover:-translate-y-1 transition-all">
+                                    <div className="flex items-center justify-center mb-4">
+                                        <div className="rounded-lg p-2 sm:p-3 flex items-center justify-center h-12 sm:h-16 w-24 sm:w-auto overflow-hidden">
+                                            <img 
+                                                src="https://upload.wikimedia.org/wikipedia/commons/7/7d/Intel_logo_%282006-2020%29.svg" 
+                                                alt="Intel Corporation Logo" 
+                                                className="h-8 sm:h-10 w-auto max-h-full object-contain flex-shrink-0"
+                                                style={{ maxWidth: 'calc(100% - 16px)', maxHeight: '100%' }}
+                                                onError={(e) => {
+                                                    console.error(`Failed to load Intel logo`);
+                                                    e.target.style.display = 'none';
+                                                }}
+                                            />
+                                        </div>
+                                    </div>
                                     <div className="flex items-start justify-between mb-3">
-                                        <div>
+                                        <div className="flex-1">
                                             <h4 className="text-lg font-bold">Software Engineering Intern</h4>
                                             <p className="text-gray-400 text-sm">Intel Corporation (Performance Analysis Center)</p>
                                         </div>
-                                        <span className="bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-xs whitespace-nowrap">
+                                        <span className="bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-xs whitespace-nowrap ml-2">
                                             Jun 2016 - Aug 2016
                                         </span>
                                     </div>
