@@ -1,15 +1,57 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 
-export const ChatbotButton = ({ onClick }) => {
+export const ChatbotButton = ({ onClick, onLongPress }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const longPressTimerRef = useRef(null);
+  const isLongPressRef = useRef(false);
+  const LONG_PRESS_DURATION = 500; // 500ms for long press
+
+  const handlePressStart = (e) => {
+    isLongPressRef.current = false;
+    longPressTimerRef.current = setTimeout(() => {
+      isLongPressRef.current = true;
+      if (onLongPress) {
+        onLongPress();
+      }
+    }, LONG_PRESS_DURATION);
+  };
+
+  const handlePressEnd = (e) => {
+    if (longPressTimerRef.current) {
+      clearTimeout(longPressTimerRef.current);
+      longPressTimerRef.current = null;
+    }
+    
+    // Only trigger onClick if it wasn't a long press
+    if (!isLongPressRef.current && onClick) {
+      onClick();
+    }
+    
+    isLongPressRef.current = false;
+  };
+
+  const handlePressCancel = () => {
+    if (longPressTimerRef.current) {
+      clearTimeout(longPressTimerRef.current);
+      longPressTimerRef.current = null;
+    }
+    isLongPressRef.current = false;
+  };
 
   return (
     <button
-      onClick={onClick}
+      onMouseDown={handlePressStart}
+      onMouseUp={handlePressEnd}
+      onTouchStart={handlePressStart}
+      onTouchEnd={handlePressEnd}
+      onTouchCancel={handlePressCancel}
       onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      onMouseLeave={() => {
+        setIsHovered(false);
+        handlePressCancel();
+      }}
       className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 bg-gradient-to-r from-blue-500 to-cyan-600 rounded-full shadow-lg hover:shadow-xl active:scale-95 hover:scale-110 transition-all duration-300 flex items-center justify-center touch-target min-h-[56px] min-w-[56px] focus:outline-none focus:ring-4 focus:ring-blue-500/50"
-      aria-label="Open chatbot"
+      aria-label="Open chatbot (long press for debug mode)"
     >
       {/* Robot Icon SVG */}
       <svg

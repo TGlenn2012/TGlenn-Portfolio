@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { ChatMessage } from './ChatMessage';
 
-export const ChatWindow = ({ isOpen, onClose }) => {
+export const ChatWindow = ({ isOpen, onClose, initialDebugMode = false }) => {
   const [messages, setMessages] = useState([
     {
       id: 1,
@@ -13,10 +13,20 @@ export const ChatWindow = ({ isOpen, onClose }) => {
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [showDebug, setShowDebug] = useState(false);
+  const [showDebug, setShowDebug] = useState(initialDebugMode);
   const [debugLogs, setDebugLogs] = useState([]);
   const messagesEndRef = useRef(null);
   const inputRef = useRef(null);
+
+  // Reset debug mode when chat closes or opens with new initialDebugMode
+  useEffect(() => {
+    if (isOpen) {
+      setShowDebug(initialDebugMode);
+      if (initialDebugMode) {
+        console.log('Debug mode enabled via long press');
+      }
+    }
+  }, [isOpen, initialDebugMode]);
 
   // Auto-scroll to bottom when new messages arrive
   useEffect(() => {
