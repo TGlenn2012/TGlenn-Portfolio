@@ -115,3 +115,4 @@ This requires:
 - **For full local testing**: Use `vercel dev` - it runs serverless functions locally
 - **For production**: Deploy to Vercel - everything works automatically
 
+
