@@ -92,8 +92,23 @@ export const ChatWindow = ({ isOpen, onClose }) => {
       apiUrl = '/api/chat';
     }
 
+    // Add visible debug message - function is called
+    const addDebugMessage = (text) => {
+      const debugMsg = {
+        id: Date.now() + Math.random(),
+        text: `[DEBUG] ${text}`,
+        isUser: false,
+        links: [],
+      };
+      setMessages((prev) => [...prev, debugMsg]);
+    };
+
+    // Show initial debug info
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    addDebugMessage(`sendMessage called. Mobile: ${isMobile ? 'Yes' : 'No'}, Online: ${navigator.onLine ? 'Yes' : 'No'}`);
+    addDebugMessage(`API URL: ${apiUrl}`);
+
     try {
-      
       // Log API URL for debugging
       const debugInfo = {
         apiUrl,
@@ -101,7 +116,7 @@ export const ChatWindow = ({ isOpen, onClose }) => {
         dev: import.meta.env.DEV,
         currentUrl: window.location.href,
         origin: window.location.origin,
-        isMobile: /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent),
+        isMobile,
         userAgent: navigator.userAgent,
         isOnline: navigator.onLine,
       };
@@ -114,31 +129,47 @@ export const ChatWindow = ({ isOpen, onClose }) => {
           : log
       ));
       
+      // Show debug message - about to fetch
+      addDebugMessage(`About to call fetch to ${apiUrl}`);
+      
       // Call chat API with timeout for mobile networks
       const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 second timeout
+      const timeoutId = setTimeout(() => {
+        addDebugMessage('⚠️ Request timeout triggered (30s)');
+        controller.abort();
+      }, 30000); // 30 second timeout
       
-      const response = await fetch(apiUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ message: trimmedInput }),
-        credentials: 'same-origin', // Better mobile compatibility
-        signal: controller.signal, // For timeout handling
-      }).finally(() => {
+      let response;
+      try {
+        response = await fetch(apiUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ message: trimmedInput }),
+          credentials: 'same-origin', // Better mobile compatibility
+          signal: controller.signal, // For timeout handling
+        });
         clearTimeout(timeoutId);
-      });
+        addDebugMessage(`✅ Fetch completed. Status: ${response.status} ${response.statusText}`);
+      } catch (fetchError) {
+        clearTimeout(timeoutId);
+        addDebugMessage(`❌ Fetch failed: ${fetchError.name} - ${fetchError.message}`);
+        throw fetchError;
+      }
 
       if (!response.ok) {
+        addDebugMessage(`⚠️ Response not OK: ${response.status} ${response.statusText}`);
         // Try to get error details from response
         let errorMessage = 'Failed to get response';
         try {
           const errorData = await response.json();
           errorMessage = errorData.message || errorData.error || `Server error (${response.status})`;
+          addDebugMessage(`Error details: ${JSON.stringify(errorData).substring(0, 200)}`);
         } catch (e) {
           // If response isn't JSON, use status text
           errorMessage = response.statusText || `Server error (${response.status})`;
+          addDebugMessage(`Could not parse error response as JSON`);
         }
         
         if (response.status === 429) {
@@ -150,14 +181,19 @@ export const ChatWindow = ({ isOpen, onClose }) => {
       }
 
       // Parse response JSON with error handling for mobile
+      addDebugMessage('Parsing response JSON...');
       let data;
       let responseText;
       try {
         responseText = await response.text();
+        addDebugMessage(`Response received (${responseText.length} chars). First 100: ${responseText.substring(0, 100)}`);
         console.log('API Response (first 200 chars):', responseText.substring(0, 200));
         data = JSON.parse(responseText);
+        addDebugMessage('✅ JSON parsed successfully');
       } catch (parseError) {
         console.error('Failed to parse response JSON:', parseError);
+        addDebugMessage(`❌ JSON parse error: ${parseError.message}`);
+        addDebugMessage(`Response text (first 500): ${responseText?.substring(0, 500) || 'No text'}`);
         
         // Update debug log with parse error
         const requestDuration = Date.now() - requestStartTime;
@@ -215,6 +251,7 @@ export const ChatWindow = ({ isOpen, onClose }) => {
       ));
 
       // Add bot response
+      addDebugMessage('✅ Successfully parsed response, adding bot message');
       const botMessage = {
         id: Date.now() + 1,
         text: data.message || 'I apologize, but I could not generate a response.',
@@ -226,17 +263,27 @@ export const ChatWindow = ({ isOpen, onClose }) => {
       setError(null); // Clear any previous errors
     } catch (err) {
       console.error('Chat error:', err);
+      
+      // Add visible error debug message
+      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      addDebugMessage(`❌ Error caught: ${err.name}`);
+      addDebugMessage(`Error message: ${err.message}`);
+      if (err.stack) {
+        addDebugMessage(`Stack (first 300 chars): ${err.stack.substring(0, 300)}`);
+      }
+      
       const errorDetails = {
         message: err.message,
         stack: err.stack,
         apiUrl: apiUrl,
         userAgent: navigator.userAgent,
-        isMobile: /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent),
+        isMobile,
         isOnline: navigator.onLine,
         currentUrl: window.location.href,
         errorName: err.name,
       };
       console.error('Error details:', errorDetails);
+      addDebugMessage(`Error details: ${JSON.stringify(errorDetails, null, 2).substring(0, 300)}...`);
       
       // Update debug log with error
       const requestDuration = Date.now() - requestStartTime;
@@ -258,10 +305,13 @@ export const ChatWindow = ({ isOpen, onClose }) => {
       // Check if it's a network error or timeout
       if (err.name === 'AbortError' || err.message.includes('aborted')) {
         userFriendlyError = 'Request timed out. Please check your internet connection and try again.';
+        addDebugMessage('⚠️ Request was aborted (likely timeout)');
       } else if (err instanceof TypeError && (err.message.includes('fetch') || err.message.includes('network'))) {
         userFriendlyError = 'Network error: Unable to connect to the server. Please check your internet connection and try again.';
+        addDebugMessage('⚠️ Network/TypeError detected');
       } else if (!navigator.onLine) {
         userFriendlyError = 'You appear to be offline. Please check your internet connection.';
+        addDebugMessage('⚠️ Browser reports offline');
       }
       
       setError(userFriendlyError);
