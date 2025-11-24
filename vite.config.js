@@ -11,4 +11,15 @@ export default defineConfig({
     port: 5176, // Change this to any port you want (e.g., 3000, 8080, etc.)
     strictPort: false, // If true, will fail if port is in use. If false, will try next available port
   },
+  build: {
+    chunkSizeWarningLimit: 1000,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'react-vendor': ['react', 'react-dom', 'react-router-dom'],
+          'particles': ['@tsparticles/react', '@tsparticles/slim'],
+        },
+      },
+    },
+  },
 })
