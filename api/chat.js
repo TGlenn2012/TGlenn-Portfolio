@@ -262,7 +262,7 @@ ${context || 'No specific context found, but you can answer general questions ab
           content: sanitizedMessage
         }
       ],
-      model: 'llama-3.1-70b-versatile',
+      model: 'llama-3.3-70b-versatile',
       temperature: 0.7,
       max_tokens: 500,
       top_p: 1,
