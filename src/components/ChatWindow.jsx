@@ -63,26 +63,61 @@ export const ChatWindow = ({ isOpen, onClose }) => {
 
     try {
       // Determine API URL - use production Vercel URL in development, or relative path in production
-      const apiUrl = import.meta.env.VITE_API_URL || 
-                     (import.meta.env.DEV 
-                       ? 'https://www.terrellglenn.com/api/chat'  // Use production API during dev
-                       : '/api/chat');  // Use relative path in production
+      // Always use relative path in production for better mobile compatibility
+      let apiUrl;
+      if (import.meta.env.VITE_API_URL) {
+        apiUrl = import.meta.env.VITE_API_URL;
+      } else if (import.meta.env.DEV || import.meta.env.MODE === 'development') {
+        // Use production API during local development
+        apiUrl = 'https://www.terrellglenn.com/api/chat';
+      } else {
+        // Use relative path in production (works on both desktop and mobile)
+        apiUrl = '/api/chat';
+      }
       
-      // Call chat API
+      // Log API URL for debugging (remove in production if not needed)
+      console.log('Chat API Request:', {
+        apiUrl,
+        mode: import.meta.env.MODE,
+        dev: import.meta.env.DEV,
+        currentUrl: window.location.href,
+        origin: window.location.origin,
+        isMobile: /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+      });
+      
+      // Call chat API with timeout for mobile networks
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 second timeout
+      
       const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ message: trimmedInput }),
+        credentials: 'same-origin', // Better mobile compatibility
+        signal: controller.signal, // For timeout handling
+      }).finally(() => {
+        clearTimeout(timeoutId);
       });
 
       if (!response.ok) {
+        // Try to get error details from response
+        let errorMessage = 'Failed to get response';
+        try {
+          const errorData = await response.json();
+          errorMessage = errorData.message || errorData.error || `Server error (${response.status})`;
+        } catch (e) {
+          // If response isn't JSON, use status text
+          errorMessage = response.statusText || `Server error (${response.status})`;
+        }
+        
         if (response.status === 429) {
-          const data = await response.json();
+          const data = await response.json().catch(() => ({}));
           throw new Error(data.message || 'Rate limit exceeded. Please try again later.');
         }
-        throw new Error('Failed to get response');
+        
+        throw new Error(errorMessage);
       }
 
       const data = await response.json();
@@ -98,7 +133,29 @@ export const ChatWindow = ({ isOpen, onClose }) => {
       setMessages((prev) => [...prev, botMessage]);
     } catch (err) {
       console.error('Chat error:', err);
-      setError(err.message || 'An error occurred. Please try again.');
+      console.error('Error details:', {
+        message: err.message,
+        stack: err.stack,
+        apiUrl: apiUrl,
+        userAgent: navigator.userAgent,
+        isMobile: /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent),
+        isOnline: navigator.onLine,
+        currentUrl: window.location.href
+      });
+      
+      // Provide more helpful error messages
+      let userFriendlyError = err.message || 'An error occurred. Please try again.';
+      
+      // Check if it's a network error or timeout
+      if (err.name === 'AbortError' || err.message.includes('aborted')) {
+        userFriendlyError = 'Request timed out. Please check your internet connection and try again.';
+      } else if (err instanceof TypeError && (err.message.includes('fetch') || err.message.includes('network'))) {
+        userFriendlyError = 'Network error: Unable to connect to the server. Please check your internet connection and try again.';
+      } else if (!navigator.onLine) {
+        userFriendlyError = 'You appear to be offline. Please check your internet connection.';
+      }
+      
+      setError(userFriendlyError);
 
       // Add error message
       const errorMessage = {
@@ -124,8 +181,16 @@ export const ChatWindow = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-      <div className="bg-gray-900/95 backdrop-blur-md rounded-xl border border-gray-700/50 w-full max-w-2xl h-[80vh] max-h-[600px] flex flex-col shadow-2xl">
+    <div 
+      className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 p-2 sm:p-4"
+      onClick={(e) => {
+        // Close on backdrop click (mobile-friendly)
+        if (e.target === e.currentTarget) {
+          onClose();
+        }
+      }}
+    >
+      <div className="bg-gray-900/95 backdrop-blur-md rounded-xl border border-gray-700/50 w-full max-w-2xl h-[90vh] sm:h-[80vh] max-h-[90vh] sm:max-h-[600px] flex flex-col shadow-2xl">
         {/* Header */}
         <div className="flex items-center justify-between p-4 border-b border-gray-700/50">
           <div className="flex items-center gap-3">
@@ -173,7 +238,7 @@ export const ChatWindow = ({ isOpen, onClose }) => {
         </div>
 
         {/* Messages area */}
-        <div className="flex-1 overflow-y-auto p-4 space-y-4">
+        <div className="flex-1 overflow-y-auto p-3 sm:p-4 space-y-4 overscroll-contain">
           {messages.map((message) => (
             <ChatMessage
               key={message.id}
@@ -202,7 +267,7 @@ export const ChatWindow = ({ isOpen, onClose }) => {
         </div>
 
         {/* Input area */}
-        <div className="p-4 border-t border-gray-700/50">
+        <div className="p-3 sm:p-4 border-t border-gray-700/50">
           <div className="flex gap-2">
             <input
               ref={inputRef}
@@ -212,12 +277,12 @@ export const ChatWindow = ({ isOpen, onClose }) => {
               onKeyPress={handleKeyPress}
               placeholder="Ask me anything about Terrell's work..."
               disabled={isLoading}
-              className="flex-1 bg-gray-800/80 border border-gray-700/50 rounded-lg px-4 py-3 text-gray-50 placeholder-gray-400 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-400/50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="flex-1 bg-gray-800/80 border border-gray-700/50 rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 text-base text-gray-50 placeholder-gray-400 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-400/50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed touch-target min-h-[44px]"
             />
             <button
               onClick={sendMessage}
               disabled={!input.trim() || isLoading}
-              className="bg-blue-500 hover:bg-blue-400 disabled:bg-gray-700 disabled:cursor-not-allowed text-white px-6 py-3 rounded-lg font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-900 touch-target min-h-[44px] min-w-[80px] flex items-center justify-center"
+              className="bg-blue-500 hover:bg-blue-400 active:bg-blue-600 disabled:bg-gray-700 disabled:cursor-not-allowed text-white px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-900 touch-target min-h-[44px] min-w-[44px] sm:min-w-[80px] flex items-center justify-center"
               aria-label="Send message"
             >
               {isLoading ? (
