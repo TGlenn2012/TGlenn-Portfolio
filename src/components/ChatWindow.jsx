@@ -62,8 +62,14 @@ export const ChatWindow = ({ isOpen, onClose }) => {
     setError(null);
 
     try {
+      // Determine API URL - use production Vercel URL in development, or relative path in production
+      const apiUrl = import.meta.env.VITE_API_URL || 
+                     (import.meta.env.DEV 
+                       ? 'https://www.terrellglenn.com/api/chat'  // Use production API during dev
+                       : '/api/chat');  // Use relative path in production
+      
       // Call chat API
-      const response = await fetch('/api/chat', {
+      const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
