@@ -50,15 +50,40 @@ export const ChatWindow = ({ isOpen, onClose }) => {
   useEffect(() => {
     if (isOpen) {
       const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-      if (isMobile) {
-        const testMsg = {
-          id: Date.now(),
-          text: `[DEBUG] Chat window opened on mobile. User Agent: ${navigator.userAgent.substring(0, 50)}...`,
-          isUser: false,
-          links: [],
-        };
-        setMessages((prev) => [...prev, testMsg]);
-      }
+      console.log('Chat window opened, isMobile:', isMobile);
+      
+      // Force immediate visual feedback - add message directly to DOM as a test
+      const testDiv = document.createElement('div');
+      testDiv.id = 'mobile-debug-opened';
+      testDiv.style.cssText = 'position: fixed; top: 10px; left: 10px; background: red; color: white; padding: 10px; z-index: 99999; font-size: 14px; border: 2px solid yellow;';
+      testDiv.textContent = `[MOBILE DEBUG] Chat opened! Mobile: ${isMobile}`;
+      document.body.appendChild(testDiv);
+      setTimeout(() => testDiv.remove(), 10000);
+      
+      // Also add to React state
+      const testMsg = {
+        id: Date.now(),
+        text: `[DEBUG] Chat window opened. Mobile: ${isMobile ? 'Yes' : 'No'}. Total messages: ${messages.length + 1}`,
+        isUser: false,
+        links: [],
+      };
+      console.log('Adding test message:', testMsg);
+      console.log('Current messages:', messages);
+      setMessages((prev) => {
+        console.log('setMessages callback called with prev:', prev);
+        const updated = [...prev, testMsg];
+        console.log('setMessages returning:', updated);
+        return updated;
+      });
+      
+      // Force a re-render check
+      setTimeout(() => {
+        console.log('After timeout, checking messages state...');
+        setMessages((prev) => {
+          console.log('Timeout callback - messages state:', prev);
+          return prev;
+        });
+      }, 100);
     }
   }, [isOpen]);
 
@@ -370,7 +395,16 @@ export const ChatWindow = ({ isOpen, onClose }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Form submit triggered');
+    e.stopPropagation();
+    console.log('Form submit triggered', 'Event:', e);
+    
+    // Force immediate visual feedback
+    const testDiv = document.createElement('div');
+    testDiv.style.cssText = 'position: fixed; top: 100px; left: 10px; background: green; color: white; padding: 10px; z-index: 99999; font-size: 14px;';
+    testDiv.textContent = '[DEBUG] Form SUBMIT triggered!';
+    document.body.appendChild(testDiv);
+    setTimeout(() => testDiv.remove(), 3000);
+    
     // Add immediate feedback
     const feedbackMsg = {
       id: Date.now(),
@@ -378,22 +412,63 @@ export const ChatWindow = ({ isOpen, onClose }) => {
       isUser: false,
       links: [],
     };
-    setMessages((prev) => [...prev, feedbackMsg]);
-    sendMessage();
+    console.log('handleSubmit - Adding feedback message:', feedbackMsg);
+    setMessages((prev) => {
+      console.log('handleSubmit - prev messages:', prev);
+      const updated = [...prev, feedbackMsg];
+      console.log('handleSubmit - updated messages:', updated);
+      return updated;
+    });
+    
+    // Wait a moment to see if message appears, then call sendMessage
+    setTimeout(() => {
+      console.log('Form submit - Calling sendMessage now...');
+      sendMessage();
+    }, 100);
   };
 
   const handleSendClick = (e) => {
     e.preventDefault();
-    console.log('Send button clicked', e.type);
-    // Add immediate feedback
+    e.stopPropagation();
+    console.log('Send button clicked', e.type, 'Event:', e, 'Current messages:', messages.length);
+    
+    // Force immediate visual feedback
+    const timestamp = new Date().toLocaleTimeString();
+    const testDiv = document.createElement('div');
+    testDiv.id = 'mobile-debug-button-click';
+    testDiv.style.cssText = 'position: fixed; top: 60px; left: 10px; background: blue; color: white; padding: 10px; z-index: 99999; font-size: 14px; border: 2px solid cyan;';
+    testDiv.textContent = `[DEBUG] Send button CLICKED at ${timestamp}!`;
+    document.body.appendChild(testDiv);
+    setTimeout(() => testDiv.remove(), 5000);
+    
+    // Add immediate feedback - with timestamp to verify it's new
     const feedbackMsg = {
       id: Date.now(),
-      text: '[DEBUG] Send button clicked, calling sendMessage...',
+      text: `[DEBUG ${timestamp}] Send button clicked, calling sendMessage...`,
       isUser: false,
       links: [],
     };
-    setMessages((prev) => [...prev, feedbackMsg]);
-    sendMessage();
+    console.log('Adding feedback message:', feedbackMsg);
+    setMessages((prev) => {
+      console.log('handleSendClick - prev messages:', prev);
+      const updated = [...prev, feedbackMsg];
+      console.log('handleSendClick - updated messages:', updated);
+      return updated;
+    });
+    
+    // Force a DOM update test
+    setTimeout(() => {
+      const debugDiv = document.getElementById('mobile-debug-test');
+      if (debugDiv) {
+        debugDiv.textContent = `Messages: ${messages.length + 1} (button clicked at ${timestamp})`;
+      }
+    }, 0);
+    
+    // Wait a moment to see if message appears, then call sendMessage
+    setTimeout(() => {
+      console.log('Calling sendMessage now...');
+      sendMessage();
+    }, 100);
   };
 
   if (!isOpen) return null;
@@ -408,7 +483,7 @@ export const ChatWindow = ({ isOpen, onClose }) => {
         }
       }}
     >
-      <div className="bg-gray-900/95 backdrop-blur-md rounded-xl border border-gray-700/50 w-full max-w-2xl h-[90vh] sm:h-[80vh] max-h-[90vh] sm:max-h-[600px] flex flex-col shadow-2xl">
+      <div className="bg-green-600/95 backdrop-blur-md rounded-xl border-4 border-green-400 w-full max-w-2xl h-[90vh] sm:h-[80vh] max-h-[90vh] sm:max-h-[600px] flex flex-col shadow-2xl">
         {/* Header */}
         <div className="flex items-center justify-between p-4 border-b border-gray-700/50">
           <div className="flex items-center gap-3">
@@ -432,6 +507,14 @@ export const ChatWindow = ({ isOpen, onClose }) => {
             <div>
               <h3 className="text-lg font-bold text-gray-50">Portfolio Assistant</h3>
               <p className="text-xs text-gray-300">Ask me anything about Terrell's work</p>
+              {/* Debug message count - always visible */}
+              <div 
+                id="mobile-debug-test" 
+                className="text-yellow-400 text-xs font-mono mt-1"
+                style={{ display: 'block' }}
+              >
+                Messages: {messages.length}
+              </div>
             </div>
           </div>
           <button
@@ -457,14 +540,28 @@ export const ChatWindow = ({ isOpen, onClose }) => {
 
         {/* Messages area */}
         <div className="flex-1 overflow-y-auto p-3 sm:p-4 space-y-4 overscroll-contain">
-          {messages.map((message) => (
-            <ChatMessage
-              key={message.id}
-              message={message.text}
-              isUser={message.isUser}
-              links={message.links}
-            />
-          ))}
+          {/* Debug: Always show message count */}
+          <div className="bg-yellow-900/50 border border-yellow-500/50 rounded p-2 text-yellow-200 text-xs font-mono mb-2">
+            DEBUG: Rendering {messages.length} message(s). Message IDs: {messages.map(m => m.id).join(', ')}
+          </div>
+          
+          {messages.length === 0 ? (
+            <div className="bg-red-900/50 border border-red-500/50 rounded p-4 text-red-200">
+              ⚠️ NO MESSAGES IN STATE! This should not happen.
+            </div>
+          ) : (
+            messages.map((message) => {
+              console.log('Rendering message:', message.id, message.text.substring(0, 50));
+              return (
+                <ChatMessage
+                  key={message.id}
+                  message={message.text}
+                  isUser={message.isUser}
+                  links={message.links}
+                />
+              );
+            })
+          )}
           {isLoading && (
             <div className="flex justify-start">
               <div className="bg-gray-800/80 border border-gray-700/50 rounded-xl p-4">
@@ -599,10 +696,26 @@ export const ChatWindow = ({ isOpen, onClose }) => {
               type="text"
               value={input}
               onChange={(e) => {
-                setInput(e.target.value);
-                console.log('Input changed:', e.target.value);
+                const value = e.target.value;
+                console.log('Input onChange triggered, value:', value);
+                setInput(value);
+                // Visual feedback
+                const testDiv = document.createElement('div');
+                testDiv.style.cssText = 'position: fixed; bottom: 100px; right: 10px; background: purple; color: white; padding: 5px; z-index: 99999; font-size: 12px; max-width: 200px;';
+                testDiv.textContent = `Typing: ${value.substring(0, 20)}`;
+                document.body.appendChild(testDiv);
+                setTimeout(() => testDiv.remove(), 2000);
               }}
-              onKeyDown={handleKeyDown}
+              onKeyDown={(e) => {
+                console.log('Input onKeyDown:', e.key, e);
+                handleKeyDown(e);
+              }}
+              onKeyPress={(e) => {
+                console.log('Input onKeyPress:', e.key, e);
+              }}
+              onTouchStart={(e) => {
+                console.log('Input onTouchStart:', e);
+              }}
               placeholder="Ask me anything about Terrell's work..."
               disabled={isLoading}
               className="flex-1 bg-gray-800/80 border border-gray-700/50 rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 text-base text-gray-50 placeholder-gray-400 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-400/50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed touch-target min-h-[44px]"
