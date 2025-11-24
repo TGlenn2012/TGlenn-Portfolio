@@ -120,7 +120,22 @@ export const ChatWindow = ({ isOpen, onClose }) => {
         throw new Error(errorMessage);
       }
 
-      const data = await response.json();
+      // Parse response JSON with error handling for mobile
+      let data;
+      try {
+        const responseText = await response.text();
+        console.log('API Response (first 200 chars):', responseText.substring(0, 200));
+        data = JSON.parse(responseText);
+      } catch (parseError) {
+        console.error('Failed to parse response JSON:', parseError);
+        throw new Error('Invalid response from server. Please try again.');
+      }
+
+      // Validate response structure
+      if (!data || typeof data !== 'object') {
+        console.error('Invalid response data:', data);
+        throw new Error('Unexpected response format from server.');
+      }
 
       // Add bot response
       const botMessage = {
@@ -131,6 +146,7 @@ export const ChatWindow = ({ isOpen, onClose }) => {
       };
 
       setMessages((prev) => [...prev, botMessage]);
+      setError(null); // Clear any previous errors
     } catch (err) {
       console.error('Chat error:', err);
       console.error('Error details:', {
@@ -157,16 +173,17 @@ export const ChatWindow = ({ isOpen, onClose }) => {
       
       setError(userFriendlyError);
 
-      // Add error message
+      // Add error message to chat for visibility
       const errorMessage = {
         id: Date.now() + 1,
-        text: `I'm sorry, but I encountered an error: ${err.message || 'Please try again later.'}`,
+        text: `I'm sorry, but I encountered an error: ${userFriendlyError}`,
         isUser: false,
         links: [],
       };
 
       setMessages((prev) => [...prev, errorMessage]);
     } finally {
+      // Always clear loading state, even on error
       setIsLoading(false);
     }
   };
@@ -259,8 +276,25 @@ export const ChatWindow = ({ isOpen, onClose }) => {
             </div>
           )}
           {error && (
-            <div className="bg-red-900/40 border border-red-600/50 rounded-xl p-3 text-red-300 text-sm">
-              {error}
+            <div className="bg-red-900/70 border-2 border-red-500 rounded-xl p-4 text-red-200 text-sm sm:text-base shadow-lg">
+              <div className="flex items-start gap-2">
+                <svg className="w-5 h-5 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                </svg>
+                <div className="flex-1">
+                  <strong className="font-semibold block mb-1">Error:</strong>
+                  <div>{error}</div>
+                </div>
+                <button
+                  onClick={() => setError(null)}
+                  className="text-red-300 hover:text-red-100 flex-shrink-0"
+                  aria-label="Dismiss error"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
             </div>
           )}
           <div ref={messagesEndRef} />
