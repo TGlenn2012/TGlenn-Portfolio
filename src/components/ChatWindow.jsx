@@ -95,6 +95,7 @@ export const ChatWindow = ({ isOpen, onClose }) => {
 
     try {
       // Log API URL for debugging
+      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
       const debugInfo = {
         apiUrl,
         mode: import.meta.env.MODE,
