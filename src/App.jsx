@@ -28,7 +28,6 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [chatOpen, setChatOpen] = useState(false);
-  const [debugMode, setDebugMode] = useState(false);
   
   // Initialize Google Analytics
   const measurementId = import.meta.env.VITE_GA_MEASUREMENT_ID;
@@ -40,22 +39,6 @@ function App() {
       trackPageView(window.location.pathname);
     }
   }, [isLoaded, measurementId, trackPageView]);
-
-  const handleChatOpen = () => {
-    setDebugMode(false);
-    setChatOpen(true);
-  };
-
-  const handleLongPress = () => {
-    setDebugMode(true);
-    setChatOpen(true);
-    console.log('Long press detected - opening chat with debug mode enabled');
-  };
-
-  const handleChatClose = () => {
-    setChatOpen(false);
-    setDebugMode(false); // Reset debug mode when chat closes
-  };
 
   return (
     <>
@@ -89,8 +72,8 @@ function App() {
           </Routes>
           
           {/* Chatbot Components */}
-          <ChatbotButton onClick={handleChatOpen} onLongPress={handleLongPress} />
-          <ChatWindow isOpen={chatOpen} onClose={handleChatClose} initialDebugMode={debugMode} />
+          <ChatbotButton onClick={() => setChatOpen(true)} />
+          <ChatWindow isOpen={chatOpen} onClose={() => setChatOpen(false)} />
       </div>
       </BrowserRouter>
     </>

@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { ChatMessage } from './ChatMessage';
 
-export const ChatWindow = ({ isOpen, onClose, initialDebugMode = false }) => {
+export const ChatWindow = ({ isOpen, onClose }) => {
   const [messages, setMessages] = useState([
     {
       id: 1,
@@ -13,20 +13,10 @@ export const ChatWindow = ({ isOpen, onClose, initialDebugMode = false }) => {
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [showDebug, setShowDebug] = useState(initialDebugMode);
+  const [showDebug, setShowDebug] = useState(true); // Debug mode enabled by default
   const [debugLogs, setDebugLogs] = useState([]);
   const messagesEndRef = useRef(null);
   const inputRef = useRef(null);
-
-  // Reset debug mode when chat closes or opens with new initialDebugMode
-  useEffect(() => {
-    if (isOpen) {
-      setShowDebug(initialDebugMode);
-      if (initialDebugMode) {
-        console.log('Debug mode enabled via long press');
-      }
-    }
-  }, [isOpen, initialDebugMode]);
 
   // Auto-scroll to bottom when new messages arrive
   useEffect(() => {
@@ -56,41 +46,12 @@ export const ChatWindow = ({ isOpen, onClose, initialDebugMode = false }) => {
     return () => window.removeEventListener('keydown', handleEscape);
   }, [isOpen, onClose]);
 
-  // Debug: Track showDebug state changes
-  useEffect(() => {
-    console.log('Debug panel state changed:', showDebug);
-  }, [showDebug]);
-
   const sendMessage = async () => {
     const trimmedInput = input.trim();
     console.log('sendMessage called:', { trimmedInput, isLoading });
     
     if (!trimmedInput || isLoading) {
       console.log('Early return:', { hasInput: !!trimmedInput, isLoading });
-      return;
-    }
-
-    // Check for debug password
-    if (trimmedInput.toLowerCase() === 'debug') {
-      console.log('Debug password detected, toggling debug panel. Current state:', showDebug);
-      const newDebugState = !showDebug;
-      setShowDebug(newDebugState);
-      setInput('');
-      
-      // Add a message confirming debug panel toggle
-      const debugMessage = {
-        id: Date.now(),
-        text: `Debug panel ${newDebugState ? 'enabled' : 'disabled'}.`,
-        isUser: false,
-        links: [],
-      };
-      setMessages((prev) => [...prev, {
-        id: Date.now() - 1,
-        text: 'debug',
-        isUser: true,
-        links: [],
-      }, debugMessage]);
-      console.log('Debug panel toggled to:', newDebugState);
       return;
     }
 
