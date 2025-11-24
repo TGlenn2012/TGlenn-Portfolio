@@ -1,7 +1,7 @@
 import ReactMarkdown from 'react-markdown';
 import { Link } from 'react-router-dom';
 
-export const ChatMessage = ({ message, isUser, links = [] }) => {
+export const ChatMessage = ({ message, isUser, links = [], messageId, onFeedback }) => {
   return (
     <div className={`flex ${isUser ? 'justify-end' : 'justify-start'} mb-4`}>
       <div
@@ -91,6 +91,31 @@ export const ChatMessage = ({ message, isUser, links = [] }) => {
                 </Link>
               ))}
             </div>
+          </div>
+        )}
+
+        {/* Feedback buttons for bot messages */}
+        {!isUser && messageId && onFeedback && (
+          <div className="mt-3 pt-3 border-t border-gray-700/50 flex items-center gap-2">
+            <span className="text-xs text-gray-400">Was this helpful?</span>
+            <button
+              onClick={() => onFeedback(messageId, 'up')}
+              className="p-1.5 hover:bg-gray-700/50 rounded transition-colors focus:outline-none focus:ring-2 focus:ring-green-400"
+              aria-label="Thumbs up"
+            >
+              <svg className="w-4 h-4 text-gray-400 hover:text-green-400 transition-colors" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.834a1 1 0 001.364.97l5.108-2.222a1 1 0 00.55-.894V8.667a1 1 0 00-.55-.894L7.364 5.551A1 1 0 006 6.52v3.813z" />
+              </svg>
+            </button>
+            <button
+              onClick={() => onFeedback(messageId, 'down')}
+              className="p-1.5 hover:bg-gray-700/50 rounded transition-colors focus:outline-none focus:ring-2 focus:ring-red-400"
+              aria-label="Thumbs down"
+            >
+              <svg className="w-4 h-4 text-gray-400 hover:text-red-400 transition-colors" fill="currentColor" viewBox="0 0 20 20" style={{ transform: 'rotate(180deg)' }}>
+                <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.834a1 1 0 001.364.97l5.108-2.222a1 1 0 00.55-.894V8.667a1 1 0 00-.55-.894L7.364 5.551A1 1 0 006 6.52v3.813z" />
+              </svg>
+            </button>
           </div>
         )}
       </div>

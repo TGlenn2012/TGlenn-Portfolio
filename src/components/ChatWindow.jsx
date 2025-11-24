@@ -1,33 +1,64 @@
 import { useState, useRef, useEffect } from 'react';
 import { ChatMessage } from './ChatMessage';
+import { getSuggestedQuestions, quickActions } from '../utils/chatSuggestions';
+
+const STORAGE_KEY = 'terrell_portfolio_chat_history';
 
 export const ChatWindow = ({ isOpen, onClose }) => {
-  const [messages, setMessages] = useState([
-    {
+  // Load conversation history from localStorage
+  const loadHistory = () => {
+    try {
+      const stored = localStorage.getItem(STORAGE_KEY);
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        // Only load if we have messages (not just the initial greeting)
+        if (parsed && parsed.length > 1) {
+          return parsed;
+        }
+      }
+    } catch (error) {
+      console.error('Error loading chat history:', error);
+    }
+    // Return initial message if no history
+    return [{
       id: 1,
       text: "Hi! I'm an AI assistant for Terrell Glenn's portfolio. I can answer questions about his work, skills, projects, experience, and education. What would you like to know?",
       isUser: false,
       links: [],
-    },
-  ]);
+      feedback: null,
+    }];
+  };
+
+  const [messages, setMessages] = useState(loadHistory);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [showDebug, setShowDebug] = useState(false); // Debug mode disabled by default, enable with password "debug"
+  const [showDebug, setShowDebug] = useState(false);
   const [debugLogs, setDebugLogs] = useState([]);
+  const [suggestedQuestions, setSuggestedQuestions] = useState(getSuggestedQuestions([]));
   const messagesEndRef = useRef(null);
   const inputRef = useRef(null);
+
+  // Save conversation history to localStorage whenever messages change
+  useEffect(() => {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(messages));
+    } catch (error) {
+      console.error('Error saving chat history:', error);
+    }
+  }, [messages]);
+
+  // Update suggested questions when messages change
+  useEffect(() => {
+    setSuggestedQuestions(getSuggestedQuestions(messages));
+  }, [messages]);
 
   // Prevent body scroll when chat window is open
   useEffect(() => {
     if (isOpen) {
-      // Store original overflow style
       const originalOverflow = document.body.style.overflow;
-      // Lock body scroll
       document.body.style.overflow = 'hidden';
-      
       return () => {
-        // Restore original overflow when chat closes
         document.body.style.overflow = originalOverflow;
       };
     }
@@ -50,20 +81,62 @@ export const ChatWindow = ({ isOpen, onClose }) => {
   // Close on Escape key
   useEffect(() => {
     if (!isOpen) return;
-
     const handleEscape = (e) => {
       if (e.key === 'Escape') {
         onClose();
       }
     };
-
     window.addEventListener('keydown', handleEscape);
     return () => window.removeEventListener('keydown', handleEscape);
   }, [isOpen, onClose]);
 
+  // Handle feedback
+  const handleFeedback = (messageId, feedbackType) => {
+    setMessages(prev => prev.map(msg => 
+      msg.id === messageId 
+        ? { ...msg, feedback: feedbackType }
+        : msg
+    ));
+    
+    // Log feedback (you can send this to analytics later)
+    console.log('Feedback received:', { messageId, feedbackType });
+    
+    // Optional: Send feedback to analytics endpoint
+    // fetch('/api/feedback', { method: 'POST', body: JSON.stringify({ messageId, feedbackType }) });
+  };
 
-  const sendMessage = async () => {
-    const trimmedInput = input.trim();
+  // Handle quick action click
+  const handleQuickAction = (question) => {
+    setInput(question);
+    // Auto-send after a brief delay for better UX
+    setTimeout(() => {
+      sendMessage(question);
+    }, 100);
+  };
+
+  // Handle suggested question click
+  const handleSuggestionClick = (question) => {
+    sendMessage(question);
+  };
+
+  // Clear conversation history
+  const clearHistory = () => {
+    if (window.confirm('Clear conversation history?')) {
+      const initialMessage = [{
+        id: 1,
+        text: "Hi! I'm an AI assistant for Terrell Glenn's portfolio. I can answer questions about his work, skills, projects, experience, and education. What would you like to know?",
+        isUser: false,
+        links: [],
+        feedback: null,
+      }];
+      setMessages(initialMessage);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(initialMessage));
+      setSuggestedQuestions(getSuggestedQuestions([]));
+    }
+  };
+
+  const sendMessage = async (messageText = null) => {
+    const trimmedInput = messageText || input.trim();
     console.log('sendMessage called:', { trimmedInput, isLoading });
     
     if (!trimmedInput || isLoading) {
@@ -80,6 +153,7 @@ export const ChatWindow = ({ isOpen, onClose }) => {
           text: `Debug mode ${newState ? 'enabled' : 'disabled'}.`,
           isUser: false,
           links: [],
+          feedback: null,
         };
         setMessages((messagePrev) => [...messagePrev, debugMessage]);
         return newState;
@@ -94,6 +168,7 @@ export const ChatWindow = ({ isOpen, onClose }) => {
       text: trimmedInput,
       isUser: true,
       links: [],
+      feedback: null,
     };
 
     setMessages((prev) => [...prev, userMessage]);
@@ -112,21 +187,17 @@ export const ChatWindow = ({ isOpen, onClose }) => {
     };
     setDebugLogs((prev) => [...prev, debugLog]);
 
-    // Determine API URL - use production Vercel URL in development, or relative path in production
-    // Always use relative path in production for better mobile compatibility
+    // Determine API URL
     let apiUrl;
     if (import.meta.env.VITE_API_URL) {
       apiUrl = import.meta.env.VITE_API_URL;
     } else if (import.meta.env.DEV || import.meta.env.MODE === 'development') {
-      // Use production API during local development
       apiUrl = 'https://www.terrellglenn.com/api/chat';
     } else {
-      // Use relative path in production (works on both desktop and mobile)
       apiUrl = '/api/chat';
     }
 
     try {
-      // Log API URL for debugging
       const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
       const debugInfo = {
         apiUrl,
@@ -140,18 +211,15 @@ export const ChatWindow = ({ isOpen, onClose }) => {
       };
       console.log('Chat API Request:', debugInfo);
       
-      // Update debug log with request info
       setDebugLogs((prev) => prev.map((log) => 
         log.id === debugLog.id 
           ? { ...log, requestInfo: debugInfo }
           : log
       ));
       
-      // Call chat API with timeout for mobile networks
       const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 second timeout
+      const timeoutId = setTimeout(() => controller.abort(), 30000);
       
-      // Ensure we're making a POST request
       const fetchOptions = {
         method: 'POST',
         headers: {
@@ -171,7 +239,6 @@ export const ChatWindow = ({ isOpen, onClose }) => {
       console.log('Fetch response received:', { status: response.status, statusText: response.statusText, ok: response.ok });
 
       if (!response.ok) {
-        // Try to get error details from response
         let errorMessage = 'Failed to get response';
         try {
           const errorData = await response.json();
@@ -188,7 +255,6 @@ export const ChatWindow = ({ isOpen, onClose }) => {
         throw new Error(errorMessage);
       }
 
-      // Parse response JSON with error handling for mobile
       let data;
       let responseText;
       try {
@@ -198,7 +264,6 @@ export const ChatWindow = ({ isOpen, onClose }) => {
       } catch (parseError) {
         console.error('Failed to parse response JSON:', parseError);
         
-        // Update debug log with parse error
         const requestDuration = Date.now() - requestStartTime;
         setDebugLogs((prev) => prev.map((log) => 
           log.id === debugLog.id 
@@ -216,11 +281,9 @@ export const ChatWindow = ({ isOpen, onClose }) => {
         throw new Error('Invalid response from server. Please try again.');
       }
 
-      // Validate response structure
       if (!data || typeof data !== 'object') {
         console.error('Invalid response data:', data);
         
-        // Update debug log
         const requestDuration = Date.now() - requestStartTime;
         setDebugLogs((prev) => prev.map((log) => 
           log.id === debugLog.id 
@@ -238,7 +301,6 @@ export const ChatWindow = ({ isOpen, onClose }) => {
         throw new Error('Unexpected response format from server.');
       }
 
-      // Update debug log with success
       const requestDuration = Date.now() - requestStartTime;
       setDebugLogs((prev) => prev.map((log) => 
         log.id === debugLog.id 
@@ -259,10 +321,11 @@ export const ChatWindow = ({ isOpen, onClose }) => {
         text: data.message || 'I apologize, but I could not generate a response.',
         isUser: false,
         links: data.links || [],
+        feedback: null,
       };
 
       setMessages((prev) => [...prev, botMessage]);
-      setError(null); // Clear any previous errors
+      setError(null);
     } catch (err) {
       console.error('Chat error:', err);
       
@@ -278,7 +341,6 @@ export const ChatWindow = ({ isOpen, onClose }) => {
       };
       console.error('Error details:', errorDetails);
       
-      // Update debug log with error
       const requestDuration = Date.now() - requestStartTime;
       setDebugLogs((prev) => prev.map((log) => 
         log.id === debugLog.id 
@@ -292,10 +354,8 @@ export const ChatWindow = ({ isOpen, onClose }) => {
           : log
       ));
       
-      // Provide more helpful error messages
       let userFriendlyError = err.message || 'An error occurred. Please try again.';
       
-      // Check if it's a network error or timeout
       if (err.name === 'AbortError' || err.message.includes('aborted')) {
         userFriendlyError = 'Request timed out. Please check your internet connection and try again.';
       } else if (err instanceof TypeError && (err.message.includes('fetch') || err.message.includes('network'))) {
@@ -306,17 +366,16 @@ export const ChatWindow = ({ isOpen, onClose }) => {
       
       setError(userFriendlyError);
 
-      // Add error message to chat for visibility
       const errorMessage = {
         id: Date.now() + 1,
         text: `I'm sorry, but I encountered an error: ${userFriendlyError}`,
         isUser: false,
         links: [],
+        feedback: null,
       };
 
       setMessages((prev) => [...prev, errorMessage]);
     } finally {
-      // Always clear loading state, even on error
       setIsLoading(false);
     }
   };
@@ -327,7 +386,6 @@ export const ChatWindow = ({ isOpen, onClose }) => {
       sendMessage();
     }
   };
-
 
   const handleSendClick = (e) => {
     e.preventDefault();
@@ -340,7 +398,6 @@ export const ChatWindow = ({ isOpen, onClose }) => {
     <div 
       className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 p-2 sm:p-4"
       onClick={(e) => {
-        // Close on backdrop click (mobile-friendly)
         if (e.target === e.currentTarget) {
           onClose();
         }
@@ -372,25 +429,40 @@ export const ChatWindow = ({ isOpen, onClose }) => {
               <p className="text-xs text-gray-300">Ask me anything about Terrell's work</p>
             </div>
           </div>
-          <button
-            onClick={onClose}
-            className="text-gray-300 hover:text-gray-50 transition-colors p-2 rounded-lg hover:bg-gray-700/50 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-900 touch-target min-h-[44px] min-w-[44px] flex items-center justify-center"
-            aria-label="Close chatbot"
-          >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
+          <div className="flex items-center gap-2">
+            {/* Clear history button */}
+            {messages.length > 1 && (
+              <button
+                onClick={clearHistory}
+                className="text-gray-300 hover:text-gray-50 transition-colors p-2 rounded-lg hover:bg-gray-700/50 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-900 touch-target min-h-[44px] min-w-[44px] flex items-center justify-center"
+                aria-label="Clear conversation history"
+                title="Clear history"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                </svg>
+              </button>
+            )}
+            <button
+              onClick={onClose}
+              className="text-gray-300 hover:text-gray-50 transition-colors p-2 rounded-lg hover:bg-gray-700/50 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-900 touch-target min-h-[44px] min-w-[44px] flex items-center justify-center"
+              aria-label="Close chatbot"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
-          </button>
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+          </div>
         </div>
 
         {/* Messages area */}
@@ -401,6 +473,8 @@ export const ChatWindow = ({ isOpen, onClose }) => {
               message={message.text}
               isUser={message.isUser}
               links={message.links}
+              messageId={message.id}
+              onFeedback={handleFeedback}
             />
           ))}
           {isLoading && (
@@ -438,6 +512,43 @@ export const ChatWindow = ({ isOpen, onClose }) => {
           )}
           <div ref={messagesEndRef} />
         </div>
+
+        {/* Quick Actions - Show when no messages or after first message */}
+        {messages.length <= 1 && (
+          <div className="px-3 sm:px-4 pt-2 pb-2 border-t border-gray-700/50">
+            <p className="text-xs text-gray-400 mb-2">Quick actions:</p>
+            <div className="flex flex-wrap gap-2">
+              {quickActions.map((action, index) => (
+                <button
+                  key={index}
+                  onClick={() => handleQuickAction(action.question)}
+                  className="flex items-center gap-1.5 bg-gray-800/60 hover:bg-gray-700/60 border border-gray-700/50 text-gray-200 px-3 py-1.5 rounded-lg text-xs transition-colors focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-900 touch-target min-h-[36px]"
+                >
+                  <span>{action.icon}</span>
+                  <span>{action.label}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Suggested Questions - Show after bot responses */}
+        {!isLoading && messages.length > 1 && suggestedQuestions.length > 0 && (
+          <div className="px-3 sm:px-4 pt-2 pb-2 border-t border-gray-700/50">
+            <p className="text-xs text-gray-400 mb-2">Suggested questions:</p>
+            <div className="flex flex-wrap gap-2">
+              {suggestedQuestions.map((question, index) => (
+                <button
+                  key={index}
+                  onClick={() => handleSuggestionClick(question)}
+                  className="bg-blue-600/20 hover:bg-blue-600/30 border border-blue-500/30 text-blue-300 px-3 py-1.5 rounded-full text-xs transition-colors focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-900 touch-target min-h-[32px]"
+                >
+                  {question}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* Debug Panel */}
         {showDebug && (
@@ -595,4 +706,3 @@ export const ChatWindow = ({ isOpen, onClose }) => {
     </div>
   );
 };
-
