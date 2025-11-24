@@ -15,8 +15,10 @@ export const ChatWindow = ({ isOpen, onClose }) => {
   const [error, setError] = useState(null);
   const [showDebug, setShowDebug] = useState(false);
   const [debugLogs, setDebugLogs] = useState([]);
+  const [robotIconClicks, setRobotIconClicks] = useState(0);
   const messagesEndRef = useRef(null);
   const inputRef = useRef(null);
+  const clickTimeoutRef = useRef(null);
 
   // Auto-scroll to bottom when new messages arrive
   useEffect(() => {
@@ -45,6 +47,46 @@ export const ChatWindow = ({ isOpen, onClose }) => {
     window.addEventListener('keydown', handleEscape);
     return () => window.removeEventListener('keydown', handleEscape);
   }, [isOpen, onClose]);
+
+  // Handle robot icon click tracking for debug panel
+  const handleRobotIconClick = () => {
+    // Clear existing timeout
+    if (clickTimeoutRef.current) {
+      clearTimeout(clickTimeoutRef.current);
+    }
+
+    const newClickCount = robotIconClicks + 1;
+    setRobotIconClicks(newClickCount);
+
+    // If 4 clicks reached, toggle debug panel
+    if (newClickCount >= 4) {
+      setShowDebug(!showDebug);
+      setRobotIconClicks(0);
+      
+      // Add a message confirming debug panel toggle
+      const debugMessage = {
+        id: Date.now(),
+        text: `Debug panel ${!showDebug ? 'enabled' : 'disabled'} via robot icon.`,
+        isUser: false,
+        links: [],
+      };
+      setMessages((prev) => [...prev, debugMessage]);
+    } else {
+      // Set timeout to reset click counter after 2 seconds
+      clickTimeoutRef.current = setTimeout(() => {
+        setRobotIconClicks(0);
+      }, 2000);
+    }
+  };
+
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (clickTimeoutRef.current) {
+        clearTimeout(clickTimeoutRef.current);
+      }
+    };
+  }, []);
 
   const sendMessage = async () => {
     const trimmedInput = input.trim();
@@ -319,7 +361,12 @@ export const ChatWindow = ({ isOpen, onClose }) => {
         {/* Header */}
         <div className="flex items-center justify-between p-4 border-b border-gray-700/50">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-cyan-600 rounded-full flex items-center justify-center">
+            <button
+              onClick={handleRobotIconClick}
+              className="relative w-10 h-10 bg-gradient-to-r from-blue-500 to-cyan-600 rounded-full flex items-center justify-center cursor-pointer hover:scale-110 active:scale-95 transition-transform focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-900 touch-target"
+              aria-label="Robot icon (click 4 times for debug panel)"
+              title={robotIconClicks > 0 ? `Click ${4 - robotIconClicks} more times for debug panel` : "Click 4 times for debug panel"}
+            >
               <svg
                 className="w-6 h-6 text-white"
                 fill="none"
@@ -335,10 +382,19 @@ export const ChatWindow = ({ isOpen, onClose }) => {
                 <circle cx="9" cy="9" r="1.5" fill="currentColor" />
                 <circle cx="15" cy="9" r="1.5" fill="currentColor" />
               </svg>
-            </div>
+              {robotIconClicks > 0 && robotIconClicks < 4 && (
+                <span className="absolute -top-1 -right-1 bg-yellow-500 text-black text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center animate-pulse">
+                  {robotIconClicks}
+                </span>
+              )}
+            </button>
             <div>
               <h3 className="text-lg font-bold text-gray-50">Portfolio Assistant</h3>
-              <p className="text-xs text-gray-300">Ask me anything about Terrell's work</p>
+              <p className="text-xs text-gray-300">
+                {robotIconClicks > 0 && robotIconClicks < 4 
+                  ? `Click robot icon ${4 - robotIconClicks} more time${4 - robotIconClicks > 1 ? 's' : ''} for debug panel` 
+                  : "Ask me anything about Terrell's work"}
+              </p>
             </div>
           </div>
           <button
