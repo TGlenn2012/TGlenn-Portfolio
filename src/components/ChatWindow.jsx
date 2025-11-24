@@ -79,19 +79,20 @@ export const ChatWindow = ({ isOpen, onClose }) => {
     };
     setDebugLogs((prev) => [...prev, debugLog]);
 
+    // Determine API URL - use production Vercel URL in development, or relative path in production
+    // Always use relative path in production for better mobile compatibility
+    let apiUrl;
+    if (import.meta.env.VITE_API_URL) {
+      apiUrl = import.meta.env.VITE_API_URL;
+    } else if (import.meta.env.DEV || import.meta.env.MODE === 'development') {
+      // Use production API during local development
+      apiUrl = 'https://www.terrellglenn.com/api/chat';
+    } else {
+      // Use relative path in production (works on both desktop and mobile)
+      apiUrl = '/api/chat';
+    }
+
     try {
-      // Determine API URL - use production Vercel URL in development, or relative path in production
-      // Always use relative path in production for better mobile compatibility
-      let apiUrl;
-      if (import.meta.env.VITE_API_URL) {
-        apiUrl = import.meta.env.VITE_API_URL;
-      } else if (import.meta.env.DEV || import.meta.env.MODE === 'development') {
-        // Use production API during local development
-        apiUrl = 'https://www.terrellglenn.com/api/chat';
-      } else {
-        // Use relative path in production (works on both desktop and mobile)
-        apiUrl = '/api/chat';
-      }
       
       // Log API URL for debugging
       const debugInfo = {
