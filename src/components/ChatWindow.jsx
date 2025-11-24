@@ -13,6 +13,8 @@ export const ChatWindow = ({ isOpen, onClose }) => {
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [showDebug, setShowDebug] = useState(false);
+  const [debugLogs, setDebugLogs] = useState([]);
   const messagesEndRef = useRef(null);
   const inputRef = useRef(null);
 
@@ -48,6 +50,27 @@ export const ChatWindow = ({ isOpen, onClose }) => {
     const trimmedInput = input.trim();
     if (!trimmedInput || isLoading) return;
 
+    // Check for debug password
+    if (trimmedInput.toLowerCase() === 'debug') {
+      setShowDebug(!showDebug);
+      setInput('');
+      
+      // Add a message confirming debug panel toggle
+      const debugMessage = {
+        id: Date.now(),
+        text: `Debug panel ${!showDebug ? 'enabled' : 'disabled'}.`,
+        isUser: false,
+        links: [],
+      };
+      setMessages((prev) => [...prev, {
+        id: Date.now() - 1,
+        text: 'debug',
+        isUser: true,
+        links: [],
+      }, debugMessage]);
+      return;
+    }
+
     // Add user message
     const userMessage = {
       id: Date.now(),
@@ -60,6 +83,17 @@ export const ChatWindow = ({ isOpen, onClose }) => {
     setInput('');
     setIsLoading(true);
     setError(null);
+
+    // Add debug log entry
+    const requestStartTime = Date.now();
+    const debugLog = {
+      id: Date.now(),
+      type: 'request',
+      timestamp: new Date().toISOString(),
+      message: trimmedInput,
+      status: 'pending',
+    };
+    setDebugLogs((prev) => [...prev, debugLog]);
 
     try {
       // Determine API URL - use production Vercel URL in development, or relative path in production
@@ -75,15 +109,25 @@ export const ChatWindow = ({ isOpen, onClose }) => {
         apiUrl = '/api/chat';
       }
       
-      // Log API URL for debugging (remove in production if not needed)
-      console.log('Chat API Request:', {
+      // Log API URL for debugging
+      const debugInfo = {
         apiUrl,
         mode: import.meta.env.MODE,
         dev: import.meta.env.DEV,
         currentUrl: window.location.href,
         origin: window.location.origin,
-        isMobile: /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
-      });
+        isMobile: /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent),
+        userAgent: navigator.userAgent,
+        isOnline: navigator.onLine,
+      };
+      console.log('Chat API Request:', debugInfo);
+      
+      // Update debug log with request info
+      setDebugLogs((prev) => prev.map((log) => 
+        log.id === debugLog.id 
+          ? { ...log, requestInfo: debugInfo }
+          : log
+      ));
       
       // Call chat API with timeout for mobile networks
       const controller = new AbortController();
@@ -122,20 +166,68 @@ export const ChatWindow = ({ isOpen, onClose }) => {
 
       // Parse response JSON with error handling for mobile
       let data;
+      let responseText;
       try {
-        const responseText = await response.text();
+        responseText = await response.text();
         console.log('API Response (first 200 chars):', responseText.substring(0, 200));
         data = JSON.parse(responseText);
       } catch (parseError) {
         console.error('Failed to parse response JSON:', parseError);
+        
+        // Update debug log with parse error
+        const requestDuration = Date.now() - requestStartTime;
+        setDebugLogs((prev) => prev.map((log) => 
+          log.id === debugLog.id 
+            ? { 
+                ...log, 
+                status: 'error',
+                response: responseText?.substring(0, 500) || 'No response text',
+                error: `JSON Parse Error: ${parseError.message}`,
+                duration: requestDuration,
+                statusCode: response.status,
+              }
+            : log
+        ));
+        
         throw new Error('Invalid response from server. Please try again.');
       }
 
       // Validate response structure
       if (!data || typeof data !== 'object') {
         console.error('Invalid response data:', data);
+        
+        // Update debug log
+        const requestDuration = Date.now() - requestStartTime;
+        setDebugLogs((prev) => prev.map((log) => 
+          log.id === debugLog.id 
+            ? { 
+                ...log, 
+                status: 'error',
+                response: responseText?.substring(0, 500) || 'No response text',
+                error: 'Invalid response structure',
+                duration: requestDuration,
+                statusCode: response.status,
+              }
+            : log
+        ));
+        
         throw new Error('Unexpected response format from server.');
       }
+
+      // Update debug log with success
+      const requestDuration = Date.now() - requestStartTime;
+      setDebugLogs((prev) => prev.map((log) => 
+        log.id === debugLog.id 
+          ? { 
+              ...log, 
+              status: 'success',
+              response: responseText?.substring(0, 500) || JSON.stringify(data),
+              responseData: data,
+              duration: requestDuration,
+              statusCode: response.status,
+            }
+          : log
+      ));
 
       // Add bot response
       const botMessage = {
@@ -149,15 +241,31 @@ export const ChatWindow = ({ isOpen, onClose }) => {
       setError(null); // Clear any previous errors
     } catch (err) {
       console.error('Chat error:', err);
-      console.error('Error details:', {
+      const errorDetails = {
         message: err.message,
         stack: err.stack,
         apiUrl: apiUrl,
         userAgent: navigator.userAgent,
         isMobile: /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent),
         isOnline: navigator.onLine,
-        currentUrl: window.location.href
-      });
+        currentUrl: window.location.href,
+        errorName: err.name,
+      };
+      console.error('Error details:', errorDetails);
+      
+      // Update debug log with error
+      const requestDuration = Date.now() - requestStartTime;
+      setDebugLogs((prev) => prev.map((log) => 
+        log.id === debugLog.id 
+          ? { 
+              ...log, 
+              status: 'error',
+              error: err.message,
+              errorDetails: errorDetails,
+              duration: requestDuration,
+            }
+          : log
+      ));
       
       // Provide more helpful error messages
       let userFriendlyError = err.message || 'An error occurred. Please try again.';
@@ -299,6 +407,96 @@ export const ChatWindow = ({ isOpen, onClose }) => {
           )}
           <div ref={messagesEndRef} />
         </div>
+
+        {/* Debug Panel */}
+        {showDebug && (
+          <div className="border-t border-gray-700/50 bg-gray-950/95 max-h-[200px] overflow-y-auto">
+            <div className="p-3 border-b border-gray-700/50 flex items-center justify-between">
+              <h4 className="text-sm font-bold text-yellow-400">🐛 Debug Panel</h4>
+              <button
+                onClick={() => setShowDebug(false)}
+                className="text-gray-400 hover:text-gray-200 text-xs px-2 py-1"
+                aria-label="Hide debug panel"
+              >
+                Hide
+              </button>
+            </div>
+            <div className="p-3 space-y-2 text-xs">
+              {debugLogs.length === 0 ? (
+                <div className="text-gray-400">No debug logs yet. Send a message to see debug info.</div>
+              ) : (
+                debugLogs.slice(-5).reverse().map((log) => (
+                  <div key={log.id} className="bg-gray-900/80 rounded p-2 border border-gray-700/50">
+                    <div className="flex items-center gap-2 mb-1 flex-wrap">
+                      <span className={`px-2 py-0.5 rounded text-xs font-semibold ${
+                        log.status === 'success' ? 'bg-green-900/50 text-green-300' :
+                        log.status === 'error' ? 'bg-red-900/50 text-red-300' :
+                        'bg-yellow-900/50 text-yellow-300'
+                      }`}>
+                        {log.status?.toUpperCase() || 'PENDING'}
+                      </span>
+                      <span className="text-gray-400">{new Date(log.timestamp).toLocaleTimeString()}</span>
+                      {log.duration && (
+                        <span className="text-gray-500">({log.duration}ms)</span>
+                      )}
+                      {log.statusCode && (
+                        <span className="text-gray-500">Status: {log.statusCode}</span>
+                      )}
+                    </div>
+                    {log.message && (
+                      <div className="text-gray-300 mb-1">
+                        <strong>Message:</strong> {log.message}
+                      </div>
+                    )}
+                    {log.requestInfo?.apiUrl && (
+                      <div className="text-gray-400 mb-1 text-xs break-all">
+                        <strong>API URL:</strong> {log.requestInfo.apiUrl}
+                      </div>
+                    )}
+                    {log.error && (
+                      <div className="text-red-300 mb-1">
+                        <strong>Error:</strong> {log.error}
+                      </div>
+                    )}
+                    {log.response && (
+                      <details className="mt-1">
+                        <summary className="text-blue-400 cursor-pointer hover:text-blue-300">
+                          View Response ({log.response.length} chars)
+                        </summary>
+                        <pre className="mt-1 p-2 bg-gray-950 rounded text-xs text-gray-300 overflow-x-auto max-h-32 overflow-y-auto">
+                          {typeof log.response === 'string' ? log.response : JSON.stringify(log.response, null, 2)}
+                        </pre>
+                      </details>
+                    )}
+                    {log.errorDetails && (
+                      <details className="mt-1">
+                        <summary className="text-red-400 cursor-pointer hover:text-red-300">
+                          View Error Details
+                        </summary>
+                        <pre className="mt-1 p-2 bg-gray-950 rounded text-xs text-gray-300 overflow-x-auto max-h-32 overflow-y-auto">
+                          {JSON.stringify(log.errorDetails, null, 2)}
+                        </pre>
+                      </details>
+                    )}
+                    {log.requestInfo && (
+                      <details className="mt-1">
+                        <summary className="text-gray-400 cursor-pointer hover:text-gray-300 text-xs">
+                          Request Info
+                        </summary>
+                        <div className="mt-1 text-gray-400 text-xs space-y-0.5">
+                          <div>Mode: {log.requestInfo.mode || 'N/A'}</div>
+                          <div>Origin: {log.requestInfo.origin || 'N/A'}</div>
+                          <div>Mobile: {log.requestInfo.isMobile ? 'Yes' : 'No'}</div>
+                          <div>Online: {log.requestInfo.isOnline ? 'Yes' : 'No'}</div>
+                        </div>
+                      </details>
+                    )}
+                  </div>
+                ))
+              )}
+            </div>
+          </div>
+        )}
 
         {/* Input area */}
         <div className="p-3 sm:p-4 border-t border-gray-700/50">
