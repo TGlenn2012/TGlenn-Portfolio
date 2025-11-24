@@ -137,10 +137,12 @@ export const ChatWindow = ({ isOpen, onClose }) => {
     };
     setDebugLogs((prev) => [...prev, debugLog]);
 
+    // Declare apiUrl outside try block so it's accessible in catch block
+    let apiUrl;
+
     try {
       // Determine API URL - use production Vercel URL in development, or relative path in production
       // Always use relative path in production for better mobile compatibility
-      let apiUrl;
       if (import.meta.env.VITE_API_URL) {
         apiUrl = import.meta.env.VITE_API_URL;
       } else if (import.meta.env.DEV || import.meta.env.MODE === 'development') {
