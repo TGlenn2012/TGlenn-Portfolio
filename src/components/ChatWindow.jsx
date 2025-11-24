@@ -46,11 +46,42 @@ export const ChatWindow = ({ isOpen, onClose }) => {
     return () => window.removeEventListener('keydown', handleEscape);
   }, [isOpen, onClose]);
 
+  // Add a test debug message when component opens on mobile
+  useEffect(() => {
+    if (isOpen) {
+      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      if (isMobile) {
+        const testMsg = {
+          id: Date.now(),
+          text: `[DEBUG] Chat window opened on mobile. User Agent: ${navigator.userAgent.substring(0, 50)}...`,
+          isUser: false,
+          links: [],
+        };
+        setMessages((prev) => [...prev, testMsg]);
+      }
+    }
+  }, [isOpen]);
+
   const sendMessage = async () => {
+    // ADD IMMEDIATE DEBUG MESSAGE FUNCTION BEFORE ANY CHECKS
+    const addDebugMessage = (text) => {
+      const debugMsg = {
+        id: Date.now() + Math.random(),
+        text: `[DEBUG] ${text}`,
+        isUser: false,
+        links: [],
+      };
+      setMessages((prev) => [...prev, debugMsg]);
+    };
+    
     const trimmedInput = input.trim();
     console.log('sendMessage called:', { trimmedInput, isLoading });
     
+    // ADD IMMEDIATE DEBUG MESSAGE AT THE VERY START
+    addDebugMessage(`sendMessage function called with input: "${trimmedInput.substring(0, 50)}"`);
+    
     if (!trimmedInput || isLoading) {
+      addDebugMessage(`Early return: hasInput=${!!trimmedInput}, isLoading=${isLoading}`);
       console.log('Early return:', { hasInput: !!trimmedInput, isLoading });
       return;
     }
@@ -91,17 +122,6 @@ export const ChatWindow = ({ isOpen, onClose }) => {
       // Use relative path in production (works on both desktop and mobile)
       apiUrl = '/api/chat';
     }
-
-    // Add visible debug message - function is called
-    const addDebugMessage = (text) => {
-      const debugMsg = {
-        id: Date.now() + Math.random(),
-        text: `[DEBUG] ${text}`,
-        isUser: false,
-        links: [],
-      };
-      setMessages((prev) => [...prev, debugMsg]);
-    };
 
     // Show initial debug info
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
@@ -332,11 +352,48 @@ export const ChatWindow = ({ isOpen, onClose }) => {
   };
 
   const handleKeyDown = (e) => {
+    console.log('handleKeyDown triggered:', e.key, e.type);
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
       console.log('Enter key pressed, calling sendMessage');
+      // Add immediate feedback
+      const feedbackMsg = {
+        id: Date.now(),
+        text: '[DEBUG] Enter key detected, calling sendMessage...',
+        isUser: false,
+        links: [],
+      };
+      setMessages((prev) => [...prev, feedbackMsg]);
       sendMessage();
     }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('Form submit triggered');
+    // Add immediate feedback
+    const feedbackMsg = {
+      id: Date.now(),
+      text: '[DEBUG] Form submit triggered, calling sendMessage...',
+      isUser: false,
+      links: [],
+    };
+    setMessages((prev) => [...prev, feedbackMsg]);
+    sendMessage();
+  };
+
+  const handleSendClick = (e) => {
+    e.preventDefault();
+    console.log('Send button clicked', e.type);
+    // Add immediate feedback
+    const feedbackMsg = {
+      id: Date.now(),
+      text: '[DEBUG] Send button clicked, calling sendMessage...',
+      isUser: false,
+      links: [],
+    };
+    setMessages((prev) => [...prev, feedbackMsg]);
+    sendMessage();
   };
 
   if (!isOpen) return null;
@@ -535,22 +592,27 @@ export const ChatWindow = ({ isOpen, onClose }) => {
         )}
 
         {/* Input area */}
-        <div className="p-3 sm:p-4 border-t border-gray-700/50">
+        <form onSubmit={handleSubmit} className="p-3 sm:p-4 border-t border-gray-700/50">
           <div className="flex gap-2">
             <input
               ref={inputRef}
               type="text"
               value={input}
-              onChange={(e) => setInput(e.target.value)}
+              onChange={(e) => {
+                setInput(e.target.value);
+                console.log('Input changed:', e.target.value);
+              }}
               onKeyDown={handleKeyDown}
               placeholder="Ask me anything about Terrell's work..."
               disabled={isLoading}
               className="flex-1 bg-gray-800/80 border border-gray-700/50 rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 text-base text-gray-50 placeholder-gray-400 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-400/50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed touch-target min-h-[44px]"
             />
             <button
-              onClick={() => {
-                console.log('Send button clicked');
-                sendMessage();
+              type="submit"
+              onClick={handleSendClick}
+              onTouchStart={(e) => {
+                console.log('Touch start on send button');
+                // Don't preventDefault here, let it bubble to onClick
               }}
               disabled={!input.trim() || isLoading}
               className="bg-blue-500 hover:bg-blue-400 active:bg-blue-600 disabled:bg-gray-700 disabled:cursor-not-allowed text-white px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-900 touch-target min-h-[44px] min-w-[44px] sm:min-w-[80px] flex items-center justify-center"
@@ -596,7 +658,7 @@ export const ChatWindow = ({ isOpen, onClose }) => {
           <p className="text-xs text-gray-400 mt-2 text-center">
             Press Enter to send • Questions about portfolio only
           </p>
-        </div>
+        </form>
       </div>
     </div>
   );
