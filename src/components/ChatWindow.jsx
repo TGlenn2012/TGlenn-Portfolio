@@ -292,20 +292,14 @@ export const ChatWindow = ({ isOpen, onClose }) => {
   const handleKeyDown = (e) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
-      e.stopPropagation();
-      e.stopImmediatePropagation();
       sendMessage();
-      return false;
     }
   };
 
 
   const handleSendClick = (e) => {
     e.preventDefault();
-    e.stopPropagation();
-    e.stopImmediatePropagation();
     sendMessage();
-    return false;
   };
 
   if (!isOpen) return null;
@@ -511,28 +505,10 @@ export const ChatWindow = ({ isOpen, onClose }) => {
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' && !e.shiftKey) {
-                  e.preventDefault();
-                  e.stopPropagation();
-                  e.stopImmediatePropagation();
-                  sendMessage();
-                  return false;
-                }
-              }}
-              onKeyPress={(e) => {
-                // Prevent form submission on Enter
-                if (e.key === 'Enter' || e.which === 13) {
-                  e.preventDefault();
-                  e.stopPropagation();
-                  e.stopImmediatePropagation();
-                  return false;
-                }
-              }}
+              onKeyDown={handleKeyDown}
               placeholder="Ask me anything about Terrell's work..."
               disabled={isLoading}
               autoComplete="off"
-              formNoValidate
               className="flex-1 bg-gray-800/80 border border-gray-700/50 rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 text-base text-gray-50 placeholder-gray-400 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-400/50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed touch-target min-h-[44px]"
             />
             <button
