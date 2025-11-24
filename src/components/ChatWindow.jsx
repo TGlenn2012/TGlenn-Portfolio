@@ -13,10 +13,25 @@ export const ChatWindow = ({ isOpen, onClose }) => {
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [showDebug, setShowDebug] = useState(true); // Debug mode enabled by default
+  const [showDebug, setShowDebug] = useState(false); // Debug mode disabled by default, enable with password "debug"
   const [debugLogs, setDebugLogs] = useState([]);
   const messagesEndRef = useRef(null);
   const inputRef = useRef(null);
+
+  // Prevent body scroll when chat window is open
+  useEffect(() => {
+    if (isOpen) {
+      // Store original overflow style
+      const originalOverflow = document.body.style.overflow;
+      // Lock body scroll
+      document.body.style.overflow = 'hidden';
+      
+      return () => {
+        // Restore original overflow when chat closes
+        document.body.style.overflow = originalOverflow;
+      };
+    }
+  }, [isOpen]);
 
   // Auto-scroll to bottom when new messages arrive
   useEffect(() => {
@@ -53,6 +68,23 @@ export const ChatWindow = ({ isOpen, onClose }) => {
     
     if (!trimmedInput || isLoading) {
       console.log('Early return:', { hasInput: !!trimmedInput, isLoading });
+      return;
+    }
+
+    // Check for debug password
+    if (trimmedInput.toLowerCase() === 'debug') {
+      setShowDebug((prev) => {
+        const newState = !prev;
+        const debugMessage = {
+          id: Date.now(),
+          text: `Debug mode ${newState ? 'enabled' : 'disabled'}.`,
+          isUser: false,
+          links: [],
+        };
+        setMessages((messagePrev) => [...messagePrev, debugMessage]);
+        return newState;
+      });
+      setInput('');
       return;
     }
 

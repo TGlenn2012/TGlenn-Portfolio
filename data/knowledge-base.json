@@ -240,6 +240,171 @@
       "type": "project",
       "tags": ["curriculum", "iot", "education", "high school", "constructionism", "arduino"]
     }
+  },
+  {
+    "id": "about-contact",
+    "content": "Contact Information: TGlenn2012@gmail.com, (216) 570-4460. Online presence includes LinkedIn (www.linkedin.com/in/tglenn2012), Personal Website (www.TerrellGlenn.com), and GitHub (www.github.com/TGlenn2012).",
+    "source": "About",
+    "route": "/#contact",
+    "section": "Contact",
+    "metadata": {
+      "type": "contact",
+      "tags": ["email", "phone", "linkedin", "github", "website"]
+    }
+  },
+  {
+    "id": "about-education-phd-details",
+    "content": "Doctorate (Ph.D.) in Human-Computer Interaction (Mechanical Engineering) from Purdue University (GPA: 3.62). The dissertation title was \"The MakAR Project: Empowering Youth to Design, Build, and Play Through Interactions with Augmented Reality, Physical Prototyping, and the Internet of Things.\".",
+    "source": "About",
+    "route": "/#education",
+    "section": "Education",
+    "metadata": {
+      "type": "education",
+      "tags": ["phd", "purdue", "hci", "thesis", "gpa"]
+    }
+  },
+  {
+    "id": "about-education-bs-details",
+    "content": "Bachelor of Science (B.S.) in Physics from Morehouse College, graduating with Honors Magna Cum Laude (GPA: 3.66).",
+    "source": "About",
+    "route": "/#education",
+    "section": "Education",
+    "metadata": {
+      "type": "education",
+      "tags": ["bachelors", "morehouse", "physics", "honors", "gpa"]
+    }
+  },
+  {
+    "id": "about-research-methods-detail",
+    "content": "Detailed UX Research Methodologies include Diary Studies, Contextual Inquiry, Semi-Structured Interviews, Unmoderated Studies, Survey Design, Statistical Analysis, Logs-Based Analysis, and A/B Testing.",
+    "source": "About",
+    "route": "/#about",
+    "section": "Skills",
+    "metadata": {
+      "type": "skills",
+      "tags": ["user research", "qualitative", "quantitative", "interviews", "diary studies", "a/b testing"]
+    }
+  },
+  {
+    "id": "about-ai-ml-tools-detail",
+    "content": "Advanced AI/ML and Data Science tools include PyTorch, OpenCV, SIFT/SURF (used for Computer Vision), and programming languages like R and Python for data analysis.",
+    "source": "About",
+    "route": "/#about",
+    "section": "Skills",
+    "metadata": {
+      "type": "skills",
+      "tags": ["ai", "machine learning", "pytorch", "opencv", "statistical analysis"]
+    }
+  },
+  {
+    "id": "about-advanced-technical-skills",
+    "content": "Fabrication Techniques utilized include laser cutting, 3D printing, and vinyl cutting. Experience with Mechatronics-Based Projects includes using Arduino, ESP 8266, ESP32, Micro:bit, and ROS.",
+    "source": "About",
+    "route": "/#about",
+    "section": "Skills",
+    "metadata": {
+      "type": "skills",
+      "tags": ["fabrication", "mechatronics", "cad", "arduino", "ros", "tools"]
+    }
+  },
+  {
+    "id": "expertise-human-ai-interaction-focus",
+    "content": "A key research focus is Human-AI Interaction, centered on creating intuitive and transparent AI interfaces that align with human capabilities and advancing responsible AI practices regarding accountability and fairness.",
+    "source": "Expertise",
+    "route": "/#research",
+    "section": "AI Focus",
+    "metadata": {
+      "type": "research_focus",
+      "tags": ["human-ai interaction", "responsible ai", "hci", "transparency"]
+    }
+  },
+  {
+    "id": "experience-microsoft-dcscm-strategic",
+    "content": "I led the decision for the next-gen DC-SCM module, a strategic choice carrying $3–5M in NRE costs. The recommended v1.3 upgrade contributed to a projected 1% reduction in total cost of ownership (TCO) and enabled broad adoption across Intel, AMD, and Ruby Mountain platforms.",
+    "source": "Experience",
+    "route": "/#experience",
+    "section": "Microsoft",
+    "metadata": {
+      "type": "experience_detail",
+      "tags": ["microsoft", "dc-scm", "hardware", "tco", "nre", "strategic decision"]
+    }
+  },
+  {
+    "id": "experience-microsoft-rackscm-context",
+    "content": "I led product discovery for the Standalone Rack-SCM; telemetry showed roughly 9.2% of the Azure fleet needed this solution. The product discovery validated two primary customer segments, including a high-volume GPU platform critical to Microsoft's AI roadmap.",
+    "source": "Experience",
+    "route": "/#experience",
+    "section": "Microsoft",
+    "metadata": {
+      "type": "experience_detail",
+      "tags": ["microsoft", "standalone rack-scm", "azure", "hardware", "ai roadmap"]
+    }
+  },
+  {
+    "id": "experience-microsoft-roadmap-platform",
+    "content": "I redesigned Microsoft's fragmented hardware roadmap into a stakeholder-driven, HCI-informed platform using Power Apps. This initiative achieved 90% stakeholder approval and cut update time by 33%.",
+    "source": "Experience",
+    "route": "/#experience",
+    "section": "Microsoft",
+    "metadata": {
+      "type": "experience_detail",
+      "tags": ["microsoft", "roadmap", "hci", "power apps", "efficiency"]
+    }
+  },
+  {
+    "id": "experience-intel-impact",
+    "content": "During the Software Engineering Internship at Intel, I analyzed CPU/GPU performance metrics across 40+ workloads, presenting findings that influenced roadmap priorities and contributed to $2M+ in revenue impact through optimized chip adoption.",
+    "source": "Experience",
+    "route": "/#experience",
+    "section": "Intel Corporation",
+    "metadata": {
+      "type": "experience_detail",
+      "tags": ["intel", "internship", "cpu", "gpu", "benchmarking", "revenue impact"]
+    }
+  },
+  {
+    "id": "service-adaptive-toy-drive",
+    "content": "Co-Host of Tevin's Adaptive Toy Drive (Dec 2023 - Present), an initiative that scaled from a grassroots effort into a year-round program distributing over 50 adaptive toys to children with disabilities. This involved collaborating with occupational therapists and hospitals (e.g., Seattle Children's Hospital) and is transitioning into a nonprofit.",
+    "source": "Service",
+    "route": "/#service",
+    "section": "Community Engagement",
+    "metadata": {
+      "type": "service",
+      "tags": ["nonprofit", "adaptive design", "inclusive play", "toy drive", "disability"]
+    }
+  },
+  {
+    "id": "service-mentorship-teaching",
+    "content": "Extensive teaching and mentorship experience includes leading Smart Toys & Robots workshops for middle and high school students for over seven years. I designed the Smart Toys & Robots course from scratch, and served as a Summer Project Coordinator for the Purdue Minority Engineering Program.",
+    "source": "Service",
+    "route": "/#mentorship",
+    "section": "Mentorship & Teaching",
+    "metadata": {
+      "type": "mentorship",
+      "tags": ["teaching", "curriculum design", "steam", "purdue", "outreach"]
+    }
+  },
+  {
+    "id": "service-affiliations",
+    "content": "Key affiliations include serving as Vice President and STEAM Committee Chairman for the Alpha Phi Alpha Fraternity, Inc. (Zeta Pi Lambda Chapter) and holding various board roles for the Seattle Alphas Education Foundation. I am also a General Member of the National Society of Black Engineers (NSBE).",
+    "source": "Service",
+    "route": "/#affiliations",
+    "section": "Affiliations",
+    "metadata": {
+      "type": "service",
+      "tags": ["nonprofit", "fraternity", "nsbe", "leadership"]
+    }
+  },
+  {
+    "id": "awards-comprehensive-list",
+    "content": "Key Awards and Recognition: Hardware Strategy & Planning Culture Award (2023, Microsoft), Outstanding Graduate Student Service Award (2020, Purdue), NSF Graduate Research Fellowship Program (2017-2022), Graduate Education for Minorities (GEM) Fellowship, and 1st Place in the Technical Presentation Competition from The National GEM Consortium.",
+    "source": "About",
+    "route": "/#about",
+    "section": "Awards",
+    "metadata": {
+      "type": "awards",
+      "tags": ["microsoft award", "purdue award", "fellowship", "recognition", "competition"]
+    }
   }
 ]
 
