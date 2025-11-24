@@ -119,7 +119,8 @@ export const ChatWindow = ({ isOpen, onClose }) => {
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 second timeout
       
-      const response = await fetch(apiUrl, {
+      // Ensure we're making a POST request
+      const fetchOptions = {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -127,9 +128,15 @@ export const ChatWindow = ({ isOpen, onClose }) => {
         body: JSON.stringify({ message: trimmedInput }),
         credentials: 'same-origin',
         signal: controller.signal,
-      }).finally(() => {
+      };
+      
+      console.log('Making fetch request:', { apiUrl, method: fetchOptions.method, hasBody: !!fetchOptions.body });
+      
+      const response = await fetch(apiUrl, fetchOptions).finally(() => {
         clearTimeout(timeoutId);
       });
+      
+      console.log('Fetch response received:', { status: response.status, statusText: response.statusText, ok: response.ok });
 
       if (!response.ok) {
         // Try to get error details from response
@@ -285,20 +292,20 @@ export const ChatWindow = ({ isOpen, onClose }) => {
   const handleKeyDown = (e) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
+      e.stopPropagation();
+      e.stopImmediatePropagation();
       sendMessage();
+      return false;
     }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    sendMessage();
-  };
 
   const handleSendClick = (e) => {
     e.preventDefault();
     e.stopPropagation();
+    e.stopImmediatePropagation();
     sendMessage();
+    return false;
   };
 
   if (!isOpen) return null;
@@ -497,16 +504,35 @@ export const ChatWindow = ({ isOpen, onClose }) => {
         )}
 
         {/* Input area */}
-        <form onSubmit={handleSubmit} className="p-3 sm:p-4 border-t border-gray-700/50">
+        <div className="p-3 sm:p-4 border-t border-gray-700/50">
           <div className="flex gap-2">
             <input
               ref={inputRef}
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              onKeyDown={handleKeyDown}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  e.stopImmediatePropagation();
+                  sendMessage();
+                  return false;
+                }
+              }}
+              onKeyPress={(e) => {
+                // Prevent form submission on Enter
+                if (e.key === 'Enter' || e.which === 13) {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  e.stopImmediatePropagation();
+                  return false;
+                }
+              }}
               placeholder="Ask me anything about Terrell's work..."
               disabled={isLoading}
+              autoComplete="off"
+              formNoValidate
               className="flex-1 bg-gray-800/80 border border-gray-700/50 rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 text-base text-gray-50 placeholder-gray-400 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-400/50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed touch-target min-h-[44px]"
             />
             <button
@@ -556,7 +582,7 @@ export const ChatWindow = ({ isOpen, onClose }) => {
           <p className="text-xs text-gray-400 mt-2 text-center">
             Press Enter to send • Questions about portfolio only
           </p>
-        </form>
+        </div>
       </div>
     </div>
   );
