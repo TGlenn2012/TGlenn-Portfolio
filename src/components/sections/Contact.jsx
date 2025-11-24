@@ -9,22 +9,27 @@ export const Contact = () => {
         message: "",
     });
 
-    // const serviceID = "service_8s99nvi"; // Replace with your EmailJS service ID
-    // const templateID = "template_b6wq7ak"; // Replace with your EmailJS template ID
-    // const publicKey = "kDck-ANTTDIqta-0o"; // Replace with your EmailJS public key
-    
     const handleSubmit = (e) => {
         e.preventDefault();
         const form = e.target;
 
+        const serviceID = import.meta.env.VITE_serviceID;
+        const templateID = import.meta.env.VITE_templateID;
+        const publicKey = import.meta.env.VITE_publicKey;
+
+        // Validate environment variables
+        if (!serviceID || !templateID || !publicKey) {
+            console.error("EmailJS configuration missing:", {
+                serviceID: !!serviceID,
+                templateID: !!templateID,
+                publicKey: !!publicKey
+            });
+            alert("Contact form is not properly configured. Please contact the site administrator.");
+            return;
+        }
 
         emailjs
-            .sendForm(
-                import.meta.env.VITE_serviceID, 
-                import.meta.env.VITE_templateID, 
-                form, 
-                import.meta.env.VITE_publicKey
-            )
+            .sendForm(serviceID, templateID, form, publicKey)
             .then(() => {
                 alert("Message sent successfully!");
                 form.reset();

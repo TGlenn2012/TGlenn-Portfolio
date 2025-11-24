@@ -25,7 +25,6 @@ export const ChatWindow = ({ isOpen, onClose }) => {
       text: "Hi! I'm an AI assistant for Terrell Glenn's portfolio. I can answer questions about his work, skills, projects, experience, and education. What would you like to know?",
       isUser: false,
       links: [],
-      feedback: null,
     }];
   };
 
@@ -90,21 +89,6 @@ export const ChatWindow = ({ isOpen, onClose }) => {
     return () => window.removeEventListener('keydown', handleEscape);
   }, [isOpen, onClose]);
 
-  // Handle feedback
-  const handleFeedback = (messageId, feedbackType) => {
-    setMessages(prev => prev.map(msg => 
-      msg.id === messageId 
-        ? { ...msg, feedback: feedbackType }
-        : msg
-    ));
-    
-    // Log feedback (you can send this to analytics later)
-    console.log('Feedback received:', { messageId, feedbackType });
-    
-    // Optional: Send feedback to analytics endpoint
-    // fetch('/api/feedback', { method: 'POST', body: JSON.stringify({ messageId, feedbackType }) });
-  };
-
   // Handle quick action click
   const handleQuickAction = (question) => {
     setInput(question);
@@ -168,7 +152,6 @@ export const ChatWindow = ({ isOpen, onClose }) => {
       text: trimmedInput,
       isUser: true,
       links: [],
-      feedback: null,
     };
 
     setMessages((prev) => [...prev, userMessage]);
@@ -473,8 +456,6 @@ export const ChatWindow = ({ isOpen, onClose }) => {
               message={message.text}
               isUser={message.isUser}
               links={message.links}
-              messageId={message.id}
-              onFeedback={handleFeedback}
             />
           ))}
           {isLoading && (

@@ -314,8 +314,29 @@ export default async function handler(req, res) {
     
     if (relevantContent.length > 0) {
       context = relevantContent.map((item, index) => {
+        // Generate shorter link text
+        let linkText = item.section;
+        if (item.source === 'Projects') {
+          // Extract project name (text before colon) or use first part of content
+          const contentStart = item.content.split(':')[0];
+          // If it's a reasonable length, use it; otherwise use route-based name
+          if (contentStart.length <= 30) {
+            linkText = contentStart.trim();
+          } else {
+            // Extract from route or use a mapping
+            const routeToName = {
+              '/microkarts': 'MicrokARts',
+              '/sharediot': 'ShARed IoT',
+              '/iotmaker': 'IoT Maker',
+              '/storymakar': 'StoryMakAR',
+              '/6dof': '6DOF Robotic Arm',
+              '/iotcourse': 'IoT Course'
+            };
+            linkText = routeToName[item.route] || contentStart.substring(0, 20).trim();
+          }
+        }
         links.push({
-          text: item.source === 'Projects' ? item.content.split('.')[0] : item.section,
+          text: linkText,
           url: item.route
         });
         return `[${index + 1}] ${item.content}`;
