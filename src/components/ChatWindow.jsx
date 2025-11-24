@@ -46,67 +46,12 @@ export const ChatWindow = ({ isOpen, onClose }) => {
     return () => window.removeEventListener('keydown', handleEscape);
   }, [isOpen, onClose]);
 
-  // Add a test debug message when component opens on mobile
-  useEffect(() => {
-    if (isOpen) {
-      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-      console.log('Chat window opened, isMobile:', isMobile);
-      
-      // Force immediate visual feedback - add message directly to DOM as a test
-      const testDiv = document.createElement('div');
-      testDiv.id = 'mobile-debug-opened';
-      testDiv.style.cssText = 'position: fixed; top: 10px; left: 10px; background: red; color: white; padding: 10px; z-index: 99999; font-size: 14px; border: 2px solid yellow;';
-      testDiv.textContent = `[MOBILE DEBUG] Chat opened! Mobile: ${isMobile}`;
-      document.body.appendChild(testDiv);
-      setTimeout(() => testDiv.remove(), 10000);
-      
-      // Also add to React state
-      const testMsg = {
-        id: Date.now(),
-        text: `[DEBUG] Chat window opened. Mobile: ${isMobile ? 'Yes' : 'No'}. Total messages: ${messages.length + 1}`,
-        isUser: false,
-        links: [],
-      };
-      console.log('Adding test message:', testMsg);
-      console.log('Current messages:', messages);
-      setMessages((prev) => {
-        console.log('setMessages callback called with prev:', prev);
-        const updated = [...prev, testMsg];
-        console.log('setMessages returning:', updated);
-        return updated;
-      });
-      
-      // Force a re-render check
-      setTimeout(() => {
-        console.log('After timeout, checking messages state...');
-        setMessages((prev) => {
-          console.log('Timeout callback - messages state:', prev);
-          return prev;
-        });
-      }, 100);
-    }
-  }, [isOpen]);
 
   const sendMessage = async () => {
-    // ADD IMMEDIATE DEBUG MESSAGE FUNCTION BEFORE ANY CHECKS
-    const addDebugMessage = (text) => {
-      const debugMsg = {
-        id: Date.now() + Math.random(),
-        text: `[DEBUG] ${text}`,
-        isUser: false,
-        links: [],
-      };
-      setMessages((prev) => [...prev, debugMsg]);
-    };
-    
     const trimmedInput = input.trim();
     console.log('sendMessage called:', { trimmedInput, isLoading });
     
-    // ADD IMMEDIATE DEBUG MESSAGE AT THE VERY START
-    addDebugMessage(`sendMessage function called with input: "${trimmedInput.substring(0, 50)}"`);
-    
     if (!trimmedInput || isLoading) {
-      addDebugMessage(`Early return: hasInput=${!!trimmedInput}, isLoading=${isLoading}`);
       console.log('Early return:', { hasInput: !!trimmedInput, isLoading });
       return;
     }
@@ -148,11 +93,6 @@ export const ChatWindow = ({ isOpen, onClose }) => {
       apiUrl = '/api/chat';
     }
 
-    // Show initial debug info
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    addDebugMessage(`sendMessage called. Mobile: ${isMobile ? 'Yes' : 'No'}, Online: ${navigator.onLine ? 'Yes' : 'No'}`);
-    addDebugMessage(`API URL: ${apiUrl}`);
-
     try {
       // Log API URL for debugging
       const debugInfo = {
@@ -174,47 +114,30 @@ export const ChatWindow = ({ isOpen, onClose }) => {
           : log
       ));
       
-      // Show debug message - about to fetch
-      addDebugMessage(`About to call fetch to ${apiUrl}`);
-      
       // Call chat API with timeout for mobile networks
       const controller = new AbortController();
-      const timeoutId = setTimeout(() => {
-        addDebugMessage('⚠️ Request timeout triggered (30s)');
-        controller.abort();
-      }, 30000); // 30 second timeout
+      const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 second timeout
       
-      let response;
-      try {
-        response = await fetch(apiUrl, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ message: trimmedInput }),
-          credentials: 'same-origin', // Better mobile compatibility
-          signal: controller.signal, // For timeout handling
-        });
+      const response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ message: trimmedInput }),
+        credentials: 'same-origin',
+        signal: controller.signal,
+      }).finally(() => {
         clearTimeout(timeoutId);
-        addDebugMessage(`✅ Fetch completed. Status: ${response.status} ${response.statusText}`);
-      } catch (fetchError) {
-        clearTimeout(timeoutId);
-        addDebugMessage(`❌ Fetch failed: ${fetchError.name} - ${fetchError.message}`);
-        throw fetchError;
-      }
+      });
 
       if (!response.ok) {
-        addDebugMessage(`⚠️ Response not OK: ${response.status} ${response.statusText}`);
         // Try to get error details from response
         let errorMessage = 'Failed to get response';
         try {
           const errorData = await response.json();
           errorMessage = errorData.message || errorData.error || `Server error (${response.status})`;
-          addDebugMessage(`Error details: ${JSON.stringify(errorData).substring(0, 200)}`);
         } catch (e) {
-          // If response isn't JSON, use status text
           errorMessage = response.statusText || `Server error (${response.status})`;
-          addDebugMessage(`Could not parse error response as JSON`);
         }
         
         if (response.status === 429) {
@@ -226,19 +149,14 @@ export const ChatWindow = ({ isOpen, onClose }) => {
       }
 
       // Parse response JSON with error handling for mobile
-      addDebugMessage('Parsing response JSON...');
       let data;
       let responseText;
       try {
         responseText = await response.text();
-        addDebugMessage(`Response received (${responseText.length} chars). First 100: ${responseText.substring(0, 100)}`);
         console.log('API Response (first 200 chars):', responseText.substring(0, 200));
         data = JSON.parse(responseText);
-        addDebugMessage('✅ JSON parsed successfully');
       } catch (parseError) {
         console.error('Failed to parse response JSON:', parseError);
-        addDebugMessage(`❌ JSON parse error: ${parseError.message}`);
-        addDebugMessage(`Response text (first 500): ${responseText?.substring(0, 500) || 'No text'}`);
         
         // Update debug log with parse error
         const requestDuration = Date.now() - requestStartTime;
@@ -296,7 +214,6 @@ export const ChatWindow = ({ isOpen, onClose }) => {
       ));
 
       // Add bot response
-      addDebugMessage('✅ Successfully parsed response, adding bot message');
       const botMessage = {
         id: Date.now() + 1,
         text: data.message || 'I apologize, but I could not generate a response.',
@@ -309,26 +226,17 @@ export const ChatWindow = ({ isOpen, onClose }) => {
     } catch (err) {
       console.error('Chat error:', err);
       
-      // Add visible error debug message
-      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-      addDebugMessage(`❌ Error caught: ${err.name}`);
-      addDebugMessage(`Error message: ${err.message}`);
-      if (err.stack) {
-        addDebugMessage(`Stack (first 300 chars): ${err.stack.substring(0, 300)}`);
-      }
-      
       const errorDetails = {
         message: err.message,
         stack: err.stack,
         apiUrl: apiUrl,
         userAgent: navigator.userAgent,
-        isMobile,
+        isMobile: /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent),
         isOnline: navigator.onLine,
         currentUrl: window.location.href,
         errorName: err.name,
       };
       console.error('Error details:', errorDetails);
-      addDebugMessage(`Error details: ${JSON.stringify(errorDetails, null, 2).substring(0, 300)}...`);
       
       // Update debug log with error
       const requestDuration = Date.now() - requestStartTime;
@@ -350,13 +258,10 @@ export const ChatWindow = ({ isOpen, onClose }) => {
       // Check if it's a network error or timeout
       if (err.name === 'AbortError' || err.message.includes('aborted')) {
         userFriendlyError = 'Request timed out. Please check your internet connection and try again.';
-        addDebugMessage('⚠️ Request was aborted (likely timeout)');
       } else if (err instanceof TypeError && (err.message.includes('fetch') || err.message.includes('network'))) {
         userFriendlyError = 'Network error: Unable to connect to the server. Please check your internet connection and try again.';
-        addDebugMessage('⚠️ Network/TypeError detected');
       } else if (!navigator.onLine) {
         userFriendlyError = 'You appear to be offline. Please check your internet connection.';
-        addDebugMessage('⚠️ Browser reports offline');
       }
       
       setError(userFriendlyError);
@@ -377,18 +282,8 @@ export const ChatWindow = ({ isOpen, onClose }) => {
   };
 
   const handleKeyDown = (e) => {
-    console.log('handleKeyDown triggered:', e.key, e.type);
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
-      console.log('Enter key pressed, calling sendMessage');
-      // Add immediate feedback
-      const feedbackMsg = {
-        id: Date.now(),
-        text: '[DEBUG] Enter key detected, calling sendMessage...',
-        isUser: false,
-        links: [],
-      };
-      setMessages((prev) => [...prev, feedbackMsg]);
       sendMessage();
     }
   };
@@ -396,79 +291,13 @@ export const ChatWindow = ({ isOpen, onClose }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    console.log('Form submit triggered', 'Event:', e);
-    
-    // Force immediate visual feedback
-    const testDiv = document.createElement('div');
-    testDiv.style.cssText = 'position: fixed; top: 100px; left: 10px; background: green; color: white; padding: 10px; z-index: 99999; font-size: 14px;';
-    testDiv.textContent = '[DEBUG] Form SUBMIT triggered!';
-    document.body.appendChild(testDiv);
-    setTimeout(() => testDiv.remove(), 3000);
-    
-    // Add immediate feedback
-    const feedbackMsg = {
-      id: Date.now(),
-      text: '[DEBUG] Form submit triggered, calling sendMessage...',
-      isUser: false,
-      links: [],
-    };
-    console.log('handleSubmit - Adding feedback message:', feedbackMsg);
-    setMessages((prev) => {
-      console.log('handleSubmit - prev messages:', prev);
-      const updated = [...prev, feedbackMsg];
-      console.log('handleSubmit - updated messages:', updated);
-      return updated;
-    });
-    
-    // Wait a moment to see if message appears, then call sendMessage
-    setTimeout(() => {
-      console.log('Form submit - Calling sendMessage now...');
-      sendMessage();
-    }, 100);
+    sendMessage();
   };
 
   const handleSendClick = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    console.log('Send button clicked', e.type, 'Event:', e, 'Current messages:', messages.length);
-    
-    // Force immediate visual feedback
-    const timestamp = new Date().toLocaleTimeString();
-    const testDiv = document.createElement('div');
-    testDiv.id = 'mobile-debug-button-click';
-    testDiv.style.cssText = 'position: fixed; top: 60px; left: 10px; background: blue; color: white; padding: 10px; z-index: 99999; font-size: 14px; border: 2px solid cyan;';
-    testDiv.textContent = `[DEBUG] Send button CLICKED at ${timestamp}!`;
-    document.body.appendChild(testDiv);
-    setTimeout(() => testDiv.remove(), 5000);
-    
-    // Add immediate feedback - with timestamp to verify it's new
-    const feedbackMsg = {
-      id: Date.now(),
-      text: `[DEBUG ${timestamp}] Send button clicked, calling sendMessage...`,
-      isUser: false,
-      links: [],
-    };
-    console.log('Adding feedback message:', feedbackMsg);
-    setMessages((prev) => {
-      console.log('handleSendClick - prev messages:', prev);
-      const updated = [...prev, feedbackMsg];
-      console.log('handleSendClick - updated messages:', updated);
-      return updated;
-    });
-    
-    // Force a DOM update test
-    setTimeout(() => {
-      const debugDiv = document.getElementById('mobile-debug-test');
-      if (debugDiv) {
-        debugDiv.textContent = `Messages: ${messages.length + 1} (button clicked at ${timestamp})`;
-      }
-    }, 0);
-    
-    // Wait a moment to see if message appears, then call sendMessage
-    setTimeout(() => {
-      console.log('Calling sendMessage now...');
-      sendMessage();
-    }, 100);
+    sendMessage();
   };
 
   if (!isOpen) return null;
@@ -483,7 +312,7 @@ export const ChatWindow = ({ isOpen, onClose }) => {
         }
       }}
     >
-      <div className="bg-green-600/95 backdrop-blur-md rounded-xl border-4 border-green-400 w-full max-w-2xl h-[90vh] sm:h-[80vh] max-h-[90vh] sm:max-h-[600px] flex flex-col shadow-2xl">
+      <div className="bg-gray-900/95 backdrop-blur-md rounded-xl border border-gray-700/50 w-full max-w-2xl h-[90vh] sm:h-[80vh] max-h-[90vh] sm:max-h-[600px] flex flex-col shadow-2xl">
         {/* Header */}
         <div className="flex items-center justify-between p-4 border-b border-gray-700/50">
           <div className="flex items-center gap-3">
@@ -507,14 +336,6 @@ export const ChatWindow = ({ isOpen, onClose }) => {
             <div>
               <h3 className="text-lg font-bold text-gray-50">Portfolio Assistant</h3>
               <p className="text-xs text-gray-300">Ask me anything about Terrell's work</p>
-              {/* Debug message count - always visible */}
-              <div 
-                id="mobile-debug-test" 
-                className="text-yellow-400 text-xs font-mono mt-1"
-                style={{ display: 'block' }}
-              >
-                Messages: {messages.length}
-              </div>
             </div>
           </div>
           <button
@@ -540,28 +361,14 @@ export const ChatWindow = ({ isOpen, onClose }) => {
 
         {/* Messages area */}
         <div className="flex-1 overflow-y-auto p-3 sm:p-4 space-y-4 overscroll-contain">
-          {/* Debug: Always show message count */}
-          <div className="bg-yellow-900/50 border border-yellow-500/50 rounded p-2 text-yellow-200 text-xs font-mono mb-2">
-            DEBUG: Rendering {messages.length} message(s). Message IDs: {messages.map(m => m.id).join(', ')}
-          </div>
-          
-          {messages.length === 0 ? (
-            <div className="bg-red-900/50 border border-red-500/50 rounded p-4 text-red-200">
-              ⚠️ NO MESSAGES IN STATE! This should not happen.
-            </div>
-          ) : (
-            messages.map((message) => {
-              console.log('Rendering message:', message.id, message.text.substring(0, 50));
-              return (
-                <ChatMessage
-                  key={message.id}
-                  message={message.text}
-                  isUser={message.isUser}
-                  links={message.links}
-                />
-              );
-            })
-          )}
+          {messages.map((message) => (
+            <ChatMessage
+              key={message.id}
+              message={message.text}
+              isUser={message.isUser}
+              links={message.links}
+            />
+          ))}
           {isLoading && (
             <div className="flex justify-start">
               <div className="bg-gray-800/80 border border-gray-700/50 rounded-xl p-4">
@@ -695,38 +502,15 @@ export const ChatWindow = ({ isOpen, onClose }) => {
               ref={inputRef}
               type="text"
               value={input}
-              onChange={(e) => {
-                const value = e.target.value;
-                console.log('Input onChange triggered, value:', value);
-                setInput(value);
-                // Visual feedback
-                const testDiv = document.createElement('div');
-                testDiv.style.cssText = 'position: fixed; bottom: 100px; right: 10px; background: purple; color: white; padding: 5px; z-index: 99999; font-size: 12px; max-width: 200px;';
-                testDiv.textContent = `Typing: ${value.substring(0, 20)}`;
-                document.body.appendChild(testDiv);
-                setTimeout(() => testDiv.remove(), 2000);
-              }}
-              onKeyDown={(e) => {
-                console.log('Input onKeyDown:', e.key, e);
-                handleKeyDown(e);
-              }}
-              onKeyPress={(e) => {
-                console.log('Input onKeyPress:', e.key, e);
-              }}
-              onTouchStart={(e) => {
-                console.log('Input onTouchStart:', e);
-              }}
+              onChange={(e) => setInput(e.target.value)}
+              onKeyDown={handleKeyDown}
               placeholder="Ask me anything about Terrell's work..."
               disabled={isLoading}
               className="flex-1 bg-gray-800/80 border border-gray-700/50 rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 text-base text-gray-50 placeholder-gray-400 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-400/50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed touch-target min-h-[44px]"
             />
             <button
-              type="submit"
+              type="button"
               onClick={handleSendClick}
-              onTouchStart={(e) => {
-                console.log('Touch start on send button');
-                // Don't preventDefault here, let it bubble to onClick
-              }}
               disabled={!input.trim() || isLoading}
               className="bg-blue-500 hover:bg-blue-400 active:bg-blue-600 disabled:bg-gray-700 disabled:cursor-not-allowed text-white px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-900 touch-target min-h-[44px] min-w-[44px] sm:min-w-[80px] flex items-center justify-center"
               aria-label="Send message"
