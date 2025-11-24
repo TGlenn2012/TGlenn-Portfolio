@@ -7,8 +7,8 @@ export const ChatMessage = ({ message, isUser, links = [] }) => {
       <div
         className={`max-w-[80%] sm:max-w-[75%] md:max-w-[70%] rounded-xl p-3 md:p-4 ${
           isUser
-            ? 'bg-blue-500/20 border border-blue-500/30 text-gray-100'
-            : 'glass border border-white/10 text-gray-300'
+            ? 'bg-blue-600/30 border border-blue-500/50 text-gray-50'
+            : 'bg-gray-800/80 border border-gray-700/50 text-gray-100'
         }`}
       >
         {/* Message content with markdown support */}
@@ -22,7 +22,7 @@ export const ChatMessage = ({ message, isUser, links = [] }) => {
                   return (
                     <Link
                       to={href}
-                      className="text-blue-400 hover:text-blue-300 underline transition-colors"
+                      className="text-blue-300 hover:text-blue-200 underline transition-colors focus:outline-none focus:ring-2 focus:ring-blue-400 rounded"
                       onClick={() => {
                         // Scroll to section if it's a hash link
                         if (href.startsWith('#')) {
@@ -43,7 +43,7 @@ export const ChatMessage = ({ message, isUser, links = [] }) => {
                     href={href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-blue-400 hover:text-blue-300 underline transition-colors"
+                    className="text-blue-300 hover:text-blue-200 underline transition-colors focus:outline-none focus:ring-2 focus:ring-blue-400 rounded"
                   >
                     {children}
                   </a>
@@ -63,8 +63,8 @@ export const ChatMessage = ({ message, isUser, links = [] }) => {
                 <code
                   className={`${
                     inline
-                      ? 'bg-gray-800 px-1.5 py-0.5 rounded text-sm'
-                      : 'block bg-gray-800 p-2 rounded my-2 overflow-x-auto'
+                      ? 'bg-gray-900 px-1.5 py-0.5 rounded text-sm text-gray-200'
+                      : 'block bg-gray-900 p-2 rounded my-2 overflow-x-auto text-gray-200'
                   }`}
                 >
                   {children}
@@ -78,14 +78,14 @@ export const ChatMessage = ({ message, isUser, links = [] }) => {
 
         {/* Links section for bot messages */}
         {!isUser && links && links.length > 0 && (
-          <div className="mt-3 pt-3 border-t border-white/10">
-            <p className="text-xs text-gray-400 mb-2">Learn more:</p>
+          <div className="mt-3 pt-3 border-t border-gray-700/50">
+            <p className="text-xs text-gray-300 mb-2">Learn more:</p>
             <div className="flex flex-wrap gap-2">
               {links.map((link, index) => (
                 <Link
                   key={index}
                   to={link.url}
-                  className="inline-block bg-blue-500/20 hover:bg-blue-500/30 text-blue-400 px-3 py-1.5 rounded-full text-xs transition-colors"
+                  className="inline-block bg-blue-600/30 hover:bg-blue-600/40 text-blue-300 px-3 py-1.5 rounded-full text-xs transition-colors focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800"
                 >
                   {link.text} →
                 </Link>

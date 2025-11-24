@@ -124,10 +124,10 @@ export const ChatWindow = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="glass rounded-xl border border-white/10 w-full max-w-2xl h-[80vh] max-h-[600px] flex flex-col shadow-2xl">
+    <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+      <div className="bg-gray-900/95 backdrop-blur-md rounded-xl border border-gray-700/50 w-full max-w-2xl h-[80vh] max-h-[600px] flex flex-col shadow-2xl">
         {/* Header */}
-        <div className="flex items-center justify-between p-4 border-b border-white/10">
+        <div className="flex items-center justify-between p-4 border-b border-gray-700/50">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-cyan-600 rounded-full flex items-center justify-center">
               <svg
@@ -147,13 +147,13 @@ export const ChatWindow = ({ isOpen, onClose }) => {
               </svg>
             </div>
             <div>
-              <h3 className="text-lg font-bold text-gray-100">Portfolio Assistant</h3>
-              <p className="text-xs text-gray-400">Ask me anything about Terrell's work</p>
+              <h3 className="text-lg font-bold text-gray-50">Portfolio Assistant</h3>
+              <p className="text-xs text-gray-300">Ask me anything about Terrell's work</p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="text-gray-400 hover:text-gray-200 transition-colors p-2 rounded-lg hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-blue-500 touch-target min-h-[44px] min-w-[44px] flex items-center justify-center"
+            className="text-gray-300 hover:text-gray-50 transition-colors p-2 rounded-lg hover:bg-gray-700/50 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-900 touch-target min-h-[44px] min-w-[44px] flex items-center justify-center"
             aria-label="Close chatbot"
           >
             <svg
@@ -184,17 +184,17 @@ export const ChatWindow = ({ isOpen, onClose }) => {
           ))}
           {isLoading && (
             <div className="flex justify-start">
-              <div className="glass border border-white/10 rounded-xl p-4">
+              <div className="bg-gray-800/80 border border-gray-700/50 rounded-xl p-4">
                 <div className="flex gap-2">
-                  <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
-                  <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
-                  <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
+                  <div className="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
+                  <div className="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
+                  <div className="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
                 </div>
               </div>
             </div>
           )}
           {error && (
-            <div className="bg-red-500/20 border border-red-500/30 rounded-xl p-3 text-red-400 text-sm">
+            <div className="bg-red-900/40 border border-red-600/50 rounded-xl p-3 text-red-300 text-sm">
               {error}
             </div>
           )}
@@ -202,7 +202,7 @@ export const ChatWindow = ({ isOpen, onClose }) => {
         </div>
 
         {/* Input area */}
-        <div className="p-4 border-t border-white/10">
+        <div className="p-4 border-t border-gray-700/50">
           <div className="flex gap-2">
             <input
               ref={inputRef}
@@ -212,12 +212,12 @@ export const ChatWindow = ({ isOpen, onClose }) => {
               onKeyPress={handleKeyPress}
               placeholder="Ask me anything about Terrell's work..."
               disabled={isLoading}
-              className="flex-1 glass border border-white/10 rounded-lg px-4 py-3 text-gray-100 placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="flex-1 bg-gray-800/80 border border-gray-700/50 rounded-lg px-4 py-3 text-gray-50 placeholder-gray-400 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-400/50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             />
             <button
               onClick={sendMessage}
               disabled={!input.trim() || isLoading}
-              className="bg-blue-500 hover:bg-blue-600 disabled:bg-gray-600 disabled:cursor-not-allowed text-white px-6 py-3 rounded-lg font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900 touch-target min-h-[44px] min-w-[80px] flex items-center justify-center"
+              className="bg-blue-500 hover:bg-blue-400 disabled:bg-gray-700 disabled:cursor-not-allowed text-white px-6 py-3 rounded-lg font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-900 touch-target min-h-[44px] min-w-[80px] flex items-center justify-center"
               aria-label="Send message"
             >
               {isLoading ? (
@@ -257,7 +257,7 @@ export const ChatWindow = ({ isOpen, onClose }) => {
               )}
             </button>
           </div>
-          <p className="text-xs text-gray-500 mt-2 text-center">
+          <p className="text-xs text-gray-400 mt-2 text-center">
             Press Enter to send • Questions about portfolio only
           </p>
         </div>
