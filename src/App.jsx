@@ -17,6 +17,7 @@ import { IoTMaker } from './components/sections/ProjectDetails/IoTMaker';
 import { ShARedIoT } from './components/sections/ProjectDetails/ShARedIoT';
 import { SixDOFRoboticArm } from './components/sections/ProjectDetails/SixDOFRoboticArm';
 import { IoTCourse } from './components/sections/ProjectDetails/IoTCourse';
+import { FamilyTreeApp } from './components/sections/ProjectDetails/FamilyTreeApp';
 import "@fontsource/oswald"; // Defaults to weight 400
 import { useAnalytics } from './hooks/useAnalytics';
 import { ScrollToTop } from './components/ScrollToTop';
@@ -69,6 +70,7 @@ function App() {
             <Route path="/microkarts" element={<MicrokARts />} />
             <Route path="/6dof" element={<SixDOFRoboticArm />} />
             <Route path="/iotcourse" element={<IoTCourse />} />
+            <Route path="/familytreeapp" element={<FamilyTreeApp />} />
           </Routes>
           
           {/* Chatbot Components */}

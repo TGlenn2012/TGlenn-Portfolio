@@ -405,6 +405,94 @@
       "type": "awards",
       "tags": ["microsoft award", "purdue award", "fellowship", "recognition", "competition"]
     }
+  },
+  {
+    "id": "projects-familytree",
+    "content": "Family Tree Generator: A full-stack web application for designing personalized, laser-ready family tree signs. Built for FlareTech Laser & Design, this tool enables customers to create customized wooden signs with 3-18 family names arranged in a heart-shaped tree design. Features include a 3-layer design system (Top Layer for dedication text, Middle Layer for family tree, Bottom Layer for frame), real-time preview, production-ready SVG/PDF export with text-to-path conversion using opentype.js and Paper.js, AI-powered mockup generation via Replicate API, and secure Etsy order verification. Tech stack: React 18, TypeScript, Vite, Tailwind CSS, shadcn/ui, Node.js/Express, Firebase Auth, Firestore, Google Analytics 4. Results: 83% reduction in customization time (30min to 5min), 100% self-service (0 messages needed), 93% error reduction. Skills: Full-Stack Development, React, TypeScript, Firebase, Express.js, Vector Graphics, AI Integration, UX Design.",
+    "source": "Projects",
+    "route": "/familytreeapp",
+    "section": "Projects",
+    "metadata": {
+      "type": "project",
+      "tags": ["family tree generator", "full-stack", "react", "typescript", "firebase", "laser cutting", "svg", "vector graphics", "ai", "etsy", "flaretech"]
+    }
+  },
+  {
+    "id": "projects-familytree-technical",
+    "content": "Family Tree Generator Technical Details: The application uses a sophisticated vector processing pipeline. Text is converted to bezier paths using opentype.js for font parsing, then Paper.js handles boolean path operations (union, subtract) to create continuous outlines suitable for laser cutting. The 3-layer architecture mirrors the physical manufacturing process where stacked layers of different materials create the final sign. Authentication uses Firebase with email/password and Google OAuth, plus Etsy PKCE OAuth for order verification. AI mockup generation uses Replicate's Flux-Pro model with html-to-image for design capture. The system tracks comprehensive analytics including time-to-production, export format preferences, and feature adoption rates.",
+    "source": "Projects",
+    "route": "/familytreeapp",
+    "section": "Projects",
+    "metadata": {
+      "type": "project_detail",
+      "tags": ["opentype.js", "paper.js", "vector processing", "text-to-path", "firebase auth", "replicate api", "flux-pro", "analytics"]
+    }
+  },
+  {
+    "id": "projects-familytree-problem",
+    "content": "Family Tree Generator Problem Statement: Before the app, the customization workflow for FlareTech's family tree signs was entirely manual and required approximately 30 minutes per order. Each customer order involved 3-5 back-and-forth messages to clarify names, spellings, and design preferences. Human errors in transcription and font styling occurred in about 15% of orders, leading to costly remakes. As order volume grew, this manual process became the primary bottleneck limiting business scalability. The solution needed to eliminate the communication overhead while maintaining full customization flexibility.",
+    "source": "Projects",
+    "route": "/familytreeapp",
+    "section": "Projects",
+    "metadata": {
+      "type": "project_problem",
+      "tags": ["family tree generator", "problem statement", "business challenge", "workflow", "scalability", "customer experience"]
+    }
+  },
+  {
+    "id": "projects-familytree-sprint",
+    "content": "Family Tree Generator 5-Day Design Sprint: Day 1 (Monday) - Design & Planning: Focused on initial Figma designs, defining the color palette, and planning the multi-layer architecture. Day 2 (Tuesday) - Core Editor Development: Built the foundational 3-layer design editor, implemented core SVG rendering logic, and established the real-time preview system. Day 3 (Wednesday) - Vector Export Pipeline: Integrated opentype.js for text-to-path conversion and Paper.js for complex path manipulation, ensuring production-ready SVG/PDF exports. Day 4 (Thursday) - Authentication & Backend: Set up Firebase Authentication, designed the Firestore schema, developed the Express.js backend, and integrated the secure Etsy OAuth flow. Day 5 (Friday) - AI Integration & Launch: Integrated the Replicate AI API for mockup generation, implemented GA4 analytics, polished the UI, and prepared for deployment.",
+    "source": "Projects",
+    "route": "/familytreeapp",
+    "section": "Projects",
+    "metadata": {
+      "type": "project_process",
+      "tags": ["family tree generator", "design sprint", "agile", "rapid prototyping", "5-day sprint", "methodology"]
+    }
+  },
+  {
+    "id": "projects-familytree-architecture",
+    "content": "Family Tree Generator System Architecture: The application features three main data flows. (1) Design → Export Flow: User input flows through React state management, dynamic SVG rendering, opentype.js text-to-path conversion, Paper.js path optimization, and finally generates downloadable SVG/PDF files. (2) Authentication Flow: Users log in via Firebase Auth (Email/Password or Google OAuth), the system checks Firestore for valid Etsy purchase records, redirects to Etsy OAuth with PKCE if unverified, and grants access upon successful verification. (3) AI Mockup Flow: The design is captured using html-to-image, uploaded to the Express.js backend, processed by Replicate's Flux-Pro AI model, and the generated mockup URL is displayed to the user.",
+    "source": "Projects",
+    "route": "/familytreeapp",
+    "section": "Projects",
+    "metadata": {
+      "type": "project_architecture",
+      "tags": ["family tree generator", "system architecture", "data flow", "react", "firebase", "replicate", "vector graphics"]
+    }
+  },
+  {
+    "id": "projects-familytree-impact",
+    "content": "Family Tree Generator Business Impact: The application achieved transformative results for FlareTech Laser & Design. Customization time was reduced by 83%, from approximately 30 minutes per order to just 5 minutes. Communication rounds were eliminated entirely (100% self-service), going from 3-5 messages per order to zero messages needed. The error rate was reduced by 93%, dropping from 15% of orders requiring corrections to less than 1%. The system now provides unlimited scalability for order volume, removing the previous manual bottleneck. Customer satisfaction remained at 100% with the maintained 5-star Etsy rating.",
+    "source": "Projects",
+    "route": "/familytreeapp",
+    "section": "Projects",
+    "metadata": {
+      "type": "project_impact",
+      "tags": ["family tree generator", "business impact", "efficiency", "scalability", "customer satisfaction", "metrics", "roi"]
+    }
+  },
+  {
+    "id": "projects-familytree-demo",
+    "content": "Family Tree Generator Demo: A live demo of the Family Tree Generator is available at https://tglenn2012.github.io/Family-Tree-Generator/. The demo allows users to experience the full design interface, including adding family names to the heart-shaped tree, selecting fonts, customizing layers, and previewing the design in real-time. A YouTube video walkthrough is also available showing the complete user journey from design to export.",
+    "source": "Projects",
+    "route": "/familytreeapp",
+    "section": "Projects",
+    "metadata": {
+      "type": "project_demo",
+      "tags": ["family tree generator", "demo", "live demo", "github pages", "youtube", "video"]
+    }
+  },
+  {
+    "id": "projects-familytree-role",
+    "content": "Family Tree Generator Role: Terrell Glenn served as the Solo Full-Stack Developer & UX Designer for this project, taking full ownership from concept to deployment. Responsibilities included UX/UI design in Figma, frontend development with React and TypeScript, backend development with Node.js and Express, Firebase integration for authentication and database, Etsy OAuth integration for order verification, Replicate AI integration for mockup generation, vector graphics processing with opentype.js and Paper.js, and analytics implementation with Google Analytics 4.",
+    "source": "Projects",
+    "route": "/familytreeapp",
+    "section": "Projects",
+    "metadata": {
+      "type": "project_role",
+      "tags": ["family tree generator", "role", "full-stack developer", "ux designer", "solo developer", "responsibilities"]
+    }
   }
 ]
 

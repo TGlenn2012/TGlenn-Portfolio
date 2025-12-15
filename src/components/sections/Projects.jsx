@@ -12,11 +12,13 @@ import storymakarHeroImage from "/assets/images/storymakar-hero-image.png";
 import sixDofHeader from "/assets/images/6dof-header.png";
 import sixDofHeroImage from "/assets/images/6dof-hero-image.png";
 import constructionismHeader from "/assets/images/constructionism-header.jpg";
-import iotcourseHeroImage from "/assets/images/iotcourse-hero-image.png"; 
+import iotcourseHeroImage from "/assets/images/iotcourse-hero-image.png";
+import familyTreeHeroImage from "/assets/images/familytreeapp/Family-Tree-Generator-Thumbnail.png"; 
 
 export const Projects = () => {
     const [isModalOpen, setIsModalOpen] = useState(false); // State to manage modal visibility
     const [selectedProject, setSelectedProject] = useState(null); // State to store the selected project
+    const [showAllProjects, setShowAllProjects] = useState(false); // State to show/hide additional projects
 
     // Data for projects
     const projects = {
@@ -99,7 +101,7 @@ export const Projects = () => {
                     <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 md:mb-8 bg-gradient-to-r from-blue-500 to-cyan-600 bg-clip-text text-transparent text-center">
                         Featured Projects
                     </h2>
-                    {/* START GRID FOR PROJECTS */}
+                    {/* FEATURED PROJECTS GRID (2x2) */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                         {/* Project card #1 MICROKARTS */}
                         <div className="glass rounded-xl p-4 sm:p-5 md:p-6 border-white/10 border hover:-translate-y-1 transition-all flex flex-col">
@@ -187,179 +189,7 @@ export const Projects = () => {
                                 </Link>
                             </div>
                         </div>
-                        {/* Project card #2 SHARED IOT */}
-                        <div className="glass rounded-xl p-4 sm:p-5 md:p-6 border-white/10 border hover:-translate-y-1 transition-all flex flex-col">
-                            <div className="mb-4">
-                                <img 
-                                    src={sharediotHeroImage} 
-                                    alt="ShARed IoT" 
-                                    className="w-full h-40 sm:h-48 object-cover rounded-lg mb-3 md:mb-4"
-                                />
-                            <h3 className="text-lg sm:text-xl font-bold mb-3 md:mb-4">ShARed IoT</h3>
-                            </div>
-                            <p className="text-gray-300 mb-4 text-sm sm:text-base text-justify leading-relaxed">
-                                ShARed IoT enables users to interact with custom-built IoT devices through mobile augmented reality, supporting shared experiences across multiple smartphones. The system uses cloud anchors and a wireless protocol for real-time device control and AR content sharing. It lowers barriers for novice makers to create dynamic, networked AR-IoT experiences. Studies with UX experts and users highlight its effectiveness for both beginners and experts.
-                            </p>
-                            {/* Grouped Categories with Icons */}
-                            <div className="mb-4 space-y-3">
-                                <div>
-                                    <div className="flex items-center gap-2 mb-2">
-                                        <span className="text-lg">🌐</span>
-                                        <span className="text-sm font-semibold text-blue-400">AR/IoT</span>
-                                    </div>
-                                    <div className="flex flex-wrap gap-1.5 md:gap-2">
-                                        {["Augmented Reality", "Cloud Anchors", "Physical Computing", "Multiplayer AR"].map((tech, key) => (
-                                            <span 
-                                                key={key}
-                                                className="inline-block bg-blue-500/10 text-blue-500 px-2 md:px-3 py-1 rounded-full text-xs sm:text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition">
-                                                {tech}
-                                            </span>
-                                        ))}
-                                    </div>
-                                </div>
-                                <div>
-                                    <div className="flex items-center gap-2 mb-2">
-                                        <span className="text-lg">💻</span>
-                                        <span className="text-sm font-semibold text-blue-400">Development</span>
-                                    </div>
-                                    <div className="flex flex-wrap gap-1.5 md:gap-2">
-                                        {["Unity3D", "Blockly/Blocklyduino", "JavaScript/Web Development", "Photon Networking"].map((tech, key) => (
-                                            <span 
-                                                key={key}
-                                                className="inline-block bg-blue-500/10 text-blue-500 px-2 md:px-3 py-1 rounded-full text-xs sm:text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition">
-                                                {tech}
-                                            </span>
-                                        ))}
-                                    </div>
-                                </div>
-                                <div>
-                                    <div className="flex items-center gap-2 mb-2">
-                                        <span className="text-base md:text-lg">🔧</span>
-                                        <span className="text-xs sm:text-sm font-semibold text-blue-400">Hardware</span>
-                                    </div>
-                                    <div className="flex flex-wrap gap-1.5 md:gap-2">
-                                        {["PCB Design", "Electronics Design", "Embedded Systems", "WiFi/UDP Communication"].map((tech, key) => (
-                                            <span 
-                                                key={key}
-                                                className="inline-block bg-blue-500/10 text-blue-500 px-2 md:px-3 py-1 rounded-full text-xs sm:text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition">
-                                                {tech}
-                                            </span>
-                                        ))}
-                                    </div>
-                                </div>
-                                <div>
-                                    <div className="flex items-center gap-2 mb-2">
-                                        <span className="text-lg">🔬</span>
-                                        <span className="text-sm font-semibold text-blue-400">Research</span>
-                                    </div>
-                                    <div className="flex flex-wrap gap-1.5 md:gap-2">
-                                        {["User Studies & Evaluation", "Mixed-Methods Research", "Workshop Facilitation", "Human-Computer Interaction"].map((tech, key) => (
-                                    <span 
-                                        key={key}
-                                                className="inline-block bg-blue-500/10 text-blue-500 px-2 md:px-3 py-1 rounded-full text-xs sm:text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition">
-                                        {tech}
-                                    </span>
-                                ))}
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="mt-auto">
-                                <Link
-                                    to="/sharediot"
-                                    className="w-full bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white font-semibold py-3 md:py-4 px-6 md:px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center touch-target min-h-[44px] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-black"
-                                >
-                                    View Case Study
-                                </Link>
-                            </div>
-                        </div>
-                        {/* Project card #3 IOT MAKER*/}
-                        <div className="glass rounded-xl p-6 border-white/10 border hover:-translate-y-1 transition-all flex flex-col">
-                            <div className="mb-4">
-                                <img 
-                                    src={iotmakerHeroImage} 
-                                    alt="IoT Maker" 
-                                    className="w-full h-40 sm:h-48 object-cover rounded-lg mb-3 md:mb-4"
-                                />
-                            <h3 className="text-lg sm:text-xl font-bold mb-3 md:mb-4">IoT Maker</h3>
-                            </div>
-                            <p className="text-gray-300 mb-4 text-justify">
-                                IoT Maker is a web app for live programming and simulation of electronic devices using a drag-and-drop interface. Users can interact with sensors in real time and upload their code to custom hardware for hands-on control. The platform is designed to make advanced electro-mechanical device creation accessible to youth. Evaluation studies show it reduces barriers for novice programmers.
-                            </p>
-                            {/* Grouped Categories with Icons */}
-                            <div className="mb-4 space-y-3">
-                                <div>
-                                    <div className="flex items-center gap-2 mb-2">
-                                        <span className="text-lg">💻</span>
-                                        <span className="text-sm font-semibold text-blue-400">Development</span>
-                                    </div>
-                                    <div className="flex flex-wrap gap-1.5 md:gap-2">
-                                        {["Live Programming", "Blockly/Blocklyduino", "JavaScript/Web Development", "ESP32/Arduino"].map((tech, key) => (
-                                            <span 
-                                                key={key}
-                                                className="inline-block bg-blue-500/10 text-blue-500 px-2 md:px-3 py-1 rounded-full text-xs sm:text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition">
-                                                {tech}
-                                            </span>
-                                        ))}
-                                    </div>
-                                </div>
-                                <div>
-                                    <div className="flex items-center gap-2 mb-2">
-                                        <span className="text-base md:text-lg">🔧</span>
-                                        <span className="text-xs sm:text-sm font-semibold text-blue-400">Hardware/Embedded Systems</span>
-                                    </div>
-                                    <div className="flex flex-wrap gap-1.5 md:gap-2">
-                                        {["PCB Design", "Embedded Systems", "Electronics Design", "WiFi/UDP Communication"].map((tech, key) => (
-                                            <span 
-                                                key={key}
-                                                className="inline-block bg-blue-500/10 text-blue-500 px-2 md:px-3 py-1 rounded-full text-xs sm:text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition">
-                                                {tech}
-                                            </span>
-                                        ))}
-                                    </div>
-                                </div>
-                                <div>
-                                    <div className="flex items-center gap-2 mb-2">
-                                        <span className="text-base md:text-lg">🌐</span>
-                                        <span className="text-xs sm:text-sm font-semibold text-blue-400">IoT & Simulation</span>
-                                    </div>
-                                    <div className="flex flex-wrap gap-1.5 md:gap-2">
-                                        {["IoT Development", "Real-time Simulation", "Hardware Simulation", "Wireless Device Control"].map((tech, key) => (
-                                            <span 
-                                                key={key}
-                                                className="inline-block bg-blue-500/10 text-blue-500 px-2 md:px-3 py-1 rounded-full text-xs sm:text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition">
-                                                {tech}
-                                            </span>
-                                        ))}
-                                    </div>
-                                </div>
-                                <div>
-                                    <div className="flex items-center gap-2 mb-2">
-                                        <span className="text-base md:text-lg">🔬</span>
-                                        <span className="text-xs sm:text-sm font-semibold text-blue-400">Research & Education</span>
-                                    </div>
-                                    <div className="flex flex-wrap gap-1.5 md:gap-2">
-                                        {["User Studies & Evaluation", "STEM Education Research", "Mixed-Methods Research", "Curriculum Design"].map((tech, key) => (
-                                    <span 
-                                        key={key}
-                                                className="inline-block bg-blue-500/10 text-blue-500 px-2 md:px-3 py-1 rounded-full text-xs sm:text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition">
-                                        {tech}
-                                    </span>
-                                ))}
-                                    </div>
-                                </div>
-                            </div>
-                            {/* HYPERLINK TO VIEW CASE STUDY */}
-                            <div className="mt-auto">
-                                <Link
-                                    to="/iotmaker"
-                                    className="block w-full bg-blue-500 text-white py-3 md:py-4 px-4 md:px-6 rounded-lg font-medium text-base md:text-lg transition relative overflow-hidden text-center touch-target min-h-[44px] flex items-center justify-center
-                                    hover:-translate-y-0.5 hover:shadow-[0_0_15px_rgba(59,130,246,0.4)] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-black"
-                                >
-                                    View Case Study
-                                </Link>
-                            </div>                        
-                        </div>
-                        {/* Project card #4 STORYMAKAR*/}
+                        {/* Project card #2 STORYMAKAR - FEATURED */}
                         <div className="glass rounded-xl p-4 sm:p-5 md:p-6 border-white/10 border hover:-translate-y-1 transition-all flex flex-col">
                             <div className="mb-4">
                                 <img 
@@ -446,92 +276,7 @@ export const Projects = () => {
                                 </Link>
                             </div>                        
                         </div>
-                        {/* Project card #5 */}
-                        <div className="glass rounded-xl p-4 sm:p-5 md:p-6 border-white/10 border hover:-translate-y-1 transition-all flex flex-col">
-                            <div className="mb-4">
-                                <img 
-                                    src={sixDofHeroImage} 
-                                    alt="6-DoF Robotic Arm" 
-                                    className="w-full h-40 sm:h-48 object-cover rounded-lg mb-3 md:mb-4"
-                                />
-                                <h3 className="text-lg sm:text-xl font-bold mb-3 md:mb-4">6-DoF Robotic Arm</h3>
-                            </div>
-                            <p className="text-gray-300 mb-4 text-justify">
-                                This project features a 6-DoF robotic arm mounted on a mobile chassis, controlled via ESP32 and programmed in Arduino. A phone streams live video to a host computer, while a Unity3D interface enables remote operation using UDP. The project integrates computer vision, robotics, and wireless communication. It demonstrates advanced skills in both hardware and software integration.
-                            </p>
-                            {/* Grouped Categories with Icons */}
-                            <div className="mb-4 space-y-3">
-                                <div>
-                                    <div className="flex items-center gap-2 mb-2">
-                                        <span className="text-lg">🤖</span>
-                                        <span className="text-sm font-semibold text-blue-400">Hardware/Embedded</span>
-                                    </div>
-                                    <div className="flex flex-wrap gap-1.5 md:gap-2">
-                                        {["ESP32", "Arduino", "Embedded Systems", "Robotics", "PWM Control", "Servo Motor Control"].map((tech, key) => (
-                                            <span 
-                                                key={key}
-                                                className="inline-block bg-blue-500/10 text-blue-500 px-2 md:px-3 py-1 rounded-full text-xs sm:text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition">
-                                                {tech}
-                                            </span>
-                                        ))}
-                                    </div>
-                                </div>
-                                <div>
-                                    <div className="flex items-center gap-2 mb-2">
-                                        <span className="text-lg">💻</span>
-                                        <span className="text-sm font-semibold text-blue-400">Software Development</span>
-                                    </div>
-                                    <div className="flex flex-wrap gap-1.5 md:gap-2">
-                                        {["Python", "C/C++", "Unity3D", "UDP Networking", "WiFi Communication", "Real-time Systems"].map((tech, key) => (
-                                            <span 
-                                                key={key}
-                                                className="inline-block bg-blue-500/10 text-blue-500 px-2 md:px-3 py-1 rounded-full text-xs sm:text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition">
-                                                {tech}
-                                            </span>
-                                        ))}
-                                    </div>
-                                </div>
-                                <div>
-                                    <div className="flex items-center gap-2 mb-2">
-                                        <span className="text-lg">👁️</span>
-                                        <span className="text-sm font-semibold text-blue-400">Computer Vision</span>
-                                    </div>
-                                    <div className="flex flex-wrap gap-1.5 md:gap-2">
-                                        {["OpenCV", "Computer Vision", "Color Detection", "Object Tracking", "Image Processing"].map((tech, key) => (
-                                            <span 
-                                                key={key}
-                                                className="inline-block bg-blue-500/10 text-blue-500 px-2 md:px-3 py-1 rounded-full text-xs sm:text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition">
-                                                {tech}
-                                            </span>
-                                        ))}
-                                    </div>
-                                </div>
-                                <div>
-                                    <div className="flex items-center gap-2 mb-2">
-                                        <span className="text-base md:text-lg">🔗</span>
-                                        <span className="text-xs sm:text-sm font-semibold text-blue-400">Systems Integration</span>
-                                    </div>
-                                    <div className="flex flex-wrap gap-1.5 md:gap-2">
-                                        {["Tele-operation Systems", "Human-Robot Interaction", "System Integration", "Network Programming"].map((tech, key) => (
-                                            <span 
-                                                key={key}
-                                                className="inline-block bg-blue-500/10 text-blue-500 px-2 md:px-3 py-1 rounded-full text-xs sm:text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition">
-                                                {tech}
-                                            </span>
-                                        ))}
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="mt-auto">
-                                <Link
-                                    to="/6dof"
-                                    className="w-full bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white font-semibold py-3 md:py-4 px-6 md:px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center touch-target min-h-[44px] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-black"
-                                >
-                                    View Case Study
-                                </Link>
-                            </div>  
-                        </div>
-                        {/* Project card #6 */}
+                        {/* Project card #3 IOT COURSE DESIGN - FEATURED */}
                         <div className="glass rounded-xl p-4 sm:p-5 md:p-6 border-white/10 border hover:-translate-y-1 transition-all flex flex-col">
                             <div className="mb-4">
                                 <img 
@@ -617,6 +362,283 @@ export const Projects = () => {
                                 </Link>
                             </div>  
                         </div>
+                        {/* Project card #4 FAMILY TREE GENERATOR - FEATURED */}
+                        <div className="glass rounded-xl p-4 sm:p-5 md:p-6 border-white/10 border hover:-translate-y-1 transition-all flex flex-col">
+                            <div className="mb-4">
+                                <img 
+                                    src={familyTreeHeroImage} 
+                                    alt="Family Tree Generator" 
+                                    className="w-full h-48 sm:h-56 object-cover rounded-lg mb-3 md:mb-4"
+                                />
+                                <h3 className="text-lg sm:text-xl font-bold mb-3 md:mb-4">Family Tree Generator</h3>
+                            </div>
+                            <p className="text-gray-300 mb-4 text-sm sm:text-base text-justify leading-relaxed">
+                                A full-stack web application that enables customers to design personalized, laser-ready family tree signs. Built for FlareTech Laser & Design, this tool transforms a complex customization process into an intuitive, real-time design experience with instant SVG/PDF export for manufacturing. Features include a 3-layer design system, AI-powered mockups, and secure Etsy order verification.
+                            </p>
+                            {/* Grouped Categories with Icons */}
+                            <div className="mb-4 space-y-3">
+                                <div>
+                                    <div className="flex items-center gap-2 mb-2">
+                                        <span className="text-lg">💻</span>
+                                        <span className="text-sm font-semibold text-orange-400">Frontend Development</span>
+                                    </div>
+                                    <div className="flex flex-wrap gap-1.5 md:gap-2">
+                                        {["React 18", "TypeScript", "Tailwind CSS", "Vite", "shadcn/ui"].map((tech, key) => (
+                                            <span 
+                                                key={key}
+                                                className="inline-block bg-orange-500/10 text-orange-400 px-2 md:px-3 py-1 rounded-full text-xs sm:text-sm hover:bg-orange-500/20 hover:shadow-[0_2px_8px_rgba(249,115,22,0.2)] transition">
+                                                {tech}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+                                <div>
+                                    <div className="flex items-center gap-2 mb-2">
+                                        <span className="text-lg">⚙️</span>
+                                        <span className="text-sm font-semibold text-orange-400">Backend & Services</span>
+                                    </div>
+                                    <div className="flex flex-wrap gap-1.5 md:gap-2">
+                                        {["Node.js/Express", "Firebase Auth", "Firestore", "Replicate AI", "Etsy OAuth"].map((tech, key) => (
+                                            <span 
+                                                key={key}
+                                                className="inline-block bg-orange-500/10 text-orange-400 px-2 md:px-3 py-1 rounded-full text-xs sm:text-sm hover:bg-orange-500/20 hover:shadow-[0_2px_8px_rgba(249,115,22,0.2)] transition">
+                                                {tech}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+                                <div>
+                                    <div className="flex items-center gap-2 mb-2">
+                                        <span className="text-lg">✏️</span>
+                                        <span className="text-sm font-semibold text-orange-400">Vector Processing</span>
+                                    </div>
+                                    <div className="flex flex-wrap gap-1.5 md:gap-2">
+                                        {["opentype.js", "Paper.js", "SVG Manipulation", "Text-to-Path", "PDF Export"].map((tech, key) => (
+                                            <span 
+                                                key={key}
+                                                className="inline-block bg-orange-500/10 text-orange-400 px-2 md:px-3 py-1 rounded-full text-xs sm:text-sm hover:bg-orange-500/20 hover:shadow-[0_2px_8px_rgba(249,115,22,0.2)] transition">
+                                                {tech}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+                                <div>
+                                    <div className="flex items-center gap-2 mb-2">
+                                        <span className="text-lg">📊</span>
+                                        <span className="text-sm font-semibold text-orange-400">Product & Analytics</span>
+                                    </div>
+                                    <div className="flex flex-wrap gap-1.5 md:gap-2">
+                                        {["Google Analytics 4", "UX Design", "Figma", "CI/CD", "GitHub Pages"].map((tech, key) => (
+                                            <span 
+                                                key={key}
+                                                className="inline-block bg-orange-500/10 text-orange-400 px-2 md:px-3 py-1 rounded-full text-xs sm:text-sm hover:bg-orange-500/20 hover:shadow-[0_2px_8px_rgba(249,115,22,0.2)] transition">
+                                                {tech}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="mt-auto">
+                                <Link
+                                    to="/familytreeapp"
+                                    className="w-full bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-semibold py-3 md:py-4 px-6 md:px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center touch-target min-h-[44px] focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 focus:ring-offset-black"
+                                >
+                                    View Case Study
+                                </Link>
+                            </div>  
+                        </div>
+
+                        {/* ========== ADDITIONAL PROJECTS (Hidden by default) ========== */}
+                        
+                        {/* Project card #5 SHARED IOT - ADDITIONAL */}
+                        {showAllProjects && (
+                        <div className="glass rounded-xl p-4 sm:p-5 md:p-6 border-white/10 border hover:-translate-y-1 transition-all flex flex-col animate-fadeIn">
+                            <div className="mb-4">
+                                <img 
+                                    src={sharediotHeroImage} 
+                                    alt="ShARed IoT" 
+                                    className="w-full h-40 sm:h-48 object-cover rounded-lg mb-3 md:mb-4"
+                                />
+                            <h3 className="text-lg sm:text-xl font-bold mb-3 md:mb-4">ShARed IoT</h3>
+                            </div>
+                            <p className="text-gray-300 mb-4 text-sm sm:text-base text-justify leading-relaxed">
+                                ShARed IoT enables users to interact with custom-built IoT devices through mobile augmented reality, supporting shared experiences across multiple smartphones. The system uses cloud anchors and a wireless protocol for real-time device control and AR content sharing.
+                            </p>
+                            <div className="mb-4 space-y-3">
+                                <div>
+                                    <div className="flex items-center gap-2 mb-2">
+                                        <span className="text-lg">🌐</span>
+                                        <span className="text-sm font-semibold text-blue-400">AR/IoT</span>
+                                    </div>
+                                    <div className="flex flex-wrap gap-1.5 md:gap-2">
+                                        {["Augmented Reality", "Cloud Anchors", "Physical Computing", "Multiplayer AR"].map((tech, key) => (
+                                            <span 
+                                                key={key}
+                                                className="inline-block bg-blue-500/10 text-blue-500 px-2 md:px-3 py-1 rounded-full text-xs sm:text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition">
+                                                {tech}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+                                <div>
+                                    <div className="flex items-center gap-2 mb-2">
+                                        <span className="text-lg">💻</span>
+                                        <span className="text-sm font-semibold text-blue-400">Development</span>
+                                    </div>
+                                    <div className="flex flex-wrap gap-1.5 md:gap-2">
+                                        {["Unity3D", "Blockly", "JavaScript", "Photon Networking"].map((tech, key) => (
+                                            <span 
+                                                key={key}
+                                                className="inline-block bg-blue-500/10 text-blue-500 px-2 md:px-3 py-1 rounded-full text-xs sm:text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition">
+                                                {tech}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="mt-auto">
+                                <Link
+                                    to="/sharediot"
+                                    className="w-full bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white font-semibold py-3 md:py-4 px-6 md:px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center touch-target min-h-[44px] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-black"
+                                >
+                                    View Case Study
+                                </Link>
+                            </div>
+                        </div>
+                        )}
+
+                        {/* Project card #6 IOT MAKER - ADDITIONAL */}
+                        {showAllProjects && (
+                        <div className="glass rounded-xl p-4 sm:p-5 md:p-6 border-white/10 border hover:-translate-y-1 transition-all flex flex-col animate-fadeIn" style={{ animationDelay: '0.1s' }}>
+                            <div className="mb-4">
+                                <img 
+                                    src={iotmakerHeroImage} 
+                                    alt="IoT Maker" 
+                                    className="w-full h-40 sm:h-48 object-cover rounded-lg mb-3 md:mb-4"
+                                />
+                            <h3 className="text-lg sm:text-xl font-bold mb-3 md:mb-4">IoT Maker</h3>
+                            </div>
+                            <p className="text-gray-300 mb-4 text-sm sm:text-base text-justify leading-relaxed">
+                                IoT Maker is a web app for live programming and simulation of electronic devices using a drag-and-drop interface. Users can interact with sensors in real time and upload their code to custom hardware for hands-on control.
+                            </p>
+                            <div className="mb-4 space-y-3">
+                                <div>
+                                    <div className="flex items-center gap-2 mb-2">
+                                        <span className="text-lg">💻</span>
+                                        <span className="text-sm font-semibold text-blue-400">Development</span>
+                                    </div>
+                                    <div className="flex flex-wrap gap-1.5 md:gap-2">
+                                        {["Live Programming", "Blockly", "JavaScript", "ESP32/Arduino"].map((tech, key) => (
+                                            <span 
+                                                key={key}
+                                                className="inline-block bg-blue-500/10 text-blue-500 px-2 md:px-3 py-1 rounded-full text-xs sm:text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition">
+                                                {tech}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+                                <div>
+                                    <div className="flex items-center gap-2 mb-2">
+                                        <span className="text-lg">🔧</span>
+                                        <span className="text-sm font-semibold text-blue-400">Hardware</span>
+                                    </div>
+                                    <div className="flex flex-wrap gap-1.5 md:gap-2">
+                                        {["PCB Design", "Embedded Systems", "Electronics", "WiFi/UDP"].map((tech, key) => (
+                                            <span 
+                                                key={key}
+                                                className="inline-block bg-blue-500/10 text-blue-500 px-2 md:px-3 py-1 rounded-full text-xs sm:text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition">
+                                                {tech}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="mt-auto">
+                                <Link
+                                    to="/iotmaker"
+                                    className="w-full bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white font-semibold py-3 md:py-4 px-6 md:px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center touch-target min-h-[44px] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-black"
+                                >
+                                    View Case Study
+                                </Link>
+                            </div>                        
+                        </div>
+                        )}
+
+                        {/* Project card #7 6-DOF ROBOTIC ARM - ADDITIONAL */}
+                        {showAllProjects && (
+                        <div className="glass rounded-xl p-4 sm:p-5 md:p-6 border-white/10 border hover:-translate-y-1 transition-all flex flex-col animate-fadeIn" style={{ animationDelay: '0.2s' }}>
+                            <div className="mb-4">
+                                <img 
+                                    src={sixDofHeroImage} 
+                                    alt="6-DoF Robotic Arm" 
+                                    className="w-full h-40 sm:h-48 object-cover rounded-lg mb-3 md:mb-4"
+                                />
+                                <h3 className="text-lg sm:text-xl font-bold mb-3 md:mb-4">6-DoF Robotic Arm</h3>
+                            </div>
+                            <p className="text-gray-300 mb-4 text-sm sm:text-base text-justify leading-relaxed">
+                                A 6-DoF robotic arm mounted on a mobile chassis, controlled via ESP32 and programmed in Arduino. A Unity3D interface enables remote operation using UDP with live video streaming.
+                            </p>
+                            <div className="mb-4 space-y-3">
+                                <div>
+                                    <div className="flex items-center gap-2 mb-2">
+                                        <span className="text-lg">🤖</span>
+                                        <span className="text-sm font-semibold text-blue-400">Robotics</span>
+                                    </div>
+                                    <div className="flex flex-wrap gap-1.5 md:gap-2">
+                                        {["ESP32", "Arduino", "Servo Control", "Robotics"].map((tech, key) => (
+                                            <span 
+                                                key={key}
+                                                className="inline-block bg-blue-500/10 text-blue-500 px-2 md:px-3 py-1 rounded-full text-xs sm:text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition">
+                                                {tech}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+                                <div>
+                                    <div className="flex items-center gap-2 mb-2">
+                                        <span className="text-lg">👁️</span>
+                                        <span className="text-sm font-semibold text-blue-400">Computer Vision</span>
+                                    </div>
+                                    <div className="flex flex-wrap gap-1.5 md:gap-2">
+                                        {["OpenCV", "Python", "Unity3D", "Tele-operation"].map((tech, key) => (
+                                            <span 
+                                                key={key}
+                                                className="inline-block bg-blue-500/10 text-blue-500 px-2 md:px-3 py-1 rounded-full text-xs sm:text-sm hover:bg-blue-500/20 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition">
+                                                {tech}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="mt-auto">
+                                <Link
+                                    to="/6dof"
+                                    className="w-full bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white font-semibold py-3 md:py-4 px-6 md:px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center touch-target min-h-[44px] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-black"
+                                >
+                                    View Case Study
+                                </Link>
+                            </div>  
+                        </div>
+                        )}
+                    </div>
+
+                    {/* View All Projects Button */}
+                    <div className="mt-8 text-center">
+                        <button
+                            onClick={() => setShowAllProjects(!showAllProjects)}
+                            className="group inline-flex items-center gap-3 px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-black touch-target min-h-[44px] bg-gradient-to-r from-blue-600/20 to-cyan-600/20 border-2 border-blue-500/50 text-blue-400 hover:border-blue-400 hover:text-blue-300 hover:shadow-[0_0_30px_rgba(59,130,246,0.3)]"
+                        >
+                            <span>{showAllProjects ? 'Show Less' : 'View All Projects'}</span>
+                            <span className="text-sm text-blue-500/70">({showAllProjects ? '−3' : '+3 more'})</span>
+                            <svg 
+                                className={`w-5 h-5 transition-transform duration-300 ${showAllProjects ? 'rotate-180' : ''}`} 
+                                fill="none" 
+                                stroke="currentColor" 
+                                viewBox="0 0 24 24"
+                            >
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
                     </div>
                 </div>
             </RevealOnScroll>
