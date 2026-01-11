@@ -1,7 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import ParticlesComponent from './components/Particles';
 import './App.css'
 import { LoadingScreen } from './components/LoadingScreen';
 import { Navbar } from './components/Navbar';
@@ -26,7 +25,8 @@ import { ChatWindow } from './components/ChatWindow';
 
 
 function App() {
-  const [isLoaded, setIsLoaded] = useState(false);
+  // Only show loading screen on the home page, skip for other pages (like case studies opened in new tabs)
+  const [isLoaded, setIsLoaded] = useState(() => window.location.pathname !== "/");
   const [menuOpen, setMenuOpen] = useState(false);
   const [chatOpen, setChatOpen] = useState(false);
   
@@ -49,9 +49,8 @@ function App() {
       <div 
         className={`min-h-screen transition-opacity duration-700 ${
           isLoaded ? "opacity-100" : "opacity-0"
-        } bg-black text-gray-100`}
+        } text-gray-100`}
       > {/* Main App Container */}
-          <ParticlesComponent id="particles" /> {/* Particles Background */}
           <Navbar menuOpen={menuOpen} setMenuOpen={setMenuOpen} /> {/* Navigation Bar */}
           <MobileMenu menuOpen={menuOpen} setMenuOpen={setMenuOpen} /> {/* Mobile Menu */}
           

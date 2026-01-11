@@ -47,11 +47,12 @@ export const Contact = () => {
             className="min-h-screen flex items-center justify-center py-20"
         >
             <RevealOnScroll>
-                <div className="max-w-2xl mx-auto px-4 w-full">
-                    <h2 className="text-2xl md:text-3xl font-bold mb-6 md:mb-8 bg-gradient-to-r from-blue-500 to-cyan-600 bg-clip-text text-transparent text-center"> 
+                <div className="max-w-6xl mx-auto px-4 sm:px-6 w-full flex flex-col items-center">
+                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 md:mb-8 bg-gradient-to-r from-blue-500 to-cyan-600 bg-clip-text text-transparent text-center"> 
                         Get in Touch!
                     </h2>
-                    <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
+                    <div className="glass rounded-xl p-4 sm:p-6 md:p-8 border-white/10 border w-full">
+                        <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
                         <div className="relative">
                             <input
                                 type="text"
@@ -97,6 +98,7 @@ export const Contact = () => {
                             Send Message
                         </button>
                     </form>
+                    </div>
                 </div>
             </RevealOnScroll>
         </section>

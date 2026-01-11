@@ -1,6 +1,6 @@
 import * as React from "react"
 
-export const LandingImageSVG = ({ activeCard, ...props }) => (
+export const LandingImageSVG = ({ activeCard, children, ...props }) => (
   <svg
     viewBox="0 0 1056 575.99999"
     id="svg352"
@@ -1059,6 +1059,7 @@ export const LandingImageSVG = ({ activeCard, ...props }) => (
         cy={264.90649}
         r={7.7199998}
         id="circle231"
+        style={{ visibility: "hidden" }}
       />
     </g>
     <path
@@ -1095,7 +1096,7 @@ export const LandingImageSVG = ({ activeCard, ...props }) => (
         d="m 191.6893,469.14649 c 0,0 -12,-1.48 -14.29,6.39 -1.3,4.52 -10,-9.74 -8.77,-17.52 -5.38,-2.52 -16.94,7.71 -17.15,12.32 -0.08,1.77 7.54,15.92 7.54,15.92 l 5.3,-0.24 c 0,0 2.2,6.9 3.24,9 3.19,6.35 2.05,19.29 6.94,24.13 4.89,4.84 18.47,15.12 26,12.23 6.65,-2.56 -0.09,-25.67 -2.55,-29.18 -2.46,-3.51 -2.94,-15.54 -3.08,-20.49 -0.14,-4.95 0.67,-11.1 -3.18,-12.56 z"
         id="path205"
         style={{
-          fill: "#1a1a1a",
+          fill: "#b5b7b8ff",
           fillOpacity: 1,
         }}
       />
@@ -1104,7 +1105,7 @@ export const LandingImageSVG = ({ activeCard, ...props }) => (
         d="m 334.0293,497.16649 c -3.62,-1.57 -15.71,0.14 -19.07,0.15 -20.75,0.12 -30.09,-10.86 -30.09,-10.86 0,0 -2.79,-2 -5.08,-1.23 -2.29,0.77 -1.25,6.59 -1.25,6.6 a 21.8,21.8 0 0 1 -7.34,3.72 c -11.09,2.89 -11.45,-1.34 -14.78,0.16 -4.66,5.78 -0.39,29.17 -0.39,29.17 l 19.48,-2.49 v -3.43 c 0,0 5.14,2.36 6.87,2 8.3,-1.53 23.22,-4.87 33.42,-7.93 19.55,-5.85 23.02,-13.79 18.23,-15.86 z"
         id="path207"
         style={{
-          fill: "#1a1a1a",
+          fill: "#b5b7b8ff",
           fillOpacity: 1,
         }}
       />
@@ -1315,7 +1316,7 @@ export const LandingImageSVG = ({ activeCard, ...props }) => (
       style={{
         fontSize: "26.6667px",
         lineHeight: 1.25,
-        fontFamily: "'Britannic Bold'",
+        fontFamily: "'Space Grotesk', sans-serif",
         // InkscapeFontSpecification: "'Britannic Bold, Normal'",
         textAlign: "center",
         letterSpacing: 0,
@@ -1364,10 +1365,10 @@ export const LandingImageSVG = ({ activeCard, ...props }) => (
             fontVariant: "normal",
             fontWeight: "normal",
             fontStretch: "normal",
-            fontSize: "24px",
+            fontSize: "18px",
             lineHeight: 1.4,
             fill: "#000000",
-            fontFamily: "'Oswald', Arial, Helvetica, sans-serif",
+            fontFamily: "'Space Grotesk', sans-serif",
             fontVariantLigatures: "normal",
             fontVariantCaps: "normal",
             fontVariantNumeric: "normal",
@@ -1397,17 +1398,17 @@ export const LandingImageSVG = ({ activeCard, ...props }) => (
           xmlSpace="preserve"
           style={{
             fontStyle: "normal",
-            fontFamily: "'Oswald', Arial, Helvetica, sans-serif", // Add fallback stack
+            fontFamily: "'Space Grotesk', sans-serif", // Add fallback stack
             fontVariant: "normal",
             fontWeight: "normal",
             fontStretch: "normal",
-            fontSize: "48px",
+            fontSize: "40px",
             fontWeight: "bold",
             letterSpacing: 1,
             wordSpacing: 2,
             fill: "#000000",
             lineHeight: 1.25,
-            fontFamily: "'Oswald', Arial, Helvetica, sans-serif", // Add fallback stack
+            fontFamily: "'Space Grotesk', sans-serif", // Add fallback stack
             // InkscapeFontSpecification: "'Oswald, Normal'",
             fontVariantLigatures: "normal",
             fontVariantCaps: "normal",
@@ -1892,12 +1893,12 @@ export const LandingImageSVG = ({ activeCard, ...props }) => (
             fontVariant: "normal",
             fontWeight: "normal",
             fontStretch: "normal",
-            fontSize: "24px",
+            fontSize: "18px",
             lineHeight: 1.4,
             letterSpacing: 0.5,
             wordSpacing: 1,
             fill: "#000000",
-            fontFamily: "'Oswald', Arial, Helvetica, sans-serif", // Add fallback stack
+            fontFamily: "'Space Grotesk', sans-serif", // Add fallback stack
             // InkscapeFontSpecification: "'Oswald, Normal'",
             fontVariantLigatures: "normal",
             fontVariantCaps: "normal",
@@ -1938,13 +1939,13 @@ export const LandingImageSVG = ({ activeCard, ...props }) => (
             fontVariant: "normal",
             fontWeight: "normal",
             fontStretch: "normal",
-            fontSize: "48px",
+            fontSize: "40px",
             fontWeight: "bold",
             letterSpacing: 1,
             wordSpacing: 2,
             fill: "#000000",
             lineHeight: 1.25,
-            fontFamily: "'Oswald', Arial, Helvetica, sans-serif", // Add fallback stack
+            fontFamily: "'Space Grotesk', sans-serif", // Add fallback stack
             // InkscapeFontSpecification: "'Oswald, Normal'",
             fontVariantLigatures: "normal",
             fontVariantCaps: "normal",
@@ -2326,12 +2327,12 @@ export const LandingImageSVG = ({ activeCard, ...props }) => (
             fontVariant: "normal",
             fontWeight: "normal",
             fontStretch: "normal",
-            fontSize: "24px",
+            fontSize: "18px",
             lineHeight: 1.6,
             letterSpacing: 0.5,
             wordSpacing: 1,
             fill: "#000000",
-            fontFamily: "'Oswald', Arial, Helvetica, sans-serif", // Add fallback stack
+            fontFamily: "'Space Grotesk', sans-serif", // Add fallback stack
             // InkscapeFontSpecification: "'Oswald, Normal'",
             fontVariantLigatures: "normal",
             fontVariantCaps: "normal",
@@ -2372,13 +2373,13 @@ export const LandingImageSVG = ({ activeCard, ...props }) => (
             fontVariant: "normal",
             fontWeight: "normal",
             fontStretch: "normal",
-            fontSize: "48px",
+            fontSize: "40px",
             fontWeight: "bold",
             letterSpacing: 1,
             wordSpacing: 2,
             fill: "#000000",
             lineHeight: 1.25,
-            fontFamily: "'Oswald', Arial, Helvetica, sans-serif", // Add fallback stack
+            fontFamily: "'Space Grotesk', sans-serif", // Add fallback stack
             // InkscapeFontSpecification: "'Oswald, Normal'",
             fontVariantLigatures: "normal",
             fontVariantCaps: "normal",
@@ -2599,9 +2600,9 @@ export const LandingImageSVG = ({ activeCard, ...props }) => (
           fontVariant: "normal",
           fontWeight: "normal",
           fontStretch: "normal",
-          fontSize: "22px",
+            fontSize: "18px",
           lineHeight: 1.4,
-          fontFamily: "'Oswald', Arial, Helvetica, sans-serif",
+          fontFamily: "'Space Grotesk', sans-serif",
           fontVariantLigatures: "normal",
           fontVariantCaps: "normal",
           fontVariantNumeric: "normal",
@@ -2620,23 +2621,27 @@ export const LandingImageSVG = ({ activeCard, ...props }) => (
         transform="translate(-423.52015,-427.11132)"
       >
         <tspan x={641.34583} y={204.35385} id="tspan-ai-ml-1">
-          {"I use vibe coding tools like Cursor, Figma Make, and"}
+          {"I use vibe coding tools like Cursor, Figma Make,"}
           <tspan y={204.35385} id="tspan-ai-ml-1a"> </tspan>
         </tspan>
         <tspan x={641.34583} y={231.02048} id="tspan-ai-ml-2">
-          {"Google AI Studio to build programs at the intersection"}
+          {"and Google AI Studio to build programs at the"}
           <tspan y={231.02048} id="tspan-ai-ml-2a"> </tspan>
         </tspan>
         <tspan x={641.34583} y={257.68711} id="tspan-ai-ml-3">
-          {"of Hardware, Software, and Human Factors. With my"}
+          {"intersection of Hardware, Software, and Human"}
           <tspan y={257.68711} id="tspan-ai-ml-3a"> </tspan>
         </tspan>
         <tspan x={641.34583} y={284.35373} id="tspan-ai-ml-4">
-          {"hardware background and software foundation, these AI"}
+          {"Factors. With my hardware background and software"}
           <tspan y={284.35373} id="tspan-ai-ml-4a"> </tspan>
         </tspan>
         <tspan x={641.34583} y={311.02035} id="tspan-ai-ml-5">
-          {"tools enable me to create impactful solutions."}
+          {"foundation, these AI tools enable me to create"}
+          <tspan y={311.02035} id="tspan-ai-ml-5a"> </tspan>
+        </tspan>
+        <tspan x={641.34583} y={337.68711} id="tspan-ai-ml-6">
+          {"impactful solutions."}
         </tspan>
       </text>
       <text
@@ -2646,9 +2651,9 @@ export const LandingImageSVG = ({ activeCard, ...props }) => (
           fontVariant: "normal",
           fontWeight: "bold",
           fontStretch: "normal",
-          fontSize: "52px",
+          fontSize: "30px",
           lineHeight: 1.3,
-          fontFamily: "'Oswald', Arial, Helvetica, sans-serif",
+          fontFamily: "'Space Grotesk', sans-serif",
           fontVariantLigatures: "normal",
           fontVariantCaps: "normal",
           fontVariantNumeric: "normal",
@@ -2853,9 +2858,9 @@ export const LandingImageSVG = ({ activeCard, ...props }) => (
             fontVariant: "normal",
             fontWeight: "normal",
             fontStretch: "normal",
-            fontSize: 32,
+            fontSize: 24,
             lineHeight: 1.25,
-            fontFamily: "'Oswald', Arial, Helvetica, sans-serif", // Add fallback stack
+            fontFamily: "'Space Grotesk', sans-serif", // Add fallback stack
             // InkscapeFontSpecification: "'Oswald, Normal'",
             fontVariantLigatures: "normal",
             fontVariantCaps: "normal",
@@ -2884,6 +2889,7 @@ export const LandingImageSVG = ({ activeCard, ...props }) => (
         </text>
       </g>
     </g>
+    {children}
   </svg>
 )
 export { LandingImageSVG as ReactComponent }

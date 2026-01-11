@@ -7,15 +7,13 @@ import { LandingImageSVG } from "../LandingImageSVG";
 const words = [
     "Hardware Engineer",
     "Product Engineer",
-    "UX Designer",
+    "UX Engineer",
     "Researcher",
-    "Data Analyst",
-    "Project Manager",
     "Public Speaker",
     "Mentor",
     "Vibe Coder",
     "Maker",
-    "Dog Dad",
+    "Dog Dad"
 ];
 
 const cardIDs = [
@@ -33,7 +31,7 @@ export const Home = () => {
     useEffect(() => {
         const interval = setInterval(() => {
             setIndex((prevIndex) => (prevIndex + 1) % words.length);
-        }, 1000); // Change word every 3 seconds
+        }, 2000); // Change word every 2 seconds
 
         return () => clearInterval(interval);
     }, []);
@@ -89,25 +87,48 @@ export const Home = () => {
                     {/* Right Column: Image */}
                     <div className="flex-1 flex flex-col items-center justify-center relative">
                         {/* Render the current card */}
-                        <LandingImageSVG activeCard={cardIDs[cardIndex]} className="w-full max-w-xl md:max-w-xl object-cover" />
+                        <LandingImageSVG activeCard={cardIDs[cardIndex]} className="w-full max-w-xl md:max-w-xl object-cover">
+                            {/* Integrated Navigation Arrows - SVG based */}
+                            <g className="cursor-pointer hover:opacity-80 transition-opacity" onClick={() => setCardIndex((cardIndex - 1 + cardIDs.length) % cardIDs.length)}>
+                                <circle cx="940" cy="86" r="15" fill="none" pointerEvents="all" />
+                                <path 
+                                    d="M 950 86 L 930 86 M 938 78 L 930 86 L 938 94" 
+                                    stroke="white" 
+                                    strokeWidth="3" 
+                                    fill="none" 
+                                    strokeLinecap="round" 
+                                    strokeLinejoin="round"
+                                />
+                            </g>
+                            
+                            <g className="cursor-pointer hover:opacity-80 transition-opacity" onClick={() => setCardIndex((cardIndex + 1) % cardIDs.length)}>
+                                <circle cx="990" cy="86" r="15" fill="none" pointerEvents="all" />
+                                <path 
+                                    d="M 980 86 L 1000 86 M 992 78 L 1000 86 L 992 94" 
+                                    stroke="white" 
+                                    strokeWidth="3" 
+                                    fill="none" 
+                                    strokeLinecap="round" 
+                                    strokeLinejoin="round"
+                                />
+                            </g>
 
-                        {/* Navigation Buttons */}
-                        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-4 px-4 w-full sm:w-auto">
-                            <button
-                                className="bg-blue-500 text-white py-3 md:py-4 px-6 md:px-8 rounded-lg shadow-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300 text-base md:text-lg touch-target min-h-[44px] flex items-center justify-center"
-                                aria-label="Previous Card"
-                                onClick={() => setCardIndex((cardIndex - 1 + cardIDs.length) % cardIDs.length)}
-                            >
-                                Previous
-                            </button>
-                            <button
-                                className="bg-blue-500 text-white py-3 md:py-4 px-6 md:px-8 rounded-lg shadow-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300 text-base md:text-lg touch-target min-h-[44px] flex items-center justify-center"
-                                aria-label="Next Card"
-                                onClick={() => setCardIndex((cardIndex + 1) % cardIDs.length)}
-                            >
-                                Next
-                            </button>
-                        </div>
+                            {/* Integrated Pagination Dots - SVG based */}
+                            <g>
+                                {cardIDs.map((_, idx) => (
+                                    <circle
+                                        key={idx}
+                                        cx={730 + (idx * 20)} 
+                                        cy="530"
+                                        r={idx === cardIndex ? 9 : 6}
+                                        fill={idx === cardIndex ? "#3b82f6" : "#4b5563"}
+                                        className="cursor-pointer hover:fill-blue-400 transition-colors"
+                                        onClick={() => setCardIndex(idx)}
+                                        pointerEvents="all"
+                                    />
+                                ))}
+                            </g>
+                        </LandingImageSVG>
                     </div>
                     </div>
                 </div>

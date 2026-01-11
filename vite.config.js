@@ -72,7 +72,6 @@ export default defineConfig({
       output: {
         manualChunks: {
           'react-vendor': ['react', 'react-dom', 'react-router-dom'],
-          'particles': ['@tsparticles/react', '@tsparticles/slim'],
         },
       },
     },
