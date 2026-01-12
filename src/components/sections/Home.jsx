@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { RevealOnScroll } from "../RevealOnScroll";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
@@ -59,11 +60,16 @@ export const Home = () => {
                             I'm a <span className="text-blue-500">{currentWord}</span>
                         </motion.h2>
 
-                        <p className="text-gray-400 text-base md:text-lg mb-6 md:mb-8 max-w-2xl mx-auto px-2">
-                            {/* Multifaceted engineer with a passion for user experience (UX) design and mixed-methods research. 
-                            I possess a comprehensive background in conducting qualitative and quantitative research, project management, 
-                            data analysis, product design and development, and working with key cross-functional and multi-disciplinary 
-                            stakeholders to execute strategic planning. */}
+                        <p className="text-gray-300 text-base md:text-lg mb-6 md:mb-8 max-w-2xl mx-auto px-2 leading-relaxed">
+                            I am a technical leader that excels at driving impact across the entire product development lifecycle, including Discovery & Strategy, Design & Prototyping, as well as Engineering & Execution.
+                            {' '}
+                            <Link 
+                                to="/about"
+                                className="text-blue-400 hover:text-blue-300 transition-colors font-medium inline-flex items-center gap-1 group"
+                            >
+                                Learn More About Me
+                                <span className="group-hover:translate-x-1 transition-transform inline-block">→</span>
+                            </Link>
                         </p>
                         <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 px-4">
                             <a 

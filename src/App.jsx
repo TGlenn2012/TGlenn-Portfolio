@@ -58,11 +58,11 @@ function App() {
             <Route path="/" element={
               <>
         <Home /> {/* Home Section */}
-        <About /> {/* About Section */}
         <Projects /> {/* Projects Section */}
         <Contact /> {/* Contact Section */}
               </>
             } />
+            <Route path="/about" element={<About />} />
             <Route path="/storymakar" element={<StoryMakAR />} />
             <Route path="/iotmaker" element={<IoTMaker />} />
             <Route path="/sharediot" element={<ShARedIoT />} />
