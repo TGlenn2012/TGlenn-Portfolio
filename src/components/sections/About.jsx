@@ -1,9 +1,75 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { RevealOnScroll } from "../RevealOnScroll";
 import headshot from "/assets/images/Terrell-Headshot.png";
 import purdueLogo from "/assets/images/Purdue_Boilermakers_logo.svg";
 import morehouseLogo from "/assets/images/Morehouse_college_seal.svg";
 import flareTechLogo from "/assets/images/flaretech-logo.png";
+import toyDriveImage from "/assets/images/toydrive/ToyDrive-CierraTerrell.png";
+import toyDriveImage1 from "/assets/images/toydrive/20241219_122342.jpg";
+import toyDriveImage2 from "/assets/images/toydrive/20251207_122034.jpg";
+import toyDriveImage3 from "/assets/images/toydrive/20251207_123949.jpg";
+import toyDriveImage4 from "/assets/images/toydrive/20251207_130011.jpg";
+import toyDriveImage5 from "/assets/images/toydrive/Screenshot_20241101_175339_Photos.jpg";
+import geriImage1 from "/assets/images/ger2i/geri-2017.jpg";
+import geriImage2 from "/assets/images/ger2i/geri-2018.jpg";
+import geriImage3 from "/assets/images/ger2i/geri-2019.jpg";
+import geriImage4 from "/assets/images/ger2i/IMG_20180703_140931.jpg";
+import geriImage5 from "/assets/images/ger2i/IMG_20180703_140944.jpg";
+import geriImage6 from "/assets/images/ger2i/IMG_20180726_182525.jpg";
+import geriImage7 from "/assets/images/ger2i/IMG_20180726_182534.jpg";
+import geriImage8 from "/assets/images/ger2i/IMG_20180726_182551.jpg";
+import geriImage9 from "/assets/images/ger2i/IMG_20180726_182621.jpg";
+import geriImage10 from "/assets/images/ger2i/IMG_20180726_182638.jpg";
+import geriImage11 from "/assets/images/ger2i/IMG_20190712_170057.jpg";
+import geriLogo from "/assets/images/ger2i/geri-logo.png";
+
+// Thumbnail Carousel Component for Toy Drive
+const ImageCarousel = ({ images }) => {
+    const [currentIndex, setCurrentIndex] = useState(0);
+
+    const handleThumbnailClick = (index) => {
+        setCurrentIndex(index);
+    };
+
+    return (
+        <div className="w-full">
+            {/* Main Image Display */}
+            <div className="relative w-full mb-4 rounded-lg overflow-hidden aspect-[4/3]">
+                <img 
+                    src={images[currentIndex]} 
+                    alt={`Tevin's Adaptive Toy Drive event ${currentIndex + 1}`}
+                    className="w-full h-full object-cover rounded-lg transition-opacity duration-300"
+                />
+            </div>
+
+            {/* Thumbnail Strip */}
+            <div className="flex gap-2 overflow-x-auto pb-2 -mx-1 px-1" style={{ scrollbarWidth: 'thin', scrollbarColor: 'rgba(255,255,255,0.2) transparent' }}>
+                {images.map((img, idx) => (
+                    <button
+                        key={idx}
+                        onClick={() => handleThumbnailClick(idx)}
+                        className={`flex-shrink-0 relative overflow-hidden rounded-lg transition-all duration-200 ${
+                            idx === currentIndex 
+                                ? 'ring-2 ring-purple-400 opacity-100 scale-105' 
+                                : 'opacity-60 hover:opacity-80 hover:scale-105'
+                        }`}
+                        style={{ 
+                            width: '80px', 
+                            height: '60px',
+                        }}
+                        aria-label={`View image ${idx + 1}`}
+                    >
+                        <img 
+                            src={img} 
+                            alt={`Thumbnail ${idx + 1}`}
+                            className="w-full h-full object-cover"
+                        />
+                    </button>
+                ))}
+            </div>
+        </div>
+    );
+};
 
 // Helper component for skill cards with progressive disclosure
 const SkillCategory = ({ icon, title, skills }) => {
@@ -113,8 +179,8 @@ export const About = () => {
                     <div className="glass rounded-xl p-4 sm:p-6 md:p-8 border-white/10 border hover:-translate-y-1 transition-all">
                         {/* Headshot and Intro Section */}
                         <div className="flex flex-col md:flex-row items-center md:items-start gap-4 md:gap-6 mb-6 md:mb-8">
-                            <div className="flex-shrink-0">
-                                <div className="w-32 h-32 sm:w-40 sm:h-40 md:w-56 md:h-56 rounded-full p-1 bg-gradient-to-r from-orange-500 to-sky-600 overflow-hidden">
+                            <div className="flex-shrink-0 flex flex-col items-center">
+                                <div className="w-32 h-32 sm:w-40 sm:h-40 md:w-56 md:h-56 rounded-full p-1 bg-gradient-to-r from-orange-500 to-sky-600 overflow-hidden mb-4">
                                     <div className="w-full h-full rounded-full overflow-hidden">
                                         <img 
                                             src={headshot} 
@@ -123,6 +189,43 @@ export const About = () => {
                                             style={{ objectPosition: 'center 20%' }}
                                         />
                                     </div>
+                                </div>
+                                
+                                {/* Social Links */}
+                                <div className="flex items-center gap-4">
+                                    <a
+                                        href="https://www.linkedin.com/in/tglenn2012"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="flex items-center justify-center w-10 h-10 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 hover:border-blue-500/50 transition-all hover:-translate-y-0.5 hover:shadow-[0_0_15px_rgba(59,130,246,0.3)] touch-target"
+                                        aria-label="LinkedIn Profile"
+                                    >
+                                        <svg 
+                                            className="w-5 h-5 text-gray-300 hover:text-blue-400 transition-colors" 
+                                            fill="currentColor" 
+                                            viewBox="0 0 24 24"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                                        </svg>
+                                    </a>
+                                    
+                                    <a
+                                        href="https://www.github.com/tglenn2012"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="flex items-center justify-center w-10 h-10 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 hover:border-blue-500/50 transition-all hover:-translate-y-0.5 hover:shadow-[0_0_15px_rgba(59,130,246,0.3)] touch-target"
+                                        aria-label="GitHub Profile"
+                                    >
+                                        <svg 
+                                            className="w-5 h-5 text-gray-300 hover:text-blue-400 transition-colors" 
+                                            fill="currentColor" 
+                                            viewBox="0 0 24 24"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                            <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd"/>
+                                        </svg>
+                                    </a>
                                 </div>
                             </div>
                             <div className="flex-1">
@@ -348,7 +451,7 @@ export const About = () => {
                                         </div>
                                         <div className="flex-1 w-full">
                                             <div className="flex flex-col sm:flex-row justify-between items-start gap-2 mb-1">
-                                                <h4 className="text-lg font-bold leading-tight">Graduate Research Assistant</h4>
+                                                <h4 className="text-lg font-bold leading-tight">UX Researcher</h4>
                                                 <span className="bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-xs whitespace-nowrap">
                                                     Aug 2016 - Jun 2022
                                                 </span>
@@ -395,6 +498,99 @@ export const About = () => {
                                     </ul>
                                     <div className="flex flex-wrap gap-1">
                                         <span className="bg-green-500/20 text-green-400 px-2 py-1 rounded text-xs">$2M+ Revenue Impact</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Service & Leadership Section */}
+                        <div className="mb-6 md:mb-8">
+                            <h3 className="text-xl sm:text-2xl font-bold mb-4 md:mb-6 text-center">Service & Leadership</h3>
+                            <div className="glass rounded-xl p-6 border-white/10 border hover:-translate-y-1 transition-all">
+                                <div className="flex flex-col md:flex-row gap-6 items-start mb-6">
+                                    <div className="flex-shrink-0 w-full md:w-1/3">
+                                        <ImageCarousel images={[toyDriveImage, toyDriveImage1, toyDriveImage2, toyDriveImage3, toyDriveImage4, toyDriveImage5]} />
+                                    </div>
+                                    <div className="flex-1">
+                                        <div className="flex flex-col sm:flex-row justify-between items-start gap-2 mb-3">
+                                            <h4 className="text-lg font-bold leading-tight">Tevin's Adaptive Toy Drive</h4>
+                                            <span className="bg-purple-500/20 text-purple-400 px-3 py-1 rounded-full text-xs whitespace-nowrap">
+                                                Dec 2023 - Present
+                                            </span>
+                                        </div>
+                                        <p className="text-gray-400 text-sm mb-4">Founding Program Lead & Adaptive Design Workshop Host</p>
+                                        <p className="text-gray-300 text-sm mb-4 leading-relaxed">
+                                            Transformed a grassroots, seasonal effort into a sustainable, systems-level community program dedicated to inclusive play, expanding the initiative to a year-round service through partnerships with local businesses, non-profits organizations, and community members.
+                                        </p>
+                                        <ul className="list-disc list-outside ml-4 text-gray-300 text-sm mb-4 space-y-2">
+                                            <li>Built and managed institutional partnerships with clinical organizations, including Seattle Children's Hospital, Boyer Children's Clinic, and the Down Syndrome Center of Puget Sound, establishing a sustainable pipeline that has distributed over 100 adaptive toys to children with disabilities.</li>
+                                            <li>Designed and delivered inclusive design workshops for community members and corporate partners (e.g., securing corporate engagement for an upcoming 55-employee adaptation event). The workshops trained participants on repeatable, safe processes for modifying electronic toys (dismantling, rewiring switches).</li>
+                                            <li>Leveraged human-centered research and collaboration with occupational therapists to ideate and refine toy adaptations for complex needs (e.g., cerebral palsy, motor-functioning challenges), ensuring solutions adhere to accessibility standards.</li>
+                                            <li>Employed media coverage and storytelling to successfully raise awareness for the program, validate the importance of adaptive play, and attract institutional support.</li>
+                                        </ul>
+                                        <div className="flex flex-wrap gap-2 mb-4">
+                                            <span className="bg-purple-500/10 text-purple-400 px-3 py-1 rounded-full text-xs font-medium border border-purple-500/20">Adaptive Design</span>
+                                            <span className="bg-purple-500/10 text-purple-400 px-3 py-1 rounded-full text-xs font-medium border border-purple-500/20">Inclusive Play</span>
+                                            <span className="bg-purple-500/10 text-purple-400 px-3 py-1 rounded-full text-xs font-medium border border-purple-500/20">Community Engagement</span>
+                                            <span className="bg-purple-500/10 text-purple-400 px-3 py-1 rounded-full text-xs font-medium border border-purple-500/20">Workshop Design</span>
+                                        </div>
+                                        <div className="flex flex-wrap gap-3">
+                                            <a 
+                                                href="https://www.seattletimes.com/life/byrd-barr-place-hosts-first-ever-tevins-adaptive-toy-drive-to-support-kids-with-disabilities/"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="inline-flex items-center gap-2 bg-blue-500/20 text-blue-400 hover:bg-blue-500/30 px-4 py-2 rounded-lg text-sm transition border border-blue-500/30"
+                                            >
+                                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+                                                </svg>
+                                                Seattle Times Article
+                                            </a>
+                                            <a 
+                                                href="https://www.seattleschild.com/tevins-adaptive-toy-drive/"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="inline-flex items-center gap-2 bg-blue-500/20 text-blue-400 hover:bg-blue-500/30 px-4 py-2 rounded-lg text-sm transition border border-blue-500/30"
+                                            >
+                                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+                                                </svg>
+                                                Seattle's Child Article
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* GER2I Smart Toys & Robots Course */}
+                            <div className="glass rounded-xl p-6 border-white/10 border hover:-translate-y-1 transition-all mt-6">
+                                <div className="flex flex-col md:flex-row gap-6 items-start">
+                                    <div className="flex-shrink-0 w-full md:w-1/3">
+                                        <ImageCarousel images={[geriImage1, geriImage2, geriImage3, geriImage4, geriImage5, geriImage6, geriImage7, geriImage8, geriImage9, geriImage10, geriImage11]} />
+                                    </div>
+                                    <div className="flex-1">
+                                        <div className="flex flex-col sm:flex-row justify-between items-start gap-2 mb-3">
+                                            <h4 className="text-lg font-bold leading-tight">GER²I Smart Toys & Robots Course</h4>
+                                            <span className="bg-purple-500/20 text-purple-400 px-3 py-1 rounded-full text-xs whitespace-nowrap">
+                                                Summer 2017 - 2019
+                                            </span>
+                                        </div>
+                                        <p className="text-gray-400 text-sm mb-4">Course Designer & Lead Instructor</p>
+                                        <p className="text-gray-300 text-sm mb-4 leading-relaxed">
+                                            Designed and led the Smart Toys & Robots summer workshop for rising 9-12 grade students in partnership with Purdue University's Gifted Education Research and Resource Institute (GER²I). The course exposed gifted and talented youth to interdisciplinary STEM concepts including fabrication, programming, electronics, and IoT development.
+                                        </p>
+                                        <ul className="list-disc list-outside ml-4 text-gray-300 text-sm mb-4 space-y-2">
+                                            <li>Created comprehensive curriculum that integrated hands-on learning with everyday materials (cardboard, plastic bottles, aluminum cans) and electronic components to build interconnected toy networks.</li>
+                                            <li>Led 14 students through a culminating Battlebots competition project, where teams of 3-4 students designed WiFi-controlled robots to compete in balloon-popping challenges, reinforcing concepts in mechanical design, programming, and wireless communication.</li>
+                                            <li>Established the foundation for ME 496: Design and Prototyping of Smart Things, a successful sophomore-level course in Purdue's School of Mechanical Engineering, demonstrating the scalability of the curriculum design.</li>
+                                            <li>Received exceptional student feedback, with a four-year GER²I participant describing it as "by far the best class I have taken" and highlighting learning outcomes in circuits, augmented reality, and CAD software.</li>
+                                        </ul>
+                                        <div className="flex flex-wrap gap-2 mb-4">
+                                            <span className="bg-purple-500/10 text-purple-400 px-3 py-1 rounded-full text-xs font-medium border border-purple-500/20">Curriculum Design</span>
+                                            <span className="bg-purple-500/10 text-purple-400 px-3 py-1 rounded-full text-xs font-medium border border-purple-500/20">STEM Education</span>
+                                            <span className="bg-purple-500/10 text-purple-400 px-3 py-1 rounded-full text-xs font-medium border border-purple-500/20">Youth Mentorship</span>
+                                            <span className="bg-purple-500/10 text-purple-400 px-3 py-1 rounded-full text-xs font-medium border border-purple-500/20">Workshop Leadership</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
